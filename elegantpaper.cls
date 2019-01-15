@@ -1,11 +1,11 @@
-% Current Version: 0.02
+% Current Version: 0.03
 % Author: ddswhu
 % Homepage: https://ddswhu.me/
 % Email: ddswhu@outlook.com
 % Lastest Version: https://github.com/EthanDeng/ElegantPaper
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{elegantpaper}[2018/1/12 v0.02 ElegantLaTeX Paper class]
+\ProvidesClass{elegantpaper}[2018/1/13 v0.03 ElegantLaTeX Paper class]
   
 \LoadClass[11pt]{article}
 
@@ -209,9 +209,9 @@
 	breaklines=true,
 	keywordstyle=\bf\color{winered}\ttfamily,
 	commentstyle=\color{gray},
-	emph={elegantpaper,fontenc,fontspec,xeCJK,xunicode,newtxmath,figure,fig,image,img,table,itemize,enumerate,newtxtext,newtxtt,ctex,microtype,description,times,newtx,booktabs,tabular},
+	emph={elegantpaper,fontenc,fontspec,xeCJK,xunicode,newtxmath,figure,fig,image,img,table,itemize,enumerate,newtxtext,newtxtt,ctex,microtype,description,times,newtx,booktabs,tabular,PDFLaTeX,XeLaTeX,type1cm},
 	emphstyle={\color{frenchplum}},
-	morekeywords={DeclareSymbolFont,toprule,midrule,bottomrule,institute,version,includegraphics,setmainfont,setsansfont,setmonofont ,setCJKmainfont,setCJKsansfont,setCJKmonofont,RequirePackage,figref,tabref,email},
+	morekeywords={DeclareSymbolFont,toprule,midrule,bottomrule,institute,version,includegraphics,setmainfont,setsansfont,setmonofont ,setCJKmainfont,setCJKsansfont,setCJKmonofont,RequirePackage,figref,tabref,email,maketitle},
 	frame=none,
 	tabsize=2,
 	backgroundcolor=\color{lightgrey}

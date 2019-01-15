@@ -1,10 +1,10 @@
 %!TEX program = pdflatex
 \documentclass[en]{elegantpaper}
 
-\title{ElegantPaper: An Elegant \LaTeX{} Template for Working Paper}
+\title{ElegantPaper: An Elegant \LaTeX{} Template for Working Papers}
 \author{\href{https://ddswhu.me/}{Dongsheng Deng}}
 \institute{Elegant\LaTeX{} Program}
-\version{0.02}
+\version{0.03}
 \date{\today}
 
 
@@ -13,12 +13,12 @@
 \maketitle
 
 \begin{abstract}
-	This paper illustrates the usage of the ElegantPaper template, which is designed for writing a working paper. This template is based on the standard \LaTeX{} article class. The goal of this template is to make the writing process easier and more comfortable. You can get rid of all the worries about the format. Just enjoy it, if you have any questions or suggestions, please contact me at: \email{ddswhu@outlook.com}. Looking for other templates designed by Elegant\LaTeX{} Group? Please visit: \href{https://ddswhu.me/resource/}{Elegant\LaTeX{} Resource}.
+\sffamily This paper illustrates the usage of the ElegantPaper template, which is designed for writing a working paper. This template is based on the standard \LaTeX{} article class. The goal of this template is to make the writing process easier and more comfortable. You can get rid of all the worries about the format. Just enjoy it, if you have any questions or suggestions, please contact me at: \email{ddswhu@outlook.com}. Looking for other templates designed by Elegant\LaTeX{} Group? Please visit: \href{https://ddswhu.me/resource/}{Elegant\LaTeX{} Resource}.
 \end{abstract}
 
 \section{Introduction}
 
-This template is based on the standard \LaTeX{} article class, which means you can pass the arguments of article class to it (\lstinline{a4paper}, \lstinline{12pt} and etc.). It supports different engines, You can choose either \lstinline{pdflatex} or \lstinline{xelatex}. 
+This template is based on the standard \LaTeX{} article class, which means you can pass the arguments of article class to it (\lstinline{a4paper}, \lstinline{12pt} and etc.). It supports different engines, You can choose either \lstinline{PDFLaTeX} or \lstinline{XeLaTeX}. 
 
 \subsection{Global Options}
 I defined one option named \lstinline{lang}, this option has two alternative values, \lstinline{lang=en} (default) or \lstinline{lang=cn}. \lstinline{lang=cn} will make the caption of figure/table, abstract name, refname etc. Chinese, while \lstinline{lang=en} will keep all these stuff English, as the default article class sets. You can use this option as
@@ -29,8 +29,8 @@ I defined one option named \lstinline{lang}, this option has two alternative val
 \end{lstlisting}
 
 \subsection{Font Settings}
-\noindent\textbf{Using PDFLaTeX:} If you choose PDFLaTeX to process your paper, the default article font computer modern has changed to \lstinline{newtx} series, and the default font size is set to \lstinline{11pt}.
-
+\subsubsection{Compile with \lstinline{PDFLaTeX}}
+If you choose \lstinline{PDFLaTeX} to process your paper, the default article font computer modern has changed to \lstinline{newtx} series, and the default font size is set to \lstinline{11pt}. The fonts are settings with:
 \begin{itemize}
 	\item \lstinline{newtxtext} package for text fonts, similar to times new roman font.
 	\item \lstinline{newtxmath} package for math fonts, close to \lstinline{times} package.
@@ -38,7 +38,8 @@ I defined one option named \lstinline{lang}, this option has two alternative val
 	\item \lstinline{ctex} package for Chinese fonts, with option \lstinline{scheme=plain}.
 \end{itemize}
 
-\noindent\textbf{Using XeLaTeX:} If you choose XeLaTeX to process your paper, I use \lstinline{fontspec} package and \lstinline{xeCJK} package. I used fonts available in Windows, if you are using Linux or Mac OS, please substitute these fonts with that of your system. The font setting part
+\subsubsection{Compile with \lstinline{XeLaTeX}}
+If you choose \lstinline{XeLaTeX} to process your paper, I use \lstinline{fontspec} package and \lstinline{xeCJK} package. I used fonts available in Windows, if you are using Linux or Mac OS, please substitute these fonts with that of your system. The font setting part
 
 \begin{lstlisting}
 \RequirePackage{fontenc}
@@ -55,7 +56,7 @@ I defined one option named \lstinline{lang}, this option has two alternative val
 \DeclareSymbolFont{operators}{\encodingdefault}{\familydefault}{m}{n}
 \end{lstlisting}
 
-
+\subsubsection{Other Settings}
 These packages operate perfectly but are inappropriate for big operators, for example \lstinline{\sum} and \lstinline{\prod}, thus, I change these operators back to computer modern font. Equation~(\eqref{eq:binom}) shows the effects of these fonts:
 \begin{equation}
 (a+3b)^{n} = \sum_{k=0}^{n} C_{n}^{k} a^{n-k} (3b)^k \label{eq:binom}
@@ -180,7 +181,7 @@ In this section, we give a simple example using this template.
 \documentclass[lang=en]{elegantpaper}
 
 % title information
-\title[lang=en]{A Working Paper Example}
+\title{A Working Paper Example}
 \author{ddswhu} 
 \institute{Elegant\LaTeX{} Group}
 \version{1.00}
@@ -195,12 +196,10 @@ Your abstract goes here.
 \end{abstract}
 
 \section{Introduction}
-
-The text of introduction section.
+The content of introduction section.
 
 \section{Conclusion}
-
-The text of conclusion section.
+The content of conclusion section.
 
 % include the noncited reference
 \nocite{ref1, ref2}
@@ -208,7 +207,7 @@ The text of conclusion section.
 \end{document}
 \end{lstlisting}
 
-\nocite{EINAV2010,Havrylchyk2018} 
+\nocite{EINAV2010, Havrylchyk2018} 
 \bibliography{wpref}
 
 \end{document}
