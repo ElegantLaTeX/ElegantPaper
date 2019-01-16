@@ -4,11 +4,9 @@
 \title{ElegantPaper: 一个优美的 \LaTeX{} 工作论文模板}
 \author{\href{https://ddswhu.me/}{邓 东 升}}
 
-\institute{Elegant\LaTeX{} 项目组}
-\version{0.03}
+\institute{\href{https://github.com/ElegantLaTeX/}{Elegant\LaTeX{} 项目组}}
+\version{0.04}
 \date{\today}
-
-
 
 
 \begin{document}
@@ -16,7 +14,7 @@
 \maketitle
 
 \begin{abstract}
-\noindent \sffamily 本文为 ElegantPaper 的说明文档（中文）。此模板基于 \LaTeX{} 的 article 类，专为工作论文写作而设计。设计这个模板的初衷是让作者不用关心工作论文的格式，专心写作，从而有更加舒适，简便的写作体验。如果你有其他问题或者建议，请联系我，我的邮箱是：\email{ddswhu@outlook.com}。如果你想了解更多由 Elegant\LaTeX{} 项目组设计的模板，请访问 \href{https://ddswhu.me/resource/}{Elegant\LaTeX{} 资源中心}。
+\noindent 本文为 \href{https://github.com/ElegantLaTeX/ElegantPaper/}{ElegantPaper} 的说明文档（中文）。此模板基于 \LaTeX{} 的 article 类，专为工作论文写作而设计。设计这个模板的初衷是让作者不用关心工作论文的格式，专心写作，从而有更加舒适，简便的写作体验。如果你有其他问题、建议或者报告 bug，可以在 \href{https://github.com/ElegantLaTeX/ElegantPaper/issues}{ElegantPaper/issues} 留言。如果你想了解更多由 Elegant\LaTeX{} 项目组设计的模板，请访问 \href{https://github.com/ElegantLaTeX/}{https://github.com/ElegantLaTeX/}。
 \end{abstract}
 
 \section{模板介绍}
@@ -36,7 +34,7 @@
 \begin{itemize}
 	\item \lstinline{newtxtext} 用于文档正文字体，类似于 Times New Roman 字体。
 	\item \lstinline{newtxmath} 用于数学字体，搭配 \lstinline{newtx} 非常合适，类似于过时的 \lstinline{times} 宏包的效果。
-	\item \lstinline{newtxtt} 用于打字机字体, 并使用了 \lstinline{scale=0.8} 选项缩放字体。
+	\item \lstinline{FiraMono} 用于打字机字体。
 	\item \lstinline{ctex} 用于中文字体设置，并使用了 \lstinline{scheme=plain} 选项。
 \end{itemize}
 
@@ -47,22 +45,24 @@
 \RequirePackage{fontenc}
 \RequirePackage[no-math]{fontspec}
 \setmainfont{Times New Roman}
+%\setmainfont{Times New Roman}[NFSSFamily=ntxtlf]
 \setsansfont{Arial}
-%\setmonofont[Scale=0.8]{Courier New}
+%\setmonofont[Scale=0.9]{Courier New}
 \RequirePackage{xeCJK}
 \RequirePackage{xunicode}
 \setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi}]{SimSun}
 \setCJKsansfont[BoldFont={SimHei},ItalicFont={KaiTi}]{KaiTi}
-\setCJKmonofont[BoldFont={SimHei},ItalicFont={KaiTi},Scale=0.8]{Microsoft YaHei}
+\setCJKmonofont[BoldFont={SimHei},ItalicFont={KaiTi},Scale=0.9]{Microsoft YaHei}
 \RequirePackage{newtxmath}
-\DeclareSymbolFont{operators}{\encodingdefault}{\familydefault}{m}{n}
+\DeclareSymbolFont{operators}{OT1}{ntxtlf}{m}{n}
+\SetSymbolFont{operators}{bold}{OT1}{ntxtlf}{b}{n}
 \end{lstlisting}
 
 \subsubsection{其他设置}
 
 这几个包由于都是一个系列的，字体搭配起来非常合适，字体宽度非常契合！唯独数学字体中的大型运算符，比如求和符号和积分符号不是很好看，为此，我把它们又改回了原先的字体效果。公式~(\ref{eq:binom}) 展示了最终的数学字体的效果。
 \begin{equation}
-(a+3b)^{n} = \sum_{k=0}^{n} C_{n}^{k} a^{n-k} (3b)^k  \label{eq:binom}
+(a+3b)^{n} = \sum_{k=0}^{n} C_{n}^{k} a^{n-k} (3b)^k \label{eq:binom}
 \end{equation}
 
 我把行距设定为 1.3，并且使用了 \lstinline{microtype} 宏包调整字体的间距，为了去除字体字号，字形警告信息，我使用了 \lstinline{type1cm} 宏包。
@@ -176,8 +176,13 @@
 
 
 \subsection{参考文献}
-此模板使用了 Bib\TeX{} 来生成参考文献，默认使用的文献样式（bib style）是 \lstinline{aer}。参考文献示例：~\cite{Chen2018} 使用了中国一个大型的 P2P 平台（人人贷）的数据来检验男性投资者和女性投资者在投资表现上是否有显著差异。你可以在谷歌学术，Mendeley，Endnote 中获得文献条目（bib item），然后把它们添加到 \lstinline{wpref.bib} 中。在文中引用的时候，引用它们的键值（bib key）即可。注意需要在编译的过程中添加 Bib\TeX{} 编译。
+此模板使用了 Bib\TeX{} 来生成参考文献，默认使用的文献样式（bib style）是 \lstinline{aer}。参考文献示例：~\cite{Chen2018} 使用了中国一个大型的 P2P 平台（人人贷）的数据来检验男性投资者和女性投资者在投资表现上是否有显著差异。
 
+你可以在谷歌学术，Mendeley，Endnote 中获得文献条目（bib item），然后把它们添加到 \lstinline{wpref.bib} 中。在文中引用的时候，引用它们的键值（bib key）即可。注意需要在编译的过程中添加 Bib\TeX{} 编译。如果你想在参考文献中添加未引用的文献，可以使用
+
+\begin{lstlisting}
+\nocite{EINAV2010, Havrylchyk2018} 
+\end{lstlisting}
 
 \section{示例}
 在这部分，我提供一个示例文档：

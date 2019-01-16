@@ -3,8 +3,8 @@
 
 \title{ElegantPaper: An Elegant \LaTeX{} Template for Working Papers}
 \author{\href{https://ddswhu.me/}{Dongsheng Deng}}
-\institute{Elegant\LaTeX{} Program}
-\version{0.03}
+\institute{\href{https://github.com/ElegantLaTeX}{Elegant\LaTeX{} Program}}
+\version{0.04}
 \date{\today}
 
 
@@ -13,7 +13,7 @@
 \maketitle
 
 \begin{abstract}
-\sffamily This paper illustrates the usage of the ElegantPaper template, which is designed for writing a working paper. This template is based on the standard \LaTeX{} article class. The goal of this template is to make the writing process easier and more comfortable. You can get rid of all the worries about the format. Just enjoy it, if you have any questions or suggestions, please contact me at: \email{ddswhu@outlook.com}. Looking for other templates designed by Elegant\LaTeX{} Group? Please visit: \href{https://ddswhu.me/resource/}{Elegant\LaTeX{} Resource}.
+This paper illustrates the usage of the \href{https://github.com/ElegantLaTeX/ElegantPaper}{ElegantPaper} template, which is designed for writing a working paper. This template is based on the standard \LaTeX{} article class. The goal of this template is to make the writing process easier and more comfortable. You can get rid of all the worries about the format. Just enjoy it! If you have any questions, suggestions or bug reports, you can visit \href{https://github.com/ElegantLaTeX/ElegantPaper/issues}{ElegantPaper/issues}. Looking for other templates designed by Elegant\LaTeX{} Group? Please visit: \href{https://github.com/ElegantLaTeX}{https://github.com/ElegantLaTeX}.
 \end{abstract}
 
 \section{Introduction}
@@ -34,7 +34,7 @@ If you choose \lstinline{PDFLaTeX} to process your paper, the default article fo
 \begin{itemize}
 	\item \lstinline{newtxtext} package for text fonts, similar to times new roman font.
 	\item \lstinline{newtxmath} package for math fonts, close to \lstinline{times} package.
-	\item \lstinline{newtxtt} package for typewriter fonts, with option \lstinline{scale=0.8}.
+	\item \lstinline{FiraMono} package for typewriter fonts.
 	\item \lstinline{ctex} package for Chinese fonts, with option \lstinline{scheme=plain}.
 \end{itemize}
 
@@ -51,7 +51,7 @@ If you choose \lstinline{XeLaTeX} to process your paper, I use \lstinline{fontsp
 \RequirePackage{xunicode}
 \setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi}]{SimSun}
 \setCJKsansfont[BoldFont={SimHei},ItalicFont={KaiTi}]{KaiTi}
-\setCJKmonofont[BoldFont={SimHei},ItalicFont={KaiTi},Scale=0.8]{Microsoft YaHei}
+\setCJKmonofont[BoldFont={SimHei},ItalicFont={KaiTi},Scale=0.9]{Microsoft YaHei}
 \RequirePackage{newtxmath}
 \DeclareSymbolFont{operators}{\encodingdefault}{\familydefault}{m}{n}
 \end{lstlisting}
@@ -59,7 +59,7 @@ If you choose \lstinline{XeLaTeX} to process your paper, I use \lstinline{fontsp
 \subsubsection{Other Settings}
 These packages operate perfectly but are inappropriate for big operators, for example \lstinline{\sum} and \lstinline{\prod}, thus, I change these operators back to computer modern font. Equation~(\eqref{eq:binom}) shows the effects of these fonts:
 \begin{equation}
-(a+3b)^{n} = \sum_{k=0}^{n} C_{n}^{k} a^{n-k} (3b)^k \label{eq:binom}
+(a+3b)^{n} = \sum_{k=0}^{n} C_{n}^{k} a^{n-k} (3b)^k  \label{eq:binom}
 \end{equation}
 
 
@@ -95,10 +95,7 @@ You can use \lstinline{itemize}, \lstinline{enumerate}, or \lstinline{descriptio
 \end{minipage}
 
 \subsection{Table}
-I strongly recommend you to use the \lstinline{booktabs} package in your paper. It adds three commands to make the table prettier, ie. \lstinline{\toprule}, \lstinline{\midrule} and \lstinline{\bottomrule}. Here is an example.
-
-
-
+I strongly recommend you to use the \lstinline{booktabs} package in your paper. It adds three commands to make the table prettier, ie. \lstinline{\toprule}, \lstinline{\midrule} and \lstinline{\bottomrule}. \tabref{tab:reg} is an example.
 
 \begin{lstlisting}
 \begin{table}[htbp]
@@ -166,9 +163,9 @@ To include a graphic, you can use figure environment as usual. \figref{fig:scatt
 \end{figure}
 
 \subsection{Bibliography}
-This template uses Bib\TeX{} to generate the bibliography, the default bibliography style is \lstinline{aer}. ~\cite{Chen2018} use data from a major peer-to-peer lending marketplace in China to study whether female and male investors evaluate loan performance differently. If you want to use Bib\TeX{}, you must create a file named \lstinline{wpref.bib}, and add bib items (from Google Scholar, Mendeley, EndNote, and etc.) to \lstinline{wpref.bib} file, and cite the bibkey in the \lstinline{tex} file. 
+This template uses Bib\TeX{} to generate the bibliography, the default bibliography style is \lstinline{aer}. Let's take a glance at the citation effect, ~\cite{Chen2018} use data from a major peer-to-peer lending marketplace in China to study whether female and male investors evaluate loan performance differently. 
 
-The Bib\TeX{} will automatically generate the bibliography for you for the reference you cited. If you want to add some noncited reference to the bibliography, you can use 
+If you want to use Bib\TeX{}, you must create a file named \lstinline{wpref.bib}, and add bib items (from Google Scholar, Mendeley, EndNote, and etc.) to \lstinline{wpref.bib} file, and cite the bibkey in the \lstinline{tex} file. The Bib\TeX{} will automatically generate the bibliography for you for the reference you cited. If you want to add some noncited reference to the bibliography, you can use 
 
 \begin{lstlisting}
 \nocite{EINAV2010, Havrylchyk2018} 

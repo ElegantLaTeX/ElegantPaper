@@ -1,11 +1,11 @@
-% Current Version: 0.03
+% Current Version: 0.04
 % Author: ddswhu
 % Homepage: https://ddswhu.me/
 % Email: ddswhu@outlook.com
 % Lastest Version: https://github.com/EthanDeng/ElegantPaper
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{elegantpaper}[2018/1/13 v0.03 ElegantLaTeX Paper class]
+\ProvidesClass{elegantpaper}[2018/01/16 v0.04 ElegantLaTeX Paper class]
   
 \LoadClass[11pt]{article}
 
@@ -32,7 +32,7 @@
 % font setting for text and math
 
 \RequirePackage{amsthm}
-\RequirePackage{amsmath}
+\RequirePackage{amsmath,amssymb,accents}
 %\RequirePackage{newtxtext}
 %\RequirePackage{newtxmath}
 %  
@@ -50,7 +50,8 @@
 \RequirePackage{graphicx}
 \RequirePackage{fancyvrb}
 \RequirePackage{type1cm}
-
+\RequirePackage{abstract}
+\renewcommand{\abstracttextfont}{\sffamily\small}
 \graphicspath{{image/}{figure/}{fig/}{img/}}
 
 % caption settings 
@@ -95,24 +96,24 @@
 	\RequirePackage[no-math]{fontspec}
 	\setmainfont{Times New Roman}
 	\setsansfont{Arial}
-	%\setmonofont[Scale=0.8]{Courier New}
+	%\setmonofont[Scale=0.9]{Courier New}
 	\RequirePackage{xeCJK}
 	\RequirePackage{xunicode}
 	\setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi}]{SimSun}
 	\setCJKsansfont[BoldFont={SimHei},ItalicFont={KaiTi}]{KaiTi}
-	\setCJKmonofont[BoldFont={SimHei},ItalicFont={KaiTi},Scale=0.8]{Microsoft YaHei}
+	\setCJKmonofont[BoldFont={SimHei},ItalicFont={KaiTi},Scale=0.9]{Microsoft YaHei}
 	\XeTeXlinebreaklocale "zh"
 	\XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
 	\RequirePackage{newtxmath}
-	\DeclareSymbolFont{operators}{\encodingdefault}{\familydefault}{m}{n}
+	\DeclareSymbolFont{operators}{OT1}{ntxtlf}{m}{n}
+	\SetSymbolFont{operators}{bold}{OT1}{ntxtlf}{b}{n}
 \else
-	\RequirePackage[T1]{fontenc}
+	\RequirePackage{fontenc}
 	\RequirePackage{newtxtext}
 	\RequirePackage{newtxmath}
-	\RequirePackage[scale=0.8]{newtxtt}
 	\RequirePackage[UTF8, scheme=plain]{ctex}
 \fi
-
+\RequirePackage{FiraMono}
 %
 
 \ifdefstring{\ELEGANT@lang}{cn}{
@@ -209,9 +210,9 @@
 	breaklines=true,
 	keywordstyle=\bf\color{winered}\ttfamily,
 	commentstyle=\color{gray},
-	emph={elegantpaper,fontenc,fontspec,xeCJK,xunicode,newtxmath,figure,fig,image,img,table,itemize,enumerate,newtxtext,newtxtt,ctex,microtype,description,times,newtx,booktabs,tabular,PDFLaTeX,XeLaTeX,type1cm},
+	emph={elegantpaper,fontenc,fontspec,xeCJK,FiraMono,xunicode,newtxmath,figure,fig,image,img,table,itemize,enumerate,newtxtext,newtxtt,ctex,microtype,description,times,newtx,booktabs,tabular,PDFLaTeX,XeLaTeX,type1cm},
 	emphstyle={\color{frenchplum}},
-	morekeywords={DeclareSymbolFont,toprule,midrule,bottomrule,institute,version,includegraphics,setmainfont,setsansfont,setmonofont ,setCJKmainfont,setCJKsansfont,setCJKmonofont,RequirePackage,figref,tabref,email,maketitle},
+	morekeywords={DeclareSymbolFont,SetSymbolFont,toprule,midrule,bottomrule,institute,version,includegraphics,setmainfont,setsansfont,setmonofont ,setCJKmainfont,setCJKsansfont,setCJKmonofont,RequirePackage,figref,tabref,email,maketitle},
 	frame=none,
 	tabsize=2,
 	backgroundcolor=\color{lightgrey}
@@ -219,4 +220,3 @@
 
 
 \bibliographystyle{aer}
-
