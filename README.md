@@ -1,4 +1,4 @@
-<!-- Author: ddswhu -->
+<!-- Author: Dongsheng Deng -->
 <!-- Email: ddswhu@outlook.com -->
 <!-- Homepage: https://ddswhu.me/ -->
 <!-- Program Email: elegantlatex2e@gmail.com -->

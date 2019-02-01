@@ -1,11 +1,11 @@
-% Current Version: 0.04
-% Author: ddswhu
+% Current Version: 0.05
+% Author: Dongsheng Deng
 % Homepage: https://ddswhu.me/
-% Email: ddswhu@outlook.com
-% Lastest Version: https://github.com/EthanDeng/ElegantPaper
+% Email: elegantlatex2e@gmail.com
+% Lastest Version: https://github.com/ElegantLaTeX/ElegantPaper
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{elegantpaper}[2018/01/16 v0.04 ElegantLaTeX Paper class]
+\ProvidesClass{elegantpaper}[2019/02/01 v0.05 ElegantLaTeX Paper class]
   
 \LoadClass[11pt]{article}
 
@@ -32,7 +32,7 @@
 % font setting for text and math
 
 \RequirePackage{amsthm}
-\RequirePackage{amsmath,amssymb,accents}
+\RequirePackage{amsmath,amssymb}
 %\RequirePackage{newtxtext}
 %\RequirePackage{newtxmath}
 %  
@@ -41,6 +41,8 @@
 
 % more pretty font
 \linespread{1.3}
+
+
 
 % indentation, table and figure package
 \RequirePackage{indentfirst}
@@ -51,7 +53,7 @@
 \RequirePackage{fancyvrb}
 \RequirePackage{type1cm}
 \RequirePackage{abstract}
-\renewcommand{\abstracttextfont}{\sffamily\small}
+
 \graphicspath{{image/}{figure/}{fig/}{img/}}
 
 % caption settings 
@@ -94,7 +96,7 @@
 \ifxetex
 	\RequirePackage{fontenc}
 	\RequirePackage[no-math]{fontspec}
-	\setmainfont{Times New Roman}
+	\setmainfont{Times New Roman}[NFSSFamily=ntxtlf]
 	\setsansfont{Arial}
 	%\setmonofont[Scale=0.9]{Courier New}
 	\RequirePackage{xeCJK}
@@ -105,16 +107,23 @@
 	\XeTeXlinebreaklocale "zh"
 	\XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
 	\RequirePackage{newtxmath}
-	\DeclareSymbolFont{operators}{OT1}{ntxtlf}{m}{n}
-	\SetSymbolFont{operators}{bold}{OT1}{ntxtlf}{b}{n}
+	%\DeclareSymbolFont{operators}{OT1}{ntxtlf}{m}{n}
+	%\SetSymbolFont{operators}{bold}{OT1}{ntxtlf}{b}{n}
+	\setCJKfamilyfont{zhsong}{SimSun}
+	\setCJKfamilyfont{zhhei}{SimHei}
+	\setCJKfamilyfont{zhkai}{KaiTi}
+	\setCJKfamilyfont{zhfs}{FangSong}
+	\newcommand*{\songti}{\CJKfamily{zhsong}} 
+	\newcommand*{\heiti}{\CJKfamily{zhhei}}   
+	\newcommand*{\kaishu}{\CJKfamily{zhkai}} 
+	\newcommand*{\fangsong}{\CJKfamily{zhfs}} 
 \else
 	\RequirePackage{fontenc}
 	\RequirePackage{newtxtext}
 	\RequirePackage{newtxmath}
 	\RequirePackage[UTF8, scheme=plain]{ctex}
 \fi
-\RequirePackage{FiraMono}
-%
+\RequirePackage[scale=0.8]{FiraMono}
 
 \ifdefstring{\ELEGANT@lang}{cn}{
   	\theoremstyle{plain}% default
@@ -139,6 +148,8 @@
 	\newcommand\updatetext{最后更新：}%
 	\renewcommand\abstractname{摘\hspace{2em}要}
 	\setlength{\parindent}{2em}
+	\renewcommand{\abstracttextfont}{\kaishu\sffamily\small}
+	\newcommand{\keywords}[1]{\vskip2ex\par\noindent\normalfont{\bfseries 关键词: } #1}
 }{\relax}
 \ifdefstring{\ELEGANT@lang}{en}{
   \theoremstyle{plain}% default
@@ -157,12 +168,49 @@
 	\renewcommand*{\proofname}{\normalfont\bfseries\color{ecolor}Proof}%
 	\newcommand\versiontext{Version: }%
 	\newcommand\updatetext{Last update: }%
+	\renewcommand{\abstracttextfont}{\sffamily\small}
+	\newcommand{\keywords}[1]{\vskip2ex\par\noindent\normalfont{\bfseries Keywords: } #1}
 }{\relax}
 
+\AtBeginEnvironment{verbatim}{\microtypesetup{activate=false}}
 
 \newtoks\version
 \newtoks\institute
-\def\maketitle{%
+
+\renewcommand\maketitle{\par
+  \begingroup
+    \renewcommand\thefootnote{\@fnsymbol\c@footnote}%
+    \def\@makefnmark{\rlap{\@textsuperscript{\normalfont\@thefnmark}}}%
+    \long\def\@makefntext##1{\parindent 1em\noindent
+            \hb@xt@1.8em{%
+                \hss\@textsuperscript{\normalfont\@thefnmark}}##1}%
+    \if@twocolumn
+      \ifnum \col@number=\@ne
+        \@maketitle
+      \else
+        \twocolumn[\@maketitle]%
+      \fi
+    \else
+      \newpage
+      \global\@topnum\z@   % Prevents figures from going at top of page.
+      \@maketitle
+    \fi
+    \thispagestyle{plain}\@thanks
+  \endgroup
+  \setcounter{footnote}{0}%
+  \global\let\thanks\relax
+  \global\let\maketitle\relax
+  \global\let\@maketitle\relax
+  \global\let\@thanks\@empty
+  \global\let\@author\@empty
+  \global\let\@date\@empty
+  \global\let\@title\@empty
+  \global\let\title\relax
+  \global\let\author\relax
+  \global\let\date\relax
+  \global\let\and\relax
+}
+\def\@maketitle{%
   \newpage
   \null
   \vskip 2em%
@@ -183,6 +231,8 @@
   \end{center}%
   \par
   \vskip 1.5em}
+  
+
 
 \DeclareSymbolFont{cmlargesymbols}{OMX}{cmex}{m}{n}
 \DeclareMathSymbol{\intop}{\mathop}{cmlargesymbols}{"5A}
@@ -210,13 +260,14 @@
 	breaklines=true,
 	keywordstyle=\bf\color{winered}\ttfamily,
 	commentstyle=\color{gray},
-	emph={elegantpaper,fontenc,fontspec,xeCJK,FiraMono,xunicode,newtxmath,figure,fig,image,img,table,itemize,enumerate,newtxtext,newtxtt,ctex,microtype,description,times,newtx,booktabs,tabular,PDFLaTeX,XeLaTeX,type1cm},
+	emph={elegantpaper,fontenc,fontspec,xeCJK,FiraMono,xunicode,newtxmath,figure,fig,image,img,table,itemize,enumerate,newtxtext,newtxtt,ctex,microtype,description,times,newtx,booktabs,tabular,PDFLaTeX,XeLaTeX,type1cm,BibTeX},
 	emphstyle={\color{frenchplum}},
-	morekeywords={DeclareSymbolFont,SetSymbolFont,toprule,midrule,bottomrule,institute,version,includegraphics,setmainfont,setsansfont,setmonofont ,setCJKmainfont,setCJKsansfont,setCJKmonofont,RequirePackage,figref,tabref,email,maketitle},
+	morekeywords={DeclareSymbolFont,SetSymbolFont,toprule,midrule,bottomrule,institute,version,includegraphics,setmainfont,setsansfont,setmonofont ,setCJKmainfont,setCJKsansfont,setCJKmonofont,RequirePackage,figref,tabref,email,maketitle,keywords},
 	frame=none,
 	tabsize=2,
 	backgroundcolor=\color{lightgrey}
 }
 
-
 \bibliographystyle{aer}
+
+

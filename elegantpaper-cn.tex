@@ -2,10 +2,10 @@
 \documentclass[lang=cn]{elegantpaper}
 
 \title{ElegantPaper: 一个优美的 \LaTeX{} 工作论文模板}
-\author{\href{https://ddswhu.me/}{邓 东 升}}
+\author{\href{https://ddswhu.me/}{邓 东 升}\thanks{感谢 Peiyi Yao 的帮助与建议。}}
 
-\institute{\href{https://github.com/ElegantLaTeX/}{Elegant\LaTeX{} 项目组}}
-\version{0.04}
+\institute{\href{https://elegantlatex.org/}{Elegant\LaTeX{} 项目组}}
+\version{0.05}
 \date{\today}
 
 
@@ -15,11 +15,12 @@
 
 \begin{abstract}
 \noindent 本文为 \href{https://github.com/ElegantLaTeX/ElegantPaper/}{ElegantPaper} 的说明文档（中文）。此模板基于 \LaTeX{} 的 article 类，专为工作论文写作而设计。设计这个模板的初衷是让作者不用关心工作论文的格式，专心写作，从而有更加舒适，简便的写作体验。如果你有其他问题、建议或者报告 bug，可以在 \href{https://github.com/ElegantLaTeX/ElegantPaper/issues}{ElegantPaper/issues} 留言。如果你想了解更多由 Elegant\LaTeX{} 项目组设计的模板，请访问 \href{https://github.com/ElegantLaTeX/}{https://github.com/ElegantLaTeX/}。
+\keywords{Elegant\LaTeX{}，工作论文，模板}
 \end{abstract}
 
 \section{模板介绍}
 
-此模板是基于 \LaTeX{} 的标准文档类设计，也即意味着你可以在在文类选项使用文档（article）类型的选项，比如 \texttt{a4paper, 12pt} 等等。本模板支持 \lstinline{PDFLaTeX} 和 \lstinline{XeLaTeX} 两种编译方式。
+此模板是基于 \LaTeX{} 的标准文档类设计，也即意味着你可以在在文类选项使用文档（article）类型的选项，比如 \lstinline{a4paper, 12pt} 等等。本模板支持 \lstinline{PDFLaTeX} 和 \lstinline{XeLaTeX} 两种编译方式。
       
 \subsection{全局选项}
 我在这个模板中定义了一个语言选项 \lstinline{lang}，可以选择英文模式 \lstinline{lang=en}（默认）或者中文模式 \lstinline{lang=cn}。当选择中文模式时，图表的标题引导词以及参考文献，定理引导词等信息会变成中文。你可以通过下面两种方式来选择语言模式：
@@ -29,23 +30,22 @@
 \end{lstlisting}
 
 \subsection{字体设置}
-\subsubsection{选择 \lstinline{PDFLaTeX} 编译}
+\subsubsection[选择 PDFLaTeX 编译]{选择 \lstinline{PDFLaTeX} 编译}
 如果你使用 \lstinline{PDFLaTeX} 编译，默认的 Computer Modern 字体被换成了 \lstinline{newtx} 系列字体，默认的字体字号是 11 pt。关于字体设置的宏包主要用到了：
 \begin{itemize}
 	\item \lstinline{newtxtext} 用于文档正文字体，类似于 Times New Roman 字体。
 	\item \lstinline{newtxmath} 用于数学字体，搭配 \lstinline{newtx} 非常合适，类似于过时的 \lstinline{times} 宏包的效果。
-	\item \lstinline{FiraMono} 用于打字机字体。
+	\item \lstinline{FiraMono} 用于打字机字体，并使用了 \lstinline{scale=0.8} 选项。
 	\item \lstinline{ctex} 用于中文字体设置，并使用了 \lstinline{scheme=plain} 选项。
 \end{itemize}
 
-\subsubsection{选择 \lstinline{XeLaTeX} 编译}
+\subsubsection[选择 XeLaTeX 编译]{选择 \lstinline{XeLaTeX} 编译}
 如果你选择 \lstinline{XeLaTeX} 编译的话，那么设置字体的宏包为 \lstinline{fontspec} 和 \lstinline{xeCJK}。由于模板中使用的字体是 Windows 中的字体，所以如果你使用其他操作系统，比如 Linux 或者 Mac OS，那么你需要把所用字体替换为你系统中的字体。设置字体的命令：
 
 \begin{lstlisting}
 \RequirePackage{fontenc}
 \RequirePackage[no-math]{fontspec}
-\setmainfont{Times New Roman}
-%\setmainfont{Times New Roman}[NFSSFamily=ntxtlf]
+\setmainfont{Times New Roman}[NFSSFamily=ntxtlf]
 \setsansfont{Arial}
 %\setmonofont[Scale=0.9]{Courier New}
 \RequirePackage{xeCJK}
@@ -53,9 +53,9 @@
 \setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi}]{SimSun}
 \setCJKsansfont[BoldFont={SimHei},ItalicFont={KaiTi}]{KaiTi}
 \setCJKmonofont[BoldFont={SimHei},ItalicFont={KaiTi},Scale=0.9]{Microsoft YaHei}
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
 \RequirePackage{newtxmath}
-\DeclareSymbolFont{operators}{OT1}{ntxtlf}{m}{n}
-\SetSymbolFont{operators}{bold}{OT1}{ntxtlf}{b}{n}
 \end{lstlisting}
 
 \subsubsection{其他设置}
@@ -72,10 +72,11 @@
 在此模板中，并没有修改任何默认的命令或者环境，所以，你可以在此模板使用原来的命令和环境。另外，我自定义了 3 个命令：
 
 \begin{enumerate}
-	\item \lstinline{\email}: 创建邮箱地址的链接；
-	\item \lstinline{\figref}: 用法和 \lstinline{\ref} 类似，但是会在插图的标题前添加 <\textbf{图 n}> ；
-	\item \lstinline{\tabref}: 用法和 \lstinline{\ref} 类似，但是会在表格的标题前添加 <\textbf{表 n}>。
-\end{enumerate}{}
+	\item \lstinline{\email}：创建邮箱地址的链接；
+	\item \lstinline{\figref}：用法和 \lstinline{\ref} 类似，但是会在插图的标题前添加 <\textbf{图 n}> ；
+	\item \lstinline{\tabref}：用法和 \lstinline{\ref} 类似，但是会在表格的标题前添加 <\textbf{表 n}>；
+	\item \lstinline{\keywords}：为摘要环境添加关键词。
+\end{enumerate}
 
 
 
@@ -203,6 +204,7 @@
 
 \begin{abstract}
 在这里写摘要。
+\keywords{关键词1，关键词2}
 \end{abstract}
 
 \section{引言}

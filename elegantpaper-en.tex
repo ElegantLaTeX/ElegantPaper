@@ -2,9 +2,9 @@
 \documentclass[en]{elegantpaper}
 
 \title{ElegantPaper: An Elegant \LaTeX{} Template for Working Papers}
-\author{\href{https://ddswhu.me/}{Dongsheng Deng}}
+\author{\href{https://ddswhu.me/}{Dongsheng Deng}\thanks{Thanks Peiyi Yao for good  suggestions.}}
 \institute{\href{https://github.com/ElegantLaTeX}{Elegant\LaTeX{} Program}}
-\version{0.04}
+\version{0.05}
 \date{\today}
 
 
@@ -13,8 +13,10 @@
 \maketitle
 
 \begin{abstract}
-This paper illustrates the usage of the \href{https://github.com/ElegantLaTeX/ElegantPaper}{ElegantPaper} template, which is designed for writing a working paper. This template is based on the standard \LaTeX{} article class. The goal of this template is to make the writing process easier and more comfortable. You can get rid of all the worries about the format. Just enjoy it! If you have any questions, suggestions or bug reports, you can visit \href{https://github.com/ElegantLaTeX/ElegantPaper/issues}{ElegantPaper/issues}. Looking for other templates designed by Elegant\LaTeX{} Group? Please visit: \href{https://github.com/ElegantLaTeX}{https://github.com/ElegantLaTeX}.
+\noindent This paper illustrates the usage of the \href{https://github.com/ElegantLaTeX/ElegantPaper}{ElegantPaper} template, which is designed for writing a working paper. This template is based on the standard \LaTeX{} article class. The goal of this template is to make the writing process easier and more comfortable. You can get rid of all the worries about the format. Just enjoy it! If you have any questions, suggestions or bug reports, you can visit \href{https://github.com/ElegantLaTeX/ElegantPaper/issues}{ElegantPaper/issues}. Looking for other templates designed by Elegant\LaTeX{} Group? Please visit: \href{https://github.com/ElegantLaTeX}{https://github.com/ElegantLaTeX}.\par
+\keywords{Elegant\LaTeX{}, Working Paper, Template}
 \end{abstract}
+
 
 \section{Introduction}
 
@@ -29,31 +31,32 @@ I defined one option named \lstinline{lang}, this option has two alternative val
 \end{lstlisting}
 
 \subsection{Font Settings}
-\subsubsection{Compile with \lstinline{PDFLaTeX}}
+\subsubsection[Compile with PDFLaTeX]{Compile with \lstinline{PDFLaTeX}}
 If you choose \lstinline{PDFLaTeX} to process your paper, the default article font computer modern has changed to \lstinline{newtx} series, and the default font size is set to \lstinline{11pt}. The fonts are settings with:
 \begin{itemize}
 	\item \lstinline{newtxtext} package for text fonts, similar to times new roman font.
 	\item \lstinline{newtxmath} package for math fonts, close to \lstinline{times} package.
-	\item \lstinline{FiraMono} package for typewriter fonts.
+	\item \lstinline{FiraMono} package for typewriter fonts, with option \lstinline{scale=0.8}.
 	\item \lstinline{ctex} package for Chinese fonts, with option \lstinline{scheme=plain}.
 \end{itemize}
 
-\subsubsection{Compile with \lstinline{XeLaTeX}}
+\subsubsection[Compile with XeLaTeX]{Compile with \lstinline{XeLaTeX}}
 If you choose \lstinline{XeLaTeX} to process your paper, I use \lstinline{fontspec} package and \lstinline{xeCJK} package. I used fonts available in Windows, if you are using Linux or Mac OS, please substitute these fonts with that of your system. The font setting part
 
 \begin{lstlisting}
 \RequirePackage{fontenc}
 \RequirePackage[no-math]{fontspec}
-\setmainfont{Times New Roman}
+\setmainfont{Times New Roman}[NFSSFamily=ntxtlf]
 \setsansfont{Arial}
-%\setmonofont[Scale=0.8]{Courier New}
+%\setmonofont[Scale=0.9]{Courier New}
 \RequirePackage{xeCJK}
 \RequirePackage{xunicode}
 \setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi}]{SimSun}
 \setCJKsansfont[BoldFont={SimHei},ItalicFont={KaiTi}]{KaiTi}
 \setCJKmonofont[BoldFont={SimHei},ItalicFont={KaiTi},Scale=0.9]{Microsoft YaHei}
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
 \RequirePackage{newtxmath}
-\DeclareSymbolFont{operators}{\encodingdefault}{\familydefault}{m}{n}
 \end{lstlisting}
 
 \subsubsection{Other Settings}
@@ -73,6 +76,7 @@ I don't change any default command or environment, which means you can use all t
 	\item \lstinline{\email}: create the hyperlink to email address.
 	\item \lstinline{\figref}: same usage as \lstinline{\ref}, but start with label text <\textbf{Figure n}>.
 	\item \lstinline{\tabref}: same usage as \lstinline{\ref}, but start with label text <\textbf{Table n}>.
+	\item \lstinline{\keywords}: create the keywords in the abstract section.
 \end{enumerate}{}
 
 \subsection{List Environments}
@@ -101,7 +105,7 @@ I strongly recommend you to use the \lstinline{booktabs} package in your paper. 
 \begin{table}[htbp]
   \small
   \centering
-  \caption{Auto MPG and Price}
+  \caption{Auto MPG and Price \label{tab:reg}}
     \begin{tabular}{lcc}
     \toprule
                     &       (1)         &        (2)      \\
@@ -118,13 +122,12 @@ I strongly recommend you to use the \lstinline{booktabs} package in your paper. 
     \multicolumn{3}{l}{\scriptsize Standard errors in parentheses} \\
     \multicolumn{3}{l}{\scriptsize *** p<0.01, ** p<0.05, * p<0.1} \\
     \end{tabular}%
-  \label{tab:reg}%
 \end{table}%
 \end{lstlisting}
 \begin{table}[htbp]
   \small
   \centering
-  \caption{Auto MPG and Price}
+  \caption{Auto MPG and Price \label{tab:reg}}
     \begin{tabular}{lcc}
     \toprule
                     &       (1)         &        (2)      \\
@@ -141,7 +144,6 @@ I strongly recommend you to use the \lstinline{booktabs} package in your paper. 
     \multicolumn{3}{l}{\scriptsize Standard errors in parentheses} \\
     \multicolumn{3}{l}{\scriptsize *** p<0.01, ** p<0.05, * p<0.1} \\
     \end{tabular}%
-  \label{tab:reg}%
 \end{table}%
 
 
@@ -153,13 +155,13 @@ To include a graphic, you can use figure environment as usual. \figref{fig:scatt
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.6\textwidth]{scatter.pdf}
-	\caption{Scatter Plot Example\label{fig:scatter}}
+	\caption{Scatter Plot Example \label{fig:scatter}}
 \end{figure}
 \end{lstlisting}
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.6\textwidth]{scatter.pdf}
-	\caption{Scatter Plot Example\label{fig:scatter}}
+	\caption{Scatter Plot Example \label{fig:scatter}}
 \end{figure}
 
 \subsection{Bibliography}
@@ -190,6 +192,7 @@ In this section, we give a simple example using this template.
 
 \begin{abstract}
 Your abstract goes here.
+\keywords{keyword1, keyword2}
 \end{abstract}
 
 \section{Introduction}
