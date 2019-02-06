@@ -145,11 +145,13 @@
 	\renewcommand\figurename{图} %
 	\renewcommand\tablename{表}%
 	\newcommand\versiontext{版本：}%
-	\newcommand\updatetext{最后更新：}%
+	\newcommand\updatetext{更新：}%
 	\renewcommand\abstractname{摘\hspace{2em}要}
 	\setlength{\parindent}{2em}
 	\renewcommand{\abstracttextfont}{\kaishu\sffamily\small}
 	\newcommand{\keywords}[1]{\vskip2ex\par\noindent\normalfont{\bfseries 关键词: } #1}
+	\newcommand\figref[1]{{\bfseries 图~\ref{#1}}}
+	\newcommand\tabref[1]{{\bfseries 表~\ref{#1}}}
 }{\relax}
 \ifdefstring{\ELEGANT@lang}{en}{
   \theoremstyle{plain}% default
@@ -167,9 +169,11 @@
 	\newtheorem{case}{Case} %
 	\renewcommand*{\proofname}{\normalfont\bfseries\color{ecolor}Proof}%
 	\newcommand\versiontext{Version: }%
-	\newcommand\updatetext{Last update: }%
+	\newcommand\updatetext{Update: }%
 	\renewcommand{\abstracttextfont}{\sffamily\small}
 	\newcommand{\keywords}[1]{\vskip2ex\par\noindent\normalfont{\bfseries Keywords: } #1}
+	\newcommand\figref[1]{{\bfseries Figure~\ref{#1}}}
+	\newcommand\tabref[1]{{\bfseries Table~\ref{#1}}}
 }{\relax}
 
 \AtBeginEnvironment{verbatim}{\microtypesetup{activate=false}}
@@ -246,8 +250,7 @@
 
 
 
-\newcommand\figref[1]{{\bfseries Figure~\ref{#1}}}
-\newcommand\tabref[1]{{\bfseries Table~\ref{#1}}}
+
 
 
 \RequirePackage{listings} 
