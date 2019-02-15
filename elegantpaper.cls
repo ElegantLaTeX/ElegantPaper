@@ -5,7 +5,7 @@
 % Lastest Version: https://github.com/ElegantLaTeX/ElegantPaper
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{elegantpaper}[2019/02/01 v0.05 ElegantLaTeX Paper class]
+\ProvidesClass{elegantpaper}[2019/02/15 v0.05 ElegantLaTeX Paper class]
   
 \LoadClass[11pt]{article}
 
@@ -136,10 +136,10 @@
 	\newtheorem{conjecture}{猜想}[section] %
 	\newtheorem{example}{例}[section] %
 	\theoremstyle{remark} %
-	\newtheorem*{remark}{\normalfont\bfseries评论} %
-	\newtheorem*{note}{\normalfont\bfseries注} %
-	\newtheorem{case}{\normalfont\bfseries案例} %
-	\renewcommand*{\proofname}{\normalfont\bfseries证明} %
+	\newtheorem*{remark}{\normalfont\bfseries 评论} %
+	\newtheorem*{note}{\normalfont\bfseries 注} %
+	\newtheorem{case}{\normalfont\bfseries 案例} %
+	\renewcommand*{\proofname}{\normalfont\bfseries 证明} %
 	\renewcommand\contentsname{目录}
 	\renewcommand\refname{参考文献} %
 	\renewcommand\figurename{图} %
@@ -167,7 +167,7 @@
 	\newtheorem*{remark}{Remark} %
 	\newtheorem*{note}{Note} %
 	\newtheorem{case}{Case} %
-	\renewcommand*{\proofname}{\normalfont\bfseries\color{ecolor}Proof}%
+	\renewcommand*{\proofname}{\normalfont\bfseries Proof}%
 	\newcommand\versiontext{Version: }%
 	\newcommand\updatetext{Update: }%
 	\renewcommand{\abstracttextfont}{\sffamily\small}
