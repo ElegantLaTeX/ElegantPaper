@@ -1,11 +1,11 @@
-% Current Version: 0.05
+% Current Version: 0.06
 % Author: Dongsheng Deng
 % Homepage: https://ddswhu.me/
 % Email: elegantlatex2e@gmail.com
 % Lastest Version: https://github.com/ElegantLaTeX/ElegantPaper
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{elegantpaper}[2019/02/15 v0.05 ElegantLaTeX Paper class]
+\ProvidesClass{elegantpaper}[2019/02/25 v0.06 ElegantLaTeX Paper class]
   
 \LoadClass[11pt]{article}
 
@@ -98,12 +98,12 @@
 	\RequirePackage[no-math]{fontspec}
 	\setmainfont{Times New Roman}[NFSSFamily=ntxtlf]
 	\setsansfont{Arial}
-	%\setmonofont[Scale=0.9]{Courier New}
+	%\setmonofont[Scale=0.7]{Courier New}
 	\RequirePackage{xeCJK}
 	\RequirePackage{xunicode}
 	\setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi}]{SimSun}
 	\setCJKsansfont[BoldFont={SimHei},ItalicFont={KaiTi}]{KaiTi}
-	\setCJKmonofont[BoldFont={SimHei},ItalicFont={KaiTi},Scale=0.9]{Microsoft YaHei}
+	\setCJKmonofont[BoldFont={SimHei},ItalicFont={KaiTi},Scale=0.7]{Microsoft YaHei}
 	\XeTeXlinebreaklocale "zh"
 	\XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
 	\RequirePackage{newtxmath}
@@ -123,7 +123,7 @@
 	\RequirePackage{newtxmath}
 	\RequirePackage[UTF8, scheme=plain]{ctex}
 \fi
-\RequirePackage[scale=0.8]{FiraMono}
+\RequirePackage[scale=0.7]{FiraMono}
 
 \ifdefstring{\ELEGANT@lang}{cn}{
   	\theoremstyle{plain}% default
@@ -178,9 +178,13 @@
 
 \AtBeginEnvironment{verbatim}{\microtypesetup{activate=false}}
 
+\def\IfEmpty#1{%
+  \edef\1{\the#1}
+  \ifx\1\empty
+}
 \newtoks\version
 \newtoks\institute
-
+\def \ifempty#1{\def\temp{#1} \ifx\temp\empty }
 \renewcommand\maketitle{\par
   \begingroup
     \renewcommand\thefootnote{\@fnsymbol\c@footnote}%
@@ -207,12 +211,14 @@
   \global\let\@maketitle\relax
   \global\let\@thanks\@empty
   \global\let\@author\@empty
+  \global\let\@ELEGANT@version\@empty
   \global\let\@date\@empty
   \global\let\@title\@empty
   \global\let\title\relax
   \global\let\author\relax
   \global\let\date\relax
   \global\let\and\relax
+  \global\let\ELEGANT@version\relax
 }
 \def\@maketitle{%
   \newpage
@@ -228,13 +234,19 @@
         \@author\\
         \the\institute
       \end{tabular}\par}%
-    \vskip 1.5em%
-    {\small\itshape \versiontext \the\version}%
-    \vskip .1em%
-    {\small\itshape \updatetext \@date}%
+\vskip 1.5em%
+\IfEmpty\version
+\else 
+{\small\itshape \versiontext \the\version}
+\fi
+\ifx\@date\empty
+\else
+\vskip 0.1em%
+ 	{\small\itshape \updatetext \@date}%
+\fi
   \end{center}%
   \par
-  \vskip 1.5em}
+}
   
 
 
@@ -249,16 +261,12 @@
   \let\prod\prodop
 
 
-
-
-
-
 \RequirePackage{listings} 
 \definecolor{lightgrey}{rgb}{0.9,0.9,0.9}
 \definecolor{frenchplum}{RGB}{190,20,83}
 \lstset{language=[LaTeX]TeX,
 	texcsstyle=*\bf\color{winered}\ttfamily,
-	basicstyle=\footnotesize\ttfamily,
+	basicstyle=\ttfamily,
 	numbers=none,
 	breaklines=true,
 	keywordstyle=\bf\color{winered}\ttfamily,

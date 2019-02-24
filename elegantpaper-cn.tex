@@ -5,7 +5,7 @@
 \author{\href{https://ddswhu.me/}{邓 东 升}\thanks{感谢 Peiyi Yao 的帮助与建议。}}
 
 \institute{\href{https://elegantlatex.org/}{Elegant\LaTeX{} 项目组}}
-\version{0.05x}
+\version{0.06}
 \date{\today}
 
 
@@ -35,7 +35,7 @@
 \begin{itemize}
 	\item \lstinline{newtxtext} 用于文档正文字体，类似于 Times New Roman 字体。
 	\item \lstinline{newtxmath} 用于数学字体，搭配 \lstinline{newtx} 非常合适，类似于过时的 \lstinline{times} 宏包的效果。
-	\item \lstinline{FiraMono} 用于打字机字体，并使用了 \lstinline{scale=0.8} 选项。
+	\item \lstinline{FiraMono} 用于打字机字体，并使用了 \lstinline{scale=0.7} 选项。
 	\item \lstinline{ctex} 用于中文字体设置，并使用了 \lstinline{scheme=plain} 选项。
 \end{itemize}
 
@@ -47,12 +47,12 @@
 \RequirePackage[no-math]{fontspec}
 \setmainfont{Times New Roman}[NFSSFamily=ntxtlf]
 \setsansfont{Arial}
-%\setmonofont[Scale=0.9]{Courier New}
+%\setmonofont[Scale=0.7]{Courier New}
 \RequirePackage{xeCJK}
 \RequirePackage{xunicode}
 \setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi}]{SimSun}
 \setCJKsansfont[BoldFont={SimHei},ItalicFont={KaiTi}]{KaiTi}
-\setCJKmonofont[BoldFont={SimHei},ItalicFont={KaiTi},Scale=0.9]{Microsoft YaHei}
+\setCJKmonofont[BoldFont={SimHei},ItalicFont={KaiTi},Scale=0.7]{Microsoft YaHei}
 \XeTeXlinebreaklocale "zh"
 \XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
 \RequirePackage{newtxmath}

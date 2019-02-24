@@ -4,7 +4,7 @@
 \title{ElegantPaper: An Elegant \LaTeX{} Template for Working Papers}
 \author{\href{https://ddswhu.me/}{Dongsheng Deng}\thanks{Thanks Peiyi Yao for good  suggestions.}}
 \institute{\href{https://github.com/ElegantLaTeX}{Elegant\LaTeX{} Program}}
-\version{0.05x}
+\version{0.06}
 \date{\today}
 
 
@@ -36,7 +36,7 @@ If you choose \lstinline{PDFLaTeX} to process your paper, the default article fo
 \begin{itemize}
 	\item \lstinline{newtxtext} package for text fonts, similar to times new roman font.
 	\item \lstinline{newtxmath} package for math fonts, close to \lstinline{times} package.
-	\item \lstinline{FiraMono} package for typewriter fonts, with option \lstinline{scale=0.8}.
+	\item \lstinline{FiraMono} package for typewriter fonts, with option \lstinline{scale=0.7}.
 	\item \lstinline{ctex} package for Chinese fonts, with option \lstinline{scheme=plain}.
 \end{itemize}
 
@@ -48,12 +48,12 @@ If you choose \lstinline{XeLaTeX} to process your paper, I use \lstinline{fontsp
 \RequirePackage[no-math]{fontspec}
 \setmainfont{Times New Roman}[NFSSFamily=ntxtlf]
 \setsansfont{Arial}
-%\setmonofont[Scale=0.9]{Courier New}
+%\setmonofont[Scale=0.7]{Courier New}
 \RequirePackage{xeCJK}
 \RequirePackage{xunicode}
 \setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi}]{SimSun}
 \setCJKsansfont[BoldFont={SimHei},ItalicFont={KaiTi}]{KaiTi}
-\setCJKmonofont[BoldFont={SimHei},ItalicFont={KaiTi},Scale=0.9]{Microsoft YaHei}
+\setCJKmonofont[BoldFont={SimHei},ItalicFont={KaiTi},Scale=0.7]{Microsoft YaHei}
 \XeTeXlinebreaklocale "zh"
 \XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
 \RequirePackage{newtxmath}
