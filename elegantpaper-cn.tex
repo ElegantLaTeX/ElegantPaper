@@ -4,14 +4,18 @@
 \documentclass[lang=cn,11pt]{elegantpaper}
 
 \title{ElegantPaper: 一个优美的 \LaTeX{} 工作论文模板}
-\author{\href{https://ddswhu.me/}{邓 东 升}\thanks{感谢 Peiyi Yao 的帮助与建议。}}
+\author{\href{https://ddswhu.me/}{邓 东 升}}
 
 \institute{\href{https://elegantlatex.org/}{Elegant\LaTeX{} 项目组}}
+
+% 不需要版本信息，直接注释即可
 \version{0.07}
+% 不需要时间信息的话，需要把 \today 删除。
 \date{\today}
 
+
 % 如果想修改参考文献样式，请把这行注释掉
-\usepackage[authoryear]{gbt7714}
+\usepackage[authoryear]{gbt7714}  % 国标
 
 \begin{document}
 
@@ -25,7 +29,7 @@
 
 \section{模板介绍}
 
-此模板是基于 \LaTeX{} 的标准文类 article设计，也即意味着你可以把 article 文类的选项传递给本模板，比如 \lstinline{a4paper, 10pt} 等等（推荐使用 \lstinline{11pt}）。本模板支持 \lstinline{PDFLaTeX} 和 \lstinline{XeLaTeX} 两种编译方式\footnote{一般情况下，两者均可使用，只又当你在使用抄录环境中的是，需要用到中文才必须用 \lstinline{XeLaTeX}。}。
+此模板是基于 \LaTeX{} 的标准文类 article设计，也即意味着你可以把 article 文类的选项传递给本模板，比如 \lstinline{a4paper, 10pt} 等等（推荐使用 \lstinline{11pt}）。本模板支持 \lstinline{PDFLaTeX} 和 \lstinline{XeLaTeX}\footnote{中文字体均使用 \lstinline{ctex} 包设置。} 两种编译方式。
 
 数学字体的效果如下：
 
