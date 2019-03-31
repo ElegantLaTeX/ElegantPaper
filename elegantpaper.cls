@@ -1,20 +1,19 @@
-% Current Version: 0.06
+% Current Version: 0.07
 % Author: Dongsheng Deng
 % Homepage: https://ddswhu.me/
 % Email: elegantlatex2e@gmail.com
 % Lastest Version: https://github.com/ElegantLaTeX/ElegantPaper
 
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{elegantpaper}[2019/02/25 v0.06 ElegantLaTeX Paper class]
-  
-\LoadClass[11pt]{article}
+% --- Class structure: identification part
+\ProvidesClass{elegantpaper}[2019/04/01 v0.07 ElegantLaTeX Paper class]
+\NeedsTeXFormat{LaTeX2e} 
+
 
 \RequirePackage{kvoptions}
 \RequirePackage{ifthen}
 \RequirePackage{ifxetex}
 \RequirePackage{etoolbox}
 \RequirePackage{calc}
-\AtEndOfClass{\RequirePackage{microtype}}
 
 \SetupKeyvalOptions{family=ELEGANT, prefix=ELEGANT@, setkeys=\kvsetkeys}
 \newcommand{\ekv}[1]{\kvsetkeys{ELEGANT}{#1}}
@@ -23,25 +22,19 @@
 \DeclareVoidOption{cn}{\ekv{lang = cn}}
 \DeclareVoidOption{en}{\ekv{lang = en}}
 
+% \PassOptionsToClass{11pt}{article}
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
-%\ExecuteOptions{12pt}
+\ProcessOptions\relax
 \ProcessKeyvalOptions*\relax
-\ProcessOptions*
+\LoadClass{article}
 
-% font setting for text and math
+
 
 \RequirePackage{amsthm}
 \RequirePackage{amsmath,amssymb}
-%\RequirePackage{newtxtext}
-%\RequirePackage{newtxmath}
-%  
-\RequirePackage{type1cm}
-\RequirePackage{indentfirst}
 
-% more pretty font
-\linespread{1.3}
-
+\linespread{1.35}
 
 
 % indentation, table and figure package
@@ -51,7 +44,6 @@
 \RequirePackage{xcolor}
 \RequirePackage{graphicx}
 \RequirePackage{fancyvrb}
-\RequirePackage{type1cm}
 \RequirePackage{abstract}
 
 \graphicspath{{image/}{figure/}{fig/}{img/}}
@@ -62,7 +54,7 @@
 \captionsetup[figure]{skip=3pt}
 
 % list/itemize/enumerate setting
-\RequirePackage[shortlabels]{enumitem}
+\RequirePackage[shortlabels,inline]{enumitem}
 \setlist{nolistsep}
 
 % define the hyperref color 
@@ -90,43 +82,15 @@
 % add the \email cmd 
 \newcommand\email[1]{\href{mailto:#1}{\nolinkurl{#1}}}
 
+\PassOptionsToPackage{no-math}{fontspec}
+\RequirePackage[UTF8, scheme=plain]{ctex}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{newtxtext}
+\RequirePackage{newtxmath}
 
-% fontsetting
-\RequirePackage{ifxetex}
-\ifxetex
-	\RequirePackage{fontenc}
-	\RequirePackage[no-math]{fontspec}
-	\setmainfont{Times New Roman}[NFSSFamily=ntxtlf]
-	\setsansfont{Arial}
-	%\setmonofont[Scale=0.7]{Courier New}
-	\RequirePackage{xeCJK}
-	\RequirePackage{xunicode}
-	\setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi}]{SimSun}
-	\setCJKsansfont[BoldFont={SimHei},ItalicFont={KaiTi}]{KaiTi}
-	\setCJKmonofont[BoldFont={SimHei},ItalicFont={KaiTi},Scale=0.7]{Microsoft YaHei}
-	\XeTeXlinebreaklocale "zh"
-	\XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
-	\RequirePackage{newtxmath}
-	%\DeclareSymbolFont{operators}{OT1}{ntxtlf}{m}{n}
-	%\SetSymbolFont{operators}{bold}{OT1}{ntxtlf}{b}{n}
-	\setCJKfamilyfont{zhsong}{SimSun}
-	\setCJKfamilyfont{zhhei}{SimHei}
-	\setCJKfamilyfont{zhkai}{KaiTi}
-	\setCJKfamilyfont{zhfs}{FangSong}
-	\newcommand*{\songti}{\CJKfamily{zhsong}} 
-	\newcommand*{\heiti}{\CJKfamily{zhhei}}   
-	\newcommand*{\kaishu}{\CJKfamily{zhkai}} 
-	\newcommand*{\fangsong}{\CJKfamily{zhfs}} 
-\else
-	\RequirePackage{fontenc}
-	\RequirePackage{newtxtext}
-	\RequirePackage{newtxmath}
-	\RequirePackage[UTF8, scheme=plain]{ctex}
-\fi
-\RequirePackage[scale=0.7]{FiraMono}
 
 \ifdefstring{\ELEGANT@lang}{cn}{
-  	\theoremstyle{plain}% default
+    \theoremstyle{plain}% default
 	\newtheorem{theorem}{定理}[section] %
 	\newtheorem{lemma}[theorem]{引理} %
 	\newtheorem{proposition}[theorem]{性质} %
@@ -144,11 +108,11 @@
 	\renewcommand\refname{参考文献} %
 	\renewcommand\figurename{图} %
 	\renewcommand\tablename{表}%
-	\newcommand\versiontext{版本：}%
-	\newcommand\updatetext{更新：}%
+	\newcommand\versiontext{\itshape 版本：}%
+	\newcommand\updatetext{\itshape 更新：}%
 	\renewcommand\abstractname{摘\hspace{2em}要}
 	\setlength{\parindent}{2em}
-	\renewcommand{\abstracttextfont}{\kaishu\sffamily\small}
+	\renewcommand{\abstracttextfont}{\small\sffamily\kaishu}
 	\newcommand{\keywords}[1]{\vskip2ex\par\noindent\normalfont{\bfseries 关键词: } #1}
 	\newcommand\figref[1]{{\bfseries 图~\ref{#1}}}
 	\newcommand\tabref[1]{{\bfseries 表~\ref{#1}}}
@@ -168,9 +132,9 @@
 	\newtheorem*{note}{Note} %
 	\newtheorem{case}{Case} %
 	\renewcommand*{\proofname}{\normalfont\bfseries Proof}%
-	\newcommand\versiontext{Version: }%
-	\newcommand\updatetext{Update: }%
-	\renewcommand{\abstracttextfont}{\sffamily\small}
+	\newcommand\versiontext{\itshape Version: }%
+	\newcommand\updatetext{\itshape Update: }%
+	\renewcommand{\abstracttextfont}{\sffamily\small\kaishu}
 	\newcommand{\keywords}[1]{\vskip2ex\par\noindent\normalfont{\bfseries Keywords: } #1}
 	\newcommand\figref[1]{{\bfseries Figure~\ref{#1}}}
 	\newcommand\tabref[1]{{\bfseries Table~\ref{#1}}}
@@ -237,12 +201,12 @@
 \vskip 1.5em%
 \IfEmpty\version
 \else 
-{\small\itshape \versiontext \the\version}
+{\small \normalfont\kaishu \versiontext \itshape\the\version}
 \fi
 \ifx\@date\empty
 \else
 \vskip 0.1em%
- 	{\small\itshape \updatetext \@date}%
+ 	{\small\normalfont\kaishu \updatetext \itshape \@date}%
 \fi
   \end{center}%
   \par
@@ -250,26 +214,48 @@
   
 
 
-\DeclareSymbolFont{cmlargesymbols}{OMX}{cmex}{m}{n}
-\DeclareMathSymbol{\intop}{\mathop}{cmlargesymbols}{"5A}
-  \def\int{\intop\nolimits}
-\DeclareMathSymbol{\ointop}{\mathop}{cmlargesymbols}{"49}
-  \def\oint{\ointop\nolimits}
-\DeclareMathSymbol{\sumop}{\mathop}{cmlargesymbols}{"58}
-  \let\sum\sumop
-\DeclareMathSymbol{\prodop}{\mathop}{cmlargesymbols}{"59}
-  \let\prod\prodop
+
+\DeclareSymbolFont{CMletters}     {OML}{cmm} {m}{it}%
+\DeclareSymbolFont{CMsymbols}     {OMS}{cmsy}{m}{n}%
+\DeclareSymbolFont{CMlargesymbols}{OMX}{cmex}{m}{n}%
+
+% \let\sum\relax
+% \DeclareMathSymbol{\sum}{\mathop}{CMlargesymbols}{"50}%
+% \let\int\relax
+% \DeclareMathSymbol{\int}{\mathop}{CMlargesymbols}{"5A}%
+
+\let\intop\relax\let\sumop\relax\let\ointop\relax\let\prodop\relax
+\DeclareMathSymbol{\sumop}{\mathop}{CMlargesymbols}{"50}
+\DeclareMathSymbol{\intop}{\mathop}{CMlargesymbols}{"52}
+\DeclareMathSymbol{\ointop}{\mathop}{CMlargesymbols}{"49}
+\DeclareMathSymbol{\prodop}{\mathop}{CMlargesymbols}{"59}
+
+% \let\partial\relax
+% \DeclareMathSymbol{\partial}{\mathord}{CMletters}{"40}%
+% \let\in\relax
+%\DeclareMathSymbol{\in}{\mathrel}{CMsymbols}{"32}%
+% \let\pi\relax
+% \DeclareMathSymbol{\pi}{\mathord}{CMletters}{"19}
+
 
 
 \RequirePackage{listings} 
+\renewcommand{\ttdefault}{cmtt}
+\lstdefinestyle{mystyle}{
+  basicstyle=%
+    \ttfamily
+    \lst@ifdisplaystyle\footnotesize\fi
+}
+
+\lstset{basicstyle=\scriptsize\ttfamily,style=mystyle}
+
 \definecolor{lightgrey}{rgb}{0.9,0.9,0.9}
 \definecolor{frenchplum}{RGB}{190,20,83}
 \lstset{language=[LaTeX]TeX,
-	texcsstyle=*\bf\color{winered}\ttfamily,
-	basicstyle=\ttfamily,
+	texcsstyle=*\color{winered},
 	numbers=none,
 	breaklines=true,
-	keywordstyle=\bf\color{winered}\ttfamily,
+	keywordstyle=\color{winered},
 	commentstyle=\color{gray},
 	emph={elegantpaper,fontenc,fontspec,xeCJK,FiraMono,xunicode,newtxmath,figure,fig,image,img,table,itemize,enumerate,newtxtext,newtxtt,ctex,microtype,description,times,newtx,booktabs,tabular,PDFLaTeX,XeLaTeX,type1cm,BibTeX},
 	emphstyle={\color{frenchplum}},
@@ -279,6 +265,6 @@
 	backgroundcolor=\color{lightgrey}
 }
 
-\bibliographystyle{aer}
+
 
 
