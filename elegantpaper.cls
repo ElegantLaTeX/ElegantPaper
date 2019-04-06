@@ -77,8 +77,10 @@
   citecolor={winered},
   linktoc=all,
 }
-\RequirePackage[left=1in, right=1in, top=1in, bottom=1in]{geometry}
+\RequirePackage[left=1in, right=1in, top=1in, bottom=1in,headheight=0pt,headsep=0pt]{geometry}
 
+\setlength{\voffset}{-0.75in}
+\setlength{\headsep}{5pt}
 % add the \email cmd 
 \newcommand\email[1]{\href{mailto:#1}{\nolinkurl{#1}}}
 

@@ -23,7 +23,7 @@
 
 This template is based on the standard \LaTeX{} article class, which means you can pass the arguments of article class to it (\lstinline{a4paper}, \lstinline{10pt} and etc.)( \lstinline{11pt} is recommended). It supports different engines, You can choose either \lstinline{PDFLaTeX} or \lstinline{XeLaTeX}\footnote{with \lstinline{ctex} package for Chinese fonts settings.}.  
 
-The effect of math fonts is as follow:
+The effect of math fonts is as follows:
 \begin{equation}
 (a+3b)^{n} = \sum_{k=0}^{n} C_{n}^{k} a^{n-k} (3b)^k  \label{eq:binom}
 \end{equation}
@@ -38,7 +38,7 @@ I defined one option named \lstinline{lang}, this option has two alternative val
 
 \subsection{Custom Commands}
 
-I don't change any default command or environment, which means you can use all the basic \LaTeX{} commands and environments as before.  Besides, I define 3 commands
+I didn't change any default command or environment, which means you can use all the basic \LaTeX{} commands and environments as before.  Besides, I defined 4 commands
 \begin{enumerate}
 	\item \lstinline{\email}: create the hyperlink to email address.
 	\item \lstinline{\figref}: same usage as \lstinline{\ref}, but start with label text <\textbf{Figure n}>.
@@ -66,7 +66,8 @@ You can use \lstinline{itemize}, \lstinline{enumerate}, or \lstinline{descriptio
 \end{minipage}
 
 \subsection{Table}
-I strongly recommend you to use the \lstinline{booktabs} package in your paper. It adds three commands to make the table prettier, ie. \lstinline{\toprule}, \lstinline{\midrule} and \lstinline{\bottomrule}. \tabref{tab:reg} is an example.
+I strongly recommend you to use the \lstinline{booktabs} package in your paper. It adds three commands to make the table prettier,  \lstinline{\toprule}, \lstinline{\midrule} and \lstinline{\bottomrule}. \tabref{tab:reg} is an example.
+
 
 \begin{lstlisting}
 \begin{table}[htbp]
@@ -132,7 +133,7 @@ To include a graphic, you can use figure environment as usual. \figref{fig:scatt
 \end{figure}
 
 \subsection{Bibliography}
-This template uses Bib\TeX{} to generate the bibliography, the default bibliography style is \lstinline{unsrt}. Let's take a glance at the citation effect, ~\cite{en3} use data from a major peer-to-peer lending marketplace in China to study whether female and male investors evaluate loan performance differently. 
+This template used Bib\TeX{} to generate the bibliography, the default bibliography style is \lstinline{unsrt}. Let's take a glance at the citation effect, ~\cite{en3} used data from a major peer-to-peer lending marketplace in China to study whether female and male investors evaluate loan performance differently. 
 
 If you want to use Bib\TeX{}, you must create a file named \lstinline{wpref.bib}, and add bib items (from Google Scholar, Mendeley, EndNote, and etc.) to \lstinline{wpref.bib} file, and cite the bibkey in the \lstinline{tex} file. The Bib\TeX{} will automatically generate the bibliography for you for the reference you cited. If you want to add some noncited references or all of them to the bibliography,  you can use 
 
