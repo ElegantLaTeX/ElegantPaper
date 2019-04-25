@@ -1,6 +1,6 @@
 %!TEX program = pdflatex
 % Full chain: pdflatex -> bibtex -> pdflatex -> pdflatex
-\documentclass[11pt]{elegantpaper}
+\documentclass[11pt,en]{elegantpaper}
 
 \title{ElegantPaper: An Elegant \LaTeX{} Template for Working Papers}
 \author{\href{https://ddswhu.me/}{Dongsheng Deng}}
@@ -14,7 +14,7 @@
 \maketitle
 
 \begin{abstract}
-\noindent This paper illustrates the usage of the \href{https://github.com/ElegantLaTeX/ElegantPaper}{ElegantPaper} template, which is designed for writing a working paper. This template is based on the standard \LaTeX{} article class. The goal of this template is to make the writing process easier and more comfortable. You can get rid of all the worries about the format. Just enjoy it! If you have any questions, suggestions or bug reports, you can visit \href{https://github.com/ElegantLaTeX/ElegantPaper/issues}{ElegantPaper/issues}. Looking for other templates designed by Elegant\LaTeX{} Group? Please visit: \href{https://github.com/ElegantLaTeX}{https://github.com/ElegantLaTeX}.\par
+This paper illustrates the usage of the \href{https://github.com/ElegantLaTeX/ElegantPaper}{ElegantPaper} template, which is designed for writing a working paper. This template is based on the standard \LaTeX{} article class. The goal of this template is to make the writing process easier and more comfortable. You can get rid of all the worries about the format. Just enjoy it! If you have any questions, suggestions or bug reports, you can visit \href{https://github.com/ElegantLaTeX/ElegantPaper/issues}{ElegantPaper/issues}. Looking for other templates designed by Elegant\LaTeX{} Group? Please visit: \href{https://github.com/ElegantLaTeX}{https://github.com/ElegantLaTeX}.\par
 \keywords{Elegant\LaTeX{}, Working Paper, Template}
 \end{abstract}
 
@@ -30,7 +30,6 @@ The effect of math fonts is as follows:
 
 \subsection{Global Options}
 I defined one option named \lstinline{lang}, this option has two alternative values, \lstinline{lang=en} (default) or \lstinline{lang=cn}. \lstinline{lang=cn} will make the caption of figure/table, abstract name, refname etc. Chinese, while \lstinline{lang=en} will keep all these stuff English, as the default article class sets. You can use this option as
-
 \begin{lstlisting}
 \documentclass[lang=en]{elegantpaper}
 \documentclass{en}{elegantpaper} % both ok
@@ -67,8 +66,6 @@ You can use \lstinline{itemize}, \lstinline{enumerate}, or \lstinline{descriptio
 
 \subsection{Table}
 I strongly recommend you to use the \lstinline{booktabs} package in your paper. It adds three commands to make the table prettier,  \lstinline{\toprule}, \lstinline{\midrule} and \lstinline{\bottomrule}. \tabref{tab:reg} is an example.
-
-
 \begin{lstlisting}
 \begin{table}[htbp]
   \small
@@ -118,7 +115,6 @@ I strongly recommend you to use the \lstinline{booktabs} package in your paper. 
 
 \subsection{Graphics}
 To include a graphic, you can use figure environment as usual. \figref{fig:scatter} shows the effect. You can put all your images in the sub directories (\lstinline{./image/}, \lstinline{./img/}, \lstinline{./figure/}, \lstinline{./fig/}) of your current working directory.
-
 \begin{lstlisting}
 \begin{figure}[htbp]
 	\centering
@@ -133,24 +129,18 @@ To include a graphic, you can use figure environment as usual. \figref{fig:scatt
 \end{figure}
 
 \subsection{Bibliography}
-This template used Bib\TeX{} to generate the bibliography, the default bibliography style is \lstinline{unsrt}. Let's take a glance at the citation effect, ~\cite{en3} used data from a major peer-to-peer lending marketplace in China to study whether female and male investors evaluate loan performance differently. 
+This template used Bib\TeX{} to generate the bibliography, the default bibliography style is \lstinline{aer}. Let's take a glance at the citation effect, ~\cite{en3} used data from a major peer-to-peer lending marketplace in China to study whether female and male investors evaluate loan performance differently. 
 
 If you want to use Bib\TeX{}, you must create a file named \lstinline{wpref.bib}, and add bib items (from Google Scholar, Mendeley, EndNote, and etc.) to \lstinline{wpref.bib} file, and cite the bibkey in the \lstinline{tex} file. The Bib\TeX{} will automatically generate the bibliography for you for the reference you cited. If you want to add some noncited references or all of them to the bibliography,  you can use 
-
 \begin{lstlisting}
 \nocite{EINAV2010, Havrylchyk2018} % add two noncited references 
 \nocite{*} % list all the references of the bib file.
 \end{lstlisting}
 
-If you want to change the bibliography style, you can replace \lstinline{aer} for the prefered style, for example, the \lstinline{unsrt} style.
 
-\begin{lstlisting}
-\bibliographystyle{unsrt}
-\end{lstlisting}
 
 \section{A Minimal Example}
 In this section, we give a simple example using this template.
-
 \begin{lstlisting}
 \documentclass[lang=en]{elegantpaper}
 
@@ -178,16 +168,11 @@ The content of conclusion section.
 
 % include the noncited reference
 \nocite{ref1, ref2}
-\bibliographystyle{aer}
 \bibliography{wpref}
 \end{document}
 \end{lstlisting}
 
 \nocite{en1,en2}
-
-% If you want change the bibliography style, replace aer with the prefered one.
-\bibliographystyle{aer}
-
 \bibliography{wpref}
 
 \end{document}

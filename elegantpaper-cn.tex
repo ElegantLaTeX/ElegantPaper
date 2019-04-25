@@ -4,7 +4,7 @@
 \documentclass[lang=cn,11pt]{elegantpaper}
 
 \title{ElegantPaper: 一个优美的 \LaTeX{} 工作论文模板}
-\author{\href{https://ddswhu.me/}{邓 东 升}}
+\author{\href{https://ddswhu.me/}{邓东升}}
 
 \institute{\href{https://elegantlatex.org/}{Elegant\LaTeX{} 项目组}}
 
@@ -14,15 +14,12 @@
 \date{\today}
 
 
-% 如果想修改参考文献样式，请把这行注释掉
-\usepackage[authoryear]{gbt7714}  % 国标
-
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-\noindent 本文为 \href{https://github.com/ElegantLaTeX/ElegantPaper/}{ElegantPaper} 的说明文档（中文）。此模板基于 \LaTeX{} 的 article 类，专为工作论文写作而设计。设计这个模板的初衷是让作者不用关心工作论文的格式，专心写作，从而有更加舒适，简便的写作体验。如果你有其他问题、建议或者报告 bug，可以在 \href{https://github.com/ElegantLaTeX/ElegantPaper/issues}{ElegantPaper/issues} 留言。如果你想了解更多由 Elegant\LaTeX{} 项目组设计的模板，请访问 \href{https://github.com/ElegantLaTeX/}{https://github.com/ElegantLaTeX/}。
+本文为 \href{https://github.com/ElegantLaTeX/ElegantPaper/}{ElegantPaper} 的说明文档（中文）。此模板基于 \LaTeX{} 的 article 类，专为工作论文写作而设计。设计这个模板的初衷是让作者不用关心工作论文的格式，专心写作，从而有更加舒适，简便的写作体验。如果你有其他问题、建议或者报告 bug，可以在 \href{https://github.com/ElegantLaTeX/ElegantPaper/issues}{ElegantPaper/issues} 留言。如果你想了解更多由 Elegant\LaTeX{} 项目组设计的模板，请访问 \href{https://github.com/ElegantLaTeX/}{https://github.com/ElegantLaTeX/}。
 \keywords{Elegant\LaTeX{}，工作论文，模板}
 \end{abstract}
 
@@ -32,14 +29,12 @@
 此模板是基于 \LaTeX{} 的标准文类 article设计，也即意味着你可以把 article 文类的选项传递给本模板，比如 \lstinline{a4paper, 10pt} 等等（推荐使用 \lstinline{11pt}）。本模板支持 \lstinline{PDFLaTeX} 和 \lstinline{XeLaTeX}\footnote{中文字体均使用 \lstinline{ctex} 包设置。} 两种编译方式。
 
 数学字体的效果如下：
-
 \begin{equation}
 (a+3b)^{n} = \sum_{k=0}^{n} C_{n}^{k} a^{n-k} (3b)^k\label{eq:binom}
 \end{equation}
       
 \subsection{全局选项}
 我在这个模板中定义了一个语言选项 \lstinline{lang}，可以选择英文模式 \lstinline{lang=en}（默认）或者中文模式 \lstinline{lang=cn}。当选择中文模式时，图表的标题引导词以及参考文献，定理引导词等信息会变成中文。你可以通过下面两种方式来选择语言模式：
-
 \begin{lstlisting}
 \documentclass[lang=cn]{elegantpaper} % or
 \documentclass{cn}{elegantpaper} 
@@ -48,15 +43,12 @@
 
 \subsection{自定义命令}
 在此模板中，并没有修改任何默认的命令或者环境，所以，你可以在此模板使用原来的命令和环境。另外，我自定义了 4 个命令：
-
 \begin{enumerate}
 	\item \lstinline{\email}：创建邮箱地址的链接；
 	\item \lstinline{\figref}：用法和 \lstinline{\ref} 类似，但是会在插图的标题前添加 <\textbf{图 n}> ；
 	\item \lstinline{\tabref}：用法和 \lstinline{\ref} 类似，但是会在表格的标题前添加 <\textbf{表 n}>；
 	\item \lstinline{\keywords}：为摘要环境添加关键词。
 \end{enumerate}
-
-
 
 \subsection{列表环境}
 你可以使用列表环境（\lstinline{itemize}、\lstinline{enumerate}、\lstinline{description}），示例如下：\\[2ex]
@@ -78,12 +70,8 @@
 \end{minipage}
 
 
-
-
 \subsection{插图}
 插图的命令和以前一样，也是使用 \lstinline{figure} 环境。\figref{fig:scatter} 显示了插图的效果。你可以把你的图放到当前工作目录的如下子目录下 (\lstinline{./image/}, \lstinline{./img/}, \lstinline{./figure/}, \lstinline{./fig/})。
-
-
 \begin{lstlisting}
 \begin{figure}[htbp]
 	\centering
@@ -98,8 +86,7 @@
 \end{figure}
 
 \subsection{表格}
-我强烈建议你使用 \lstinline{booktabs} 宏包，这个宏包有三个命令 \lstinline{\toprule}、\lstinline{\midrule} 和 \lstinline{\bottomrule} 能方便你制作三线表。\tabref{tab:reg} 是一个示例：
-
+建议使用 \lstinline{booktabs} 宏包制作表格，该宏包有三个命令 \lstinline{\toprule}、\lstinline{\midrule} 和 \lstinline[breaklines]{\bottomrule} 能方便你制作三线表。\tabref{tab:reg} 是一个示例：
 \begin{lstlisting}
 \begin{table}[htbp]
   \small
@@ -151,27 +138,13 @@
 此模板使用了 Bib\TeX{} 来生成参考文献，默认使用的文献样式（bib style）是 \lstinline{GB/T 7714-2015}\footnote{通过调用 \href{https://ctan.org/pkg/gbt7714}{\lstinline{gbt7714}} 宏包}。参考文献示例：~\cite{en3} 使用了中国一个大型的 P2P 平台（人人贷）的数据来检验男性投资者和女性投资者在投资表现上是否有显著差异。
 
 你可以在谷歌学术，Mendeley，Endnote 中获得文献条目（bib item），然后把它们添加到 \lstinline{wpref.bib} 中。在文中引用的时候，引用它们的键值（bib key）即可。注意需要在编译的过程中添加 Bib\TeX{} 编译。如果你想在参考文献中添加未引用的文献（部分或者全部），可以使用
-
 \begin{lstlisting}
 \nocite{EINAV2010, Havrylchyk2018} % add the two reference.
 \nocite{*}   % add all the reference in the bib file.
 \end{lstlisting}
 
-如果你想修改参考文献的样式（比如改为 \lstinline{aer}），你可以在导言区将下面代码注释掉。
-\begin{lstlisting}
-\usepackage[authoryear]{gbt7714}
-\end{lstlisting}
-
-并且文档末尾添加
-
-\begin{lstlisting}
-\bibliographystyle{aer}
-\end{lstlisting}
-
 \section{示例}
 在这部分，我提供一个示例文档：
-
-
 \begin{lstlisting}
 \documentclass[lang=cn]{elegantpaper}
 
@@ -199,15 +172,12 @@ The content of conclusion section.
 
 % include the noncited reference
 \nocite{ref1, ref2}
-\bibliographystyle{aer}
 \bibliography{wpref}
 \end{document}
 \end{lstlisting}
 
 \nocite{*}
 
-% 如果想修改参考文献样式（非国标），请把下行取消注释，并换成合适的样式（比如 unsrt，plain 样式）。
-%\bibliographystyle{aer}
 \bibliography{wpref}
 
 \end{document}

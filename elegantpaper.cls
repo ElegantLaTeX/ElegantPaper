@@ -24,8 +24,7 @@
 
 % \PassOptionsToClass{11pt}{article}
 
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
-\ProcessOptions\relax
+\DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessKeyvalOptions*\relax
 \LoadClass{article}
 
@@ -68,6 +67,8 @@
 
 % settings for the geometry
 \RequirePackage{hyperref}
+
+
 \hypersetup{
   pdfborder={0 0 0},
   colorlinks=true,
@@ -79,13 +80,16 @@
 }
 \RequirePackage[left=1in, right=1in, top=1in, bottom=1in,headheight=0pt,headsep=0pt]{geometry}
 
-\setlength{\voffset}{-0.75in}
+% \setlength{\voffset}{-0.75in}
 \setlength{\headsep}{5pt}
 % add the \email cmd 
 \newcommand\email[1]{\href{mailto:#1}{\nolinkurl{#1}}}
 
 \PassOptionsToPackage{no-math}{fontspec}
+\ifdefstring{\ELEGANT@lang}{cn}{
 \RequirePackage[UTF8, scheme=plain]{ctex}
+}
+
 \RequirePackage[T1]{fontenc}
 \RequirePackage{newtxtext}
 \RequirePackage{newtxmath}
@@ -110,14 +114,15 @@
 	\renewcommand\refname{参考文献} %
 	\renewcommand\figurename{图} %
 	\renewcommand\tablename{表}%
-	\newcommand\versiontext{\itshape 版本：}%
-	\newcommand\updatetext{\itshape 更新：}%
+	\newcommand\versiontext{版本：}%
+	\newcommand\updatetext{更新：}%
 	\renewcommand\abstractname{摘\hspace{2em}要}
 	\setlength{\parindent}{2em}
-	\renewcommand{\abstracttextfont}{\small\sffamily\kaishu}
+	\renewcommand{\abstracttextfont}{\small\sffamily\kaishu\noindent\ignorespaces}
 	\newcommand{\keywords}[1]{\vskip2ex\par\noindent\normalfont{\bfseries 关键词: } #1}
 	\newcommand\figref[1]{{\bfseries 图~\ref{#1}}}
 	\newcommand\tabref[1]{{\bfseries 表~\ref{#1}}}
+  \RequirePackage[authoryear]{gbt7714}
 }{\relax}
 \ifdefstring{\ELEGANT@lang}{en}{
   \theoremstyle{plain}% default
@@ -136,13 +141,15 @@
 	\renewcommand*{\proofname}{\normalfont\bfseries Proof}%
 	\newcommand\versiontext{\itshape Version: }%
 	\newcommand\updatetext{\itshape Update: }%
-	\renewcommand{\abstracttextfont}{\sffamily\small\kaishu}
+	\renewcommand{\abstracttextfont}{\sffamily\small\noindent\ignorespaces}
 	\newcommand{\keywords}[1]{\vskip2ex\par\noindent\normalfont{\bfseries Keywords: } #1}
 	\newcommand\figref[1]{{\bfseries Figure~\ref{#1}}}
 	\newcommand\tabref[1]{{\bfseries Table~\ref{#1}}}
+  \bibliographystyle{aer}
 }{\relax}
 
 \AtBeginEnvironment{verbatim}{\microtypesetup{activate=false}}
+
 
 \def\IfEmpty#1{%
   \edef\1{\the#1}
@@ -203,12 +210,12 @@
 \vskip 1.5em%
 \IfEmpty\version
 \else 
-{\small \normalfont\kaishu \versiontext \itshape\the\version}
+{\small\normalfont\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\kaishu}\versiontext\the\version}
 \fi
 \ifx\@date\empty
 \else
 \vskip 0.1em%
- 	{\small\normalfont\kaishu \updatetext \itshape \@date}%
+ {\small\normalfont\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\kaishu}\updatetext\@date}%
 \fi
   \end{center}%
   \par
