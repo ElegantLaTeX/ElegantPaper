@@ -1,4 +1,3 @@
-% Current Version: 0.07
 % Author: Dongsheng Deng
 % Homepage: https://ddswhu.me/
 % Email: elegantlatex2e@gmail.com
@@ -7,7 +6,6 @@
 % --- Class structure: identification part
 \ProvidesClass{elegantpaper}[2019/04/01 v0.07 ElegantLaTeX Paper class]
 \NeedsTeXFormat{LaTeX2e} 
-
 
 \RequirePackage{kvoptions}
 \RequirePackage{ifthen}
@@ -90,7 +88,12 @@
 \RequirePackage[UTF8, scheme=plain]{ctex}
 }
 
-\RequirePackage[T1]{fontenc}
+\ifxetex
+  \RequirePackage{fontenc}
+\else
+  \RequirePackage[T1]{fontenc}
+  \AtEndOfClass{\RequirePackage{microtype}}
+\fi
 \RequirePackage{newtxtext}
 \RequirePackage{newtxmath}
 
@@ -115,14 +118,14 @@
 	\renewcommand\figurename{图} %
 	\renewcommand\tablename{表}%
 	\newcommand\versiontext{版本：}%
-	\newcommand\updatetext{更新：}%
+	\newcommand\updatetext{日期：}%
 	\renewcommand\abstractname{摘\hspace{2em}要}
 	\setlength{\parindent}{2em}
 	\renewcommand{\abstracttextfont}{\small\sffamily\kaishu\noindent\ignorespaces}
 	\newcommand{\keywords}[1]{\vskip2ex\par\noindent\normalfont{\bfseries 关键词: } #1}
 	\newcommand\figref[1]{{\bfseries 图~\ref{#1}}}
 	\newcommand\tabref[1]{{\bfseries 表~\ref{#1}}}
-  \RequirePackage[authoryear]{gbt7714}
+  	\RequirePackage[authoryear]{gbt7714}
 }{\relax}
 \ifdefstring{\ELEGANT@lang}{en}{
   \theoremstyle{plain}% default
@@ -140,12 +143,12 @@
 	\newtheorem{case}{Case} %
 	\renewcommand*{\proofname}{\normalfont\bfseries Proof}%
 	\newcommand\versiontext{\itshape Version: }%
-	\newcommand\updatetext{\itshape Update: }%
+	\newcommand\updatetext{\itshape Date: }%
 	\renewcommand{\abstracttextfont}{\sffamily\small\noindent\ignorespaces}
 	\newcommand{\keywords}[1]{\vskip2ex\par\noindent\normalfont{\bfseries Keywords: } #1}
 	\newcommand\figref[1]{{\bfseries Figure~\ref{#1}}}
 	\newcommand\tabref[1]{{\bfseries Table~\ref{#1}}}
-  \bibliographystyle{aer}
+  	\bibliographystyle{aer}
 }{\relax}
 
 \AtBeginEnvironment{verbatim}{\microtypesetup{activate=false}}
