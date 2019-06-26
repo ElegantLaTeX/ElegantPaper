@@ -85,7 +85,7 @@
 
 \PassOptionsToPackage{no-math}{fontspec}
 \ifdefstring{\ELEGANT@lang}{cn}{
-\RequirePackage[UTF8, scheme=plain]{ctex}
+\RequirePackage[UTF8, scheme=plain, space]{ctex}
 }
 
 \ifxetex
@@ -152,6 +152,17 @@
 }{\relax}
 
 \AtBeginEnvironment{verbatim}{\microtypesetup{activate=false}}
+
+\AtBeginDocument{
+\setlength{\abovedisplayskip}{3pt}
+\setlength{\belowdisplayskip}{3pt}
+\RequirePackage[flushmargin]{footmisc}
+\setlength{\footnotesep}{12pt}
+}
+
+\BeforeBeginEnvironment{tabular}{\small}
+\AfterEndEnvironment{tabular}{}
+
 
 
 \def\IfEmpty#1{%
