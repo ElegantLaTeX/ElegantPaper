@@ -38,6 +38,7 @@
 \RequirePackage{indentfirst}
 \RequirePackage{booktabs}
 \RequirePackage{multicol}
+\RequirePackage{multirow,linegoal}
 \RequirePackage{xcolor}
 \RequirePackage{graphicx}
 \RequirePackage{fancyvrb}
@@ -53,6 +54,7 @@
 % list/itemize/enumerate setting
 \RequirePackage[shortlabels,inline]{enumitem}
 \setlist{nolistsep}
+
 
 % define the hyperref color 
 \RequirePackage{xcolor}
@@ -85,7 +87,7 @@
 
 \PassOptionsToPackage{no-math}{fontspec}
 \ifdefstring{\ELEGANT@lang}{cn}{
-\RequirePackage[UTF8, scheme=plain, space]{ctex}
+\RequirePackage[UTF8, scheme=plain]{ctex}
 }
 
 \ifxetex
@@ -177,7 +179,7 @@
     \renewcommand\thefootnote{\@fnsymbol\c@footnote}%
     \def\@makefnmark{\rlap{\@textsuperscript{\normalfont\@thefnmark}}}%
     \long\def\@makefntext##1{\parindent 1em\noindent
-            \hb@xt@1.8em{%
+            \hb@xt@0.1em{%
                 \hss\@textsuperscript{\normalfont\@thefnmark}}##1}%
     \if@twocolumn
       \ifnum \col@number=\@ne
@@ -221,7 +223,7 @@
         \@author\\
         \the\institute
       \end{tabular}\par}%
-\vskip 1.5em%
+\vskip 1em%
 \IfEmpty\version
 \else 
 {\small\normalfont\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\kaishu}\versiontext\the\version}
