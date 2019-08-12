@@ -20,6 +20,10 @@
 \DeclareVoidOption{cn}{\ekv{lang = cn}}
 \DeclareVoidOption{en}{\ekv{lang = en}}
 
+\DeclareStringOption[numbers]{cite}[numbers]
+\DeclareVoidOption{numbers}{\ekv{cite=numbers}}
+\DeclareVoidOption{authoryear}{\ekv{cite=authoryear}}
+\DeclareVoidOption{super}{\ekv{cite=super}}
 % \PassOptionsToClass{11pt}{article}
 
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{article}}
@@ -61,7 +65,16 @@
 \definecolor{winered}{rgb}{0.5,0,0}
 
 % bib-settings
-\RequirePackage{natbib}
+\ifdefstring{\ELEGANT@cite}{authoryear}{
+	\RequirePackage[authoryear,sort&compress]{natbib}
+}{\relax}
+\ifdefstring{\ELEGANT@cite}{numbers}{
+	\RequirePackage[numbers,sort&compress]{natbib}
+}{\relax}
+\ifdefstring{\ELEGANT@cite}{super}{
+	\RequirePackage[super,sort&compress]{natbib}
+}{\relax}
+
 \setlength{\bibsep}{0.0pt}
 \def\bibfont{\footnotesize}
 
@@ -127,7 +140,7 @@
 	\newcommand{\keywords}[1]{\vskip2ex\par\noindent\normalfont{\bfseries 关键词: } #1}
 	\newcommand\figref[1]{{\bfseries 图~\ref{#1}}}
 	\newcommand\tabref[1]{{\bfseries 表~\ref{#1}}}
-  	\RequirePackage[authoryear]{gbt7714}
+	\RequirePackage{gbt7714}
 }{\relax}
 \ifdefstring{\ELEGANT@lang}{en}{
   \theoremstyle{plain}% default
