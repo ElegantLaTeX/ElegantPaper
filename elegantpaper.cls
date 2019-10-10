@@ -4,7 +4,7 @@
 % Lastest Version: https://github.com/ElegantLaTeX/ElegantPaper
 
 % --- Class structure: identification part
-\ProvidesClass{elegantpaper}[2019/04/01 v0.07 ElegantLaTeX Paper class]
+\ProvidesClass{elegantpaper}[2019/10/10 v0.08 ElegantLaTeX Paper class]
 \NeedsTeXFormat{LaTeX2e} 
 
 \RequirePackage{kvoptions}
@@ -109,9 +109,23 @@
   \RequirePackage[T1]{fontenc}
   \AtEndOfClass{\RequirePackage{microtype}}
 \fi
+\RequirePackage{hologo}
 \RequirePackage{newtxtext}
 \RequirePackage{newtxmath}
+\RequirePackage{esint}
+%%% use yhmath pkg, uncomment following code
+% \let\oldwidering\widering
+% \let\widering\undefined
+% \RequirePackage{yhmath}
+% \let\widering\oldwidering
 
+%%% use esvect pkg, uncomment following code
+% \RequirePackage{esvect}
+
+\DeclareSymbolFont{CMlargesymbols}{OMX}{cmex}{m}{n}
+\let\sumop\relax\let\prodop\relax
+\DeclareMathSymbol{\sumop}{\mathop}{CMlargesymbols}{"50}
+\DeclareMathSymbol{\prodop}{\mathop}{CMlargesymbols}{"51}
 
 \ifdefstring{\ELEGANT@lang}{cn}{
     \theoremstyle{plain}% default
@@ -135,7 +149,7 @@
 	\newcommand\versiontext{版本：}%
 	\newcommand\updatetext{日期：}%
 	\renewcommand\abstractname{摘\hspace{2em}要}
-	\setlength{\parindent}{2em}
+	\setlength\parindent{2\ccwd}
 	\renewcommand{\abstracttextfont}{\small\sffamily\kaishu\noindent\ignorespaces}
 	\newcommand{\keywords}[1]{\vskip2ex\par\noindent\normalfont{\bfseries 关键词: } #1}
 	\newcommand\figref[1]{{\bfseries 图~\ref{#1}}}
@@ -159,6 +173,7 @@
 	\renewcommand*{\proofname}{\normalfont\bfseries Proof}%
 	\newcommand\versiontext{\itshape Version: }%
 	\newcommand\updatetext{\itshape Date: }%
+	\setlength\parindent{2em}
 	\renewcommand{\abstracttextfont}{\sffamily\small\noindent\ignorespaces}
 	\newcommand{\keywords}[1]{\vskip2ex\par\noindent\normalfont{\bfseries Keywords: } #1}
 	\newcommand\figref[1]{{\bfseries Figure~\ref{#1}}}
@@ -233,10 +248,10 @@
     {\large
       \lineskip .5em%
       \begin{tabular}[t]{c}%
-        \@author\\
-        \the\institute
-      \end{tabular}\par}%
-\vskip 1em%
+        \@author\\[1ex]
+      \end{tabular}\par}
+      \the\institute%
+\vskip 0.5ex%
 \IfEmpty\version
 \else 
 {\small\normalfont\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\kaishu}\versiontext\the\version}
@@ -251,54 +266,30 @@
 }
   
 
-
-
-\DeclareSymbolFont{CMletters}     {OML}{cmm} {m}{it}%
-\DeclareSymbolFont{CMsymbols}     {OMS}{cmsy}{m}{n}%
-\DeclareSymbolFont{CMlargesymbols}{OMX}{cmex}{m}{n}%
-
-% \let\sum\relax
-% \DeclareMathSymbol{\sum}{\mathop}{CMlargesymbols}{"50}%
-% \let\int\relax
-% \DeclareMathSymbol{\int}{\mathop}{CMlargesymbols}{"5A}%
-
-\let\intop\relax\let\sumop\relax\let\ointop\relax\let\prodop\relax
-\DeclareMathSymbol{\sumop}{\mathop}{CMlargesymbols}{"50}
-\DeclareMathSymbol{\intop}{\mathop}{CMlargesymbols}{"52}
-\DeclareMathSymbol{\ointop}{\mathop}{CMlargesymbols}{"49}
-\DeclareMathSymbol{\prodop}{\mathop}{CMlargesymbols}{"59}
-
-% \let\partial\relax
-% \DeclareMathSymbol{\partial}{\mathord}{CMletters}{"40}%
-% \let\in\relax
-%\DeclareMathSymbol{\in}{\mathrel}{CMsymbols}{"32}%
-% \let\pi\relax
-% \DeclareMathSymbol{\pi}{\mathord}{CMletters}{"19}
-
-
-
 \RequirePackage{listings} 
 \renewcommand{\ttdefault}{cmtt}
 \lstdefinestyle{mystyle}{
-  basicstyle=%
-    \ttfamily
-    \lst@ifdisplaystyle\footnotesize\fi
+   basicstyle=%
+       \ttfamily
+       \lst@ifdisplaystyle\footnotesize\fi
 }
 
 \lstset{basicstyle=\scriptsize\ttfamily,style=mystyle}
 
-\definecolor{lightgrey}{rgb}{0.9,0.9,0.9}
+\definecolor{lightgrey}{rgb}{0.95,0.95,0.95}
+\definecolor{commentcolor}{RGB}{0,100,0}
 \definecolor{frenchplum}{RGB}{190,20,83}
 \lstset{language=[LaTeX]TeX,
 	texcsstyle=*\color{winered},
 	numbers=none,
 	breaklines=true,
 	keywordstyle=\color{winered},
-	commentstyle=\color{gray},
-	emph={elegantpaper,fontenc,fontspec,xeCJK,FiraMono,xunicode,newtxmath,figure,fig,image,img,table,itemize,enumerate,newtxtext,newtxtt,ctex,microtype,description,times,newtx,booktabs,tabular,PDFLaTeX,XeLaTeX,type1cm,BibTeX},
+	frame=tlbr,framesep=4pt,framerule=0pt,
+	commentstyle=\color{commentcolor},
+	emph={elegantpaper,fontenc,fontspec,xeCJK,FiraMono,xunicode,newtxmath,figure,fig,image,img,table,itemize,enumerate,newtxtext,newtxtt,ctex,microtype,description,times,newtx,booktabs,tabular,PDFLaTeX,XeLaTeX,type1cm,BibTeX,cite,gbt7714},
 	emphstyle={\color{frenchplum}},
-	morekeywords={DeclareSymbolFont,SetSymbolFont,toprule,midrule,bottomrule,institute,version,includegraphics,setmainfont,setsansfont,setmonofont ,setCJKmainfont,setCJKsansfont,setCJKmonofont,RequirePackage,figref,tabref,email,maketitle,keywords},
-	frame=none,
+	morekeywords={DeclareSymbolFont,SetSymbolFont,toprule,midrule,bottomrule,institute,version,includegraphics,setmainfont,setsansfont,setmonofont ,setCJKmainfont,setCJKsansfont,setCJKmonofont,RequirePackage,figref,tabref,email,maketitle,keywords,zhdate,zhtoday},
+	% frame=none,
 	tabsize=2,
 	backgroundcolor=\color{lightgrey}
 }
