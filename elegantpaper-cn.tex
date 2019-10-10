@@ -4,9 +4,7 @@
 \documentclass[lang=cn,11pt,numbers, a4paper]{elegantpaper}
 
 \title{ElegantPaper: 一个优美的 \LaTeX{} 工作论文模板}
-\author{Ethan DENG \\ Fudan University 
-    \and Dongsheng DENG \\ PA Technology}
-
+\author{Ethan DENG \\ Fudan University \and Dongsheng DENG \\ PA Technology}
 \institute{\href{https://elegantlatex.org/}{Elegant\LaTeX{} 项目组}}
 
 \version{0.08}
@@ -24,12 +22,13 @@
 
 \section{模板介绍}
 
-此模板基于 \LaTeX{} 的标准文类 article 设计，也即意味着你可以把 article 文类的选项传递给本模板，比如 \lstinline{a4paper, 11pt} 等等。
+此模板基于 \LaTeX{} 的标准文类 article 设计，也即意味着你可以把 article 文类的选项传递给本模板，比如 \lstinline{a4paper, 11pt} 等等。本模板支持 \hologo{pdfLaTeX} 和 \hologo{XeLaTeX} 编译。
+
 \begin{lstlisting}
 \documentclass[a4paper,11pt]{elegantpaper}
 \end{lstlisting}
 
-本模板支持 \hologo{pdfLaTeX} 和 \hologo{XeLaTeX} 编译。
+\textbf{注意}：Elegant\LaTeX{} 系列模板已经全部上传至 \href{https://www.overleaf.com}{Overleaf} 上，用户可以在线使用 \href{https://www.overleaf.com/latex/templates/elegantpaper-template/yzghrqjhmmmr}{ElegantPaper}。
   
 \subsection{全局选项}
 此模板定义了一个语言选项 \lstinline{lang}，可以选择英文模式 \lstinline{lang=en}（默认）或者中文模式 \lstinline{lang=cn}。当选择中文模式时，图表的标题引导词以及参考文献，定理引导词等信息会变成中文。你可以通过下面两种方式来选择语言模式：
@@ -45,7 +44,10 @@
 
 \subsection{英文与数学字体}
 
-本模板使用 \lstinline{newtxtext} 和 \lstinline{newtxmath} 分别设置全文的英文文本字体和数学字体。
+本模板使用 \lstinline{newtxtext} 和 \lstinline{newtxmath} 分别设置全文的英文文本字体和数学字体。数学字体的效果如下：
+\begin{equation}
+(a+3b)^{n} = \sum_{k=0}^{n} C_{n}^{k} a^{n-k} (3b)^k\label{eq:binom}
+\end{equation}
 
 \subsection{自定义命令}
 此模板并没有修改任何默认的 \LaTeX{} 命令或者环境。另外，我自定义了 4 个命令：
