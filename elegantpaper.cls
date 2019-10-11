@@ -4,7 +4,7 @@
 % Lastest Version: https://github.com/ElegantLaTeX/ElegantPaper
 
 % --- Class structure: identification part
-\ProvidesClass{elegantpaper}[2019/10/10 v0.08 ElegantLaTeX Paper class]
+\ProvidesClass{elegantpaper}[2019/10/11 v0.08 ElegantLaTeX Paper class]
 \NeedsTeXFormat{LaTeX2e} 
 
 \RequirePackage{kvoptions}
@@ -20,11 +20,10 @@
 \DeclareVoidOption{cn}{\ekv{lang = cn}}
 \DeclareVoidOption{en}{\ekv{lang = en}}
 
-\DeclareStringOption[numbers]{cite}[numbers]
+\DeclareStringOption[numbers]{cite}
 \DeclareVoidOption{numbers}{\ekv{cite=numbers}}
 \DeclareVoidOption{authoryear}{\ekv{cite=authoryear}}
 \DeclareVoidOption{super}{\ekv{cite=super}}
-% \PassOptionsToClass{11pt}{article}
 
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessKeyvalOptions*\relax
@@ -33,21 +32,20 @@
 
 
 \RequirePackage{amsthm}
-\RequirePackage{amsmath,amssymb}
-
-\linespread{1.35}
-
-
-% indentation, table and figure package
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
 \RequirePackage{indentfirst}
 \RequirePackage{booktabs}
 \RequirePackage{multicol}
-\RequirePackage{multirow,linegoal}
+\RequirePackage{multirow}
+\RequirePackage{linegoal}
 \RequirePackage{xcolor}
 \RequirePackage{graphicx}
 \RequirePackage{fancyvrb}
 \RequirePackage{abstract}
+\RequirePackage{hologo}
 
+\linespread{1.35}
 \graphicspath{{image/}{figure/}{fig/}{img/}}
 
 % caption settings 
@@ -59,29 +57,21 @@
 \RequirePackage[shortlabels,inline]{enumitem}
 \setlist{nolistsep}
 
+\RequirePackage[sort&compress]{natbib}
+% \PassOptionsToPackage{\ELEGANT@cite}{natbib}
+\setlength{\bibsep}{0.0pt}
+\def\bibfont{\footnotesize}
 
 % define the hyperref color 
 \RequirePackage{xcolor}
 \definecolor{winered}{rgb}{0.5,0,0}
 
-% bib-settings
-\ifdefstring{\ELEGANT@cite}{authoryear}{
-	\RequirePackage[authoryear,sort&compress]{natbib}
-}{\relax}
-\ifdefstring{\ELEGANT@cite}{numbers}{
-	\RequirePackage[numbers,sort&compress]{natbib}
-}{\relax}
-\ifdefstring{\ELEGANT@cite}{super}{
-	\RequirePackage[super,sort&compress]{natbib}
-}{\relax}
+\definecolor{lightgrey}{rgb}{0.95,0.95,0.95}
+\definecolor{commentcolor}{RGB}{0,100,0}
+\definecolor{frenchplum}{RGB}{190,20,83}
 
-\setlength{\bibsep}{0.0pt}
-\def\bibfont{\footnotesize}
-
-% settings for the geometry
+% settings for the hyperref and geometry
 \RequirePackage{hyperref}
-
-
 \hypersetup{
   pdfborder={0 0 0},
   colorlinks=true,
@@ -92,27 +82,31 @@
   linktoc=all,
 }
 \RequirePackage[left=1in, right=1in, top=1in, bottom=1in,headheight=0pt,headsep=0pt]{geometry}
-
-% \setlength{\voffset}{-0.75in}
 \setlength{\headsep}{5pt}
+
 % add the \email cmd 
 \newcommand\email[1]{\href{mailto:#1}{\nolinkurl{#1}}}
 
+% font settings
 \PassOptionsToPackage{no-math}{fontspec}
-\ifdefstring{\ELEGANT@lang}{cn}{
-\RequirePackage[UTF8, scheme=plain]{ctex}
+
+\ifdefstring{\ELEGANT@lang}{cn}{%
+  \RequirePackage[UTF8, scheme=plain]{ctex}
 }
 
 \ifxetex
   \RequirePackage{fontenc}
 \else
   \RequirePackage[T1]{fontenc}
-  \AtEndOfClass{\RequirePackage{microtype}}
+  \AtEndOfClass{%
+    \RequirePackage{microtype}}
 \fi
-\RequirePackage{hologo}
+
+% newtxtext and newtxmath pkg
 \RequirePackage{newtxtext}
 \RequirePackage{newtxmath}
 \RequirePackage{esint}
+
 %%% use yhmath pkg, uncomment following code
 % \let\oldwidering\widering
 % \let\widering\undefined
@@ -128,72 +122,70 @@
 \DeclareMathSymbol{\prodop}{\mathop}{CMlargesymbols}{"51}
 
 \ifdefstring{\ELEGANT@lang}{cn}{
-    \theoremstyle{plain}% default
-	\newtheorem{theorem}{定理}[section] %
-	\newtheorem{lemma}[theorem]{引理} %
-	\newtheorem{proposition}[theorem]{性质} %
-	\newtheorem*{corollary}{推论} %
-	\theoremstyle{definition} %
-	\newtheorem{definition}{定义}[section] %
-	\newtheorem{conjecture}{猜想}[section] %
-	\newtheorem{example}{例}[section] %
-	\theoremstyle{remark} %
-	\newtheorem*{remark}{\normalfont\bfseries 评论} %
-	\newtheorem*{note}{\normalfont\bfseries 注} %
-	\newtheorem{case}{\normalfont\bfseries 案例} %
-	\renewcommand*{\proofname}{\normalfont\bfseries 证明} %
-	\renewcommand\contentsname{目录}
-	\renewcommand\refname{参考文献} %
-	\renewcommand\figurename{图} %
-	\renewcommand\tablename{表}%
-	\newcommand\versiontext{版本：}%
-	\newcommand\updatetext{日期：}%
-	\renewcommand\abstractname{摘\hspace{2em}要}
-	\setlength\parindent{2\ccwd}
-	\renewcommand{\abstracttextfont}{\small\sffamily\kaishu\noindent\ignorespaces}
-	\newcommand{\keywords}[1]{\vskip2ex\par\noindent\normalfont{\bfseries 关键词: } #1}
-	\newcommand\figref[1]{{\bfseries 图~\ref{#1}}}
-	\newcommand\tabref[1]{{\bfseries 表~\ref{#1}}}
-	\RequirePackage{gbt7714}
+  \theoremstyle{plain}% default
+  \newtheorem{theorem}{定理}[section] %
+  \newtheorem{lemma}[theorem]{引理} %
+  \newtheorem{proposition}[theorem]{性质} %
+  \newtheorem*{corollary}{推论} %
+  \theoremstyle{definition} %
+  \newtheorem{definition}{定义}[section] %
+  \newtheorem{conjecture}{猜想}[section] %
+  \newtheorem{example}{例}[section] %
+  \theoremstyle{remark} %
+  \newtheorem*{remark}{\normalfont\bfseries 评论} %
+  \newtheorem*{note}{\normalfont\bfseries 注} %
+  \newtheorem{case}{\normalfont\bfseries 案例} %
+  \renewcommand*{\proofname}{\normalfont\bfseries 证明} %
+  \renewcommand\contentsname{目录}
+  \renewcommand\refname{参考文献} %
+  \renewcommand\figurename{图} %
+  \renewcommand\tablename{表}%
+  \newcommand\versiontext{版本：}%
+  \newcommand\updatetext{日期：}%
+  \renewcommand\abstractname{摘\hspace{2em}要}
+  \setlength\parindent{2\ccwd}
+  \renewcommand{\abstracttextfont}{\small\sffamily\kaishu\noindent\ignorespaces}
+  \newcommand{\keywords}[1]{\vskip2ex\par\noindent\normalfont{\bfseries 关键词: } #1}
+  \newcommand\figref[1]{{\bfseries 图~\ref{#1}}}
+  \newcommand\tabref[1]{{\bfseries 表~\ref{#1}}}
+  \RequirePackage[\ELEGANT@cite]{gbt7714}
 }{\relax}
+
 \ifdefstring{\ELEGANT@lang}{en}{
   \theoremstyle{plain}% default
-	\newtheorem{theorem}{Theorem}[section] %
-	\newtheorem{lemma}[theorem]{Lemma} %
-	\newtheorem{proposition}[theorem]{Proposition} %
-	\newtheorem*{corollary}{Corollary} %
-	\theoremstyle{definition} %
-	\newtheorem{definition}{Definition}[section] %
-	\newtheorem{conjecture}{Conjecture}[section] %
-	\newtheorem{example}{Example}[section] %
-	\theoremstyle{remark} %
-	\newtheorem*{remark}{Remark} %
-	\newtheorem*{note}{Note} %
-	\newtheorem{case}{Case} %
-	\renewcommand*{\proofname}{\normalfont\bfseries Proof}%
-	\newcommand\versiontext{\itshape Version: }%
-	\newcommand\updatetext{\itshape Date: }%
-	\setlength\parindent{2em}
-	\renewcommand{\abstracttextfont}{\sffamily\small\noindent\ignorespaces}
-	\newcommand{\keywords}[1]{\vskip2ex\par\noindent\normalfont{\bfseries Keywords: } #1}
-	\newcommand\figref[1]{{\bfseries Figure~\ref{#1}}}
-	\newcommand\tabref[1]{{\bfseries Table~\ref{#1}}}
-  	\bibliographystyle{aer}
+  \newtheorem{theorem}{Theorem}[section] %
+  \newtheorem{lemma}[theorem]{Lemma} %
+  \newtheorem{proposition}[theorem]{Proposition} %
+  \newtheorem*{corollary}{Corollary} %
+  \theoremstyle{definition} %
+  \newtheorem{definition}{Definition}[section] %
+  \newtheorem{conjecture}{Conjecture}[section] %
+  \newtheorem{example}{Example}[section] %
+  \theoremstyle{remark} %
+  \newtheorem*{remark}{Remark} %
+  \newtheorem*{note}{Note} %
+  \newtheorem{case}{Case} %
+  \renewcommand*{\proofname}{\normalfont\bfseries Proof}%
+  \newcommand\versiontext{\itshape Version: }%
+  \newcommand\updatetext{\itshape Date: }%
+  \setlength\parindent{2em}
+  \renewcommand{\abstracttextfont}{\sffamily\small\noindent\ignorespaces}
+  \newcommand{\keywords}[1]{\vskip2ex\par\noindent\normalfont{\bfseries Keywords: } #1}
+  \newcommand\figref[1]{{\bfseries Figure~\ref{#1}}}
+  \newcommand\tabref[1]{{\bfseries Table~\ref{#1}}}
+  \bibliographystyle{aer}
 }{\relax}
 
 \AtBeginEnvironment{verbatim}{\microtypesetup{activate=false}}
-
-\AtBeginDocument{
-\setlength{\abovedisplayskip}{3pt}
-\setlength{\belowdisplayskip}{3pt}
-\RequirePackage[flushmargin]{footmisc}
-\setlength{\footnotesep}{12pt}
-}
-
 \BeforeBeginEnvironment{tabular}{\small}
 \AfterEndEnvironment{tabular}{}
 
-
+\AtBeginDocument{
+  \setlength{\abovedisplayskip}{3pt}
+  \setlength{\belowdisplayskip}{3pt}
+  \RequirePackage[flushmargin]{footmisc}
+  \setlength{\footnotesep}{12pt}
+}
 
 \def\IfEmpty#1{%
   \edef\1{\the#1}
@@ -201,7 +193,7 @@
 }
 \newtoks\version
 \newtoks\institute
-\def \ifempty#1{\def\temp{#1} \ifx\temp\empty }
+
 \renewcommand\maketitle{\par
   \begingroup
     \renewcommand\thefootnote{\@fnsymbol\c@footnote}%
@@ -266,19 +258,16 @@
 }
   
 
-\RequirePackage{listings} 
+\RequirePackage{listings}
 \renewcommand{\ttdefault}{cmtt}
-\lstdefinestyle{mystyle}{
-   basicstyle=%
-       \ttfamily
-       \lst@ifdisplaystyle\footnotesize\fi
+
+\lstdefinestyle{estyle}{
+  basicstyle=%
+    \ttfamily
+    \lst@ifdisplaystyle\footnotesize\fi
 }
+\lstset{basicstyle=\scriptsize\ttfamily,style=estyle}
 
-\lstset{basicstyle=\scriptsize\ttfamily,style=mystyle}
-
-\definecolor{lightgrey}{rgb}{0.95,0.95,0.95}
-\definecolor{commentcolor}{RGB}{0,100,0}
-\definecolor{frenchplum}{RGB}{190,20,83}
 \lstset{language=[LaTeX]TeX,
 	texcsstyle=*\color{winered},
 	numbers=none,
@@ -289,7 +278,6 @@
 	emph={elegantpaper,fontenc,fontspec,xeCJK,FiraMono,xunicode,newtxmath,figure,fig,image,img,table,itemize,enumerate,newtxtext,newtxtt,ctex,microtype,description,times,newtx,booktabs,tabular,PDFLaTeX,XeLaTeX,type1cm,BibTeX,cite,gbt7714},
 	emphstyle={\color{frenchplum}},
 	morekeywords={DeclareSymbolFont,SetSymbolFont,toprule,midrule,bottomrule,institute,version,includegraphics,setmainfont,setsansfont,setmonofont ,setCJKmainfont,setCJKsansfont,setCJKmonofont,RequirePackage,figref,tabref,email,maketitle,keywords,zhdate,zhtoday},
-	% frame=none,
 	tabsize=2,
 	backgroundcolor=\color{lightgrey}
 }
