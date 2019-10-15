@@ -1,7 +1,7 @@
 %!TEX program = xelatex
 % 完整编译方法 1: pdflatex -> bibtex -> pdflatex -> pdflatex
 % 完整编译方法 2: xelatex -> bibtex -> xelatex -> xelatex
-\documentclass[lang=cn,11pt,a4paper]{elegantpaper}
+\documentclass[lang=cn,11pt,authoryear,a4paper]{elegantpaper}
 
 \title{ElegantPaper: 一个优美的 \LaTeX{} 工作论文模板}
 \author{Ethan DENG \\ Fudan University \and Dongsheng DENG \\ PA Technology}
@@ -15,12 +15,15 @@
 \maketitle
 
 \begin{abstract}
-本文为 \href{https://github.com/ElegantLaTeX/ElegantPaper/}{ElegantPaper} 的说明文档（中文）。此模板基于 \LaTeX{} 的 article 类，专为工作论文写作而设计。设计这个模板的初衷是让作者不用关心工作论文的格式，专心写作，从而有更加舒适，简便的写作体验。如果你有其他问题、建议或者报告 bug，可以在 \href{https://github.com/ElegantLaTeX/ElegantPaper/issues}{ElegantPaper/issues} 留言。如果你想了解更多由 Elegant\LaTeX{} 项目组设计的模板，请访问 \href{https://github.com/ElegantLaTeX/}{https://github.com/ElegantLaTeX/}。
+本文为 \href{https://github.com/ElegantLaTeX/ElegantPaper/}{ElegantPaper} 的说明文档。此模板基于 \LaTeX{} 的 article 类，专为工作论文写作而设计。设计这个模板的初衷是让作者不用关心工作论文的格式，专心写作，从而有更加舒心的写作体验。如果你有其他问题、建议或者报告 bug，可以在 \href{https://github.com/ElegantLaTeX/ElegantPaper/issues}{Github::ElegantPaper/issues} 留言。如果你想了解更多 Elegant\LaTeX{} 项目组设计的模板，请访问 \href{https://github.com/ElegantLaTeX/}{Github::ElegantLaTeX}。
 \keywords{Elegant\LaTeX{}，工作论文，模板}
 \end{abstract}
 
 
-\section{模板介绍}
+
+\section{模板使用须知}
+
+\subsection{模板介绍}
 
 此模板基于 \LaTeX{} 的标准文类 article 设计，所以 article 文类的选项也能传递给本模板，比如 \lstinline{a4paper, 11pt} 等等。本模板支持 \hologo{pdfLaTeX} 和 \hologo{XeLaTeX} 编译。
 
@@ -28,8 +31,9 @@
 \documentclass[a4paper,11pt]{elegantpaper}
 \end{lstlisting}
 
-\textbf{注意}：Elegant\LaTeX{} 系列模板已经全部上传至 \href{https://www.overleaf.com}{Overleaf} 上，用户可以在线使用 \href{https://www.overleaf.com/latex/templates/elegantpaper-template/yzghrqjhmmmr}{ElegantPaper}。另外，为了方便国内用户，模板也已经传至\href{https://gitee.com/ElegantLaTeX/ElegantPaper}{码云}。
-  
+\textbf{注意}：Elegant\LaTeX{} 系列模板已经全部上传至 \href{https://www.overleaf.com/latex/templates/elegantpaper-template/yzghrqjhmmmr}{Overleaf} 上，用户可以在线使用。另外，为了方便国内用户，模板也已经传至\href{https://gitee.com/ElegantLaTeX/ElegantPaper}{码云}。
+
+
 \subsection{全局选项}
 此模板定义了一个语言选项 \lstinline{lang}，可以选择英文模式 \lstinline{lang=en}（默认）或者中文模式 \lstinline{lang=cn}。当选择中文模式时，图表的标题引导词以及参考文献，定理引导词等信息会变成中文。你可以通过下面两种方式来选择语言模式：
 \begin{lstlisting}
@@ -65,8 +69,8 @@
 
 本模板还添加了 \lstinline{cite=numbers} 、\lstinline{cite=super} 和 \lstinline{cite=authoryear}  三个参考文献选项，用于设置参考文献格式的设置，默认为 \lstinline{numbers}。理工科类一般使用数字形式 \lstinline{numbers} 或者上标形式 \lstinline{super}，而文科类多使用作者-年份 \lstinline{authoryear} 比较多。如果需要改为 \lstinline{cite=numbers}  或者  \lstinline{authoryear} ，可以使用
 \begin{lstlisting}
-\documentclass[cite=numbers]{elegantpaper} % numbers style ref style
-\documentclass[numbers]{elegantpaper}
+\documentclass[cite=super]{elegantpaper} % super style ref style
+\documentclass[super]{elegantpaper}
 
 \documentclass[cite=authoryear]{elegantpaper} % author-year ref style
 \documentclass[authoryear]{elegantpaper}
@@ -91,17 +95,17 @@
 
 如果你喜欢我们的模板，你可以在 Github 上收藏（Star）我们的模板。
 \begin{figure}[htbp]
-\centering
-\includegraphics[width=\textwidth]{star.png}
-\caption{一键三连求赞}
+  \centering
+  \includegraphics[width=\textwidth]{star.png}
+  \caption{一键三连求赞}
 \end{figure}
 
 \section{捐赠}
 如果您非常喜爱我们的模板，你还可以选择捐赠以表达您对我们模板和我的支持！
 
 \begin{figure}[htbp]
-\centering
-\includegraphics[width=0.5\textwidth]{donate.jpg}
+  \centering
+  \includegraphics[width=0.5\textwidth]{donate.jpg}
 \end{figure}
 
 \textbf{赞赏费用的使用解释权归 Elegant\LaTeX{} 所有，并且不接受监督，请自愿理性打赏}。10 元以上的赞赏，我们将列入捐赠榜，谢谢各位金主！
@@ -109,45 +113,49 @@
 \begin{table}[!htbp]
   \centering
   \caption{Elegant\LaTeX{} 系列模板捐赠榜}
-    \begin{tabular}{crcc}
+  \begin{tabular}{crcc}
     \toprule
     捐赠者   & 金额 & 时间 & 渠道 \\
     \midrule
     Lerh  & 10 元  & 2019/05/15 & 微信 \\
     越过地平线 & 10 元    & 2019/05/15 & 微信 \\
-  大熊 &  20 元 & 2019/05/27 & 微信 \\
-  佚名 & 10 元 & 2019/05/30 & 微信\\
-  \href{http://www.latexstudio.net/}{latexstudio.net} & 666 元 & 2019/06/05 & 支付宝\\
-  Cassis & 11 元 & 2019/06/30 & 微信\\
-  佚名 & 10 元 & 2019/07/23 & 微信\\
-  李博 & 100 元 & 2019/10/06 & 微信\\
-    \bottomrule
-    \end{tabular}%
+    大熊 &  20 元 & 2019/05/27 & 微信 \\
+    * 空 & 10 元 & 2019/05/30 & 微信\\
+    \href{http://www.latexstudio.net/}{latexstudio.net} & 666 元 & 2019/06/05 & 支付宝\\
+    Cassis & 11 元 & 2019/06/30 & 微信\\
+    * 君 & 10 元 & 2019/07/23 & 微信\\
+    * 萌 & 19 元 & 2019/08/28 & 微信 \\
+    曲豆豆 & 10 元 & 2019/08/28 & 微信 \\
+    李博 & 100 元 & 2019/10/06 & 微信\\
+    Njustsll & 10 元 & 2019/10/11 & 微信 \\
+  \bottomrule
+  \end{tabular}%
 \end{table}%
 
 \section{常见问题 FAQ}
 
 \begin{enumerate}[label=\arabic*).]
-\item \textit{如何删除版本信息？}\\
-导言区不写 \lstinline|\version{x.xx}| 即可。
-\item \textit{如何删除日期？}\\
-需要注意的是，与版本 \lstinline{\version} 不同的是，导言区不写或注释 \lstinline{\date} 的话，仍然会打印出当日日期，原因是 \lstinline{\date} 有默认参数。如果不需要日期的话，日期可以留空即可，也即 \lstinline|\date{}|。
-\item \textit{如何获得中文日期？}\\
-为了获得中文日期，必须在中文模式下\footnote{英文模式下，由于未加载中文宏包，无法输入中文。}，使用 \lstinline|\date{\zhdate{2019/10/11}}|，如果需要当天的汉化日期，可以使用 \lstinline|\date{\zhtoday}|，这两个命令都来源于 \href{https://ctan.org/pkg/zhnumber}{\lstinline{zhnumber}} 宏包。
-\item \textit{如何添加多个作者？}\\
-在 \lstinline{\author} 里面使用 \lstinline{\and}，作者单位可以用 \lstinline{\\} 换行。
-\begin{lstlisting}
+  \item \textit{如何删除版本信息？}\\
+      导言区不写 \lstinline|\version{x.xx}| 即可。
+  \item \textit{如何删除日期？}\\
+      需要注意的是，与版本 \lstinline{\version} 不同的是，导言区不写或注释 \lstinline{\date} 的话，仍然会打印出当日日期，原因是 \lstinline{\date} 有默认参数。如果不需要日期的话，日期可以留空即可，也即 \lstinline|\date{}|。
+  \item \textit{如何获得中文日期？}\\
+      为了获得中文日期，必须在中文模式下\footnote{英文模式下，由于未加载中文宏包，无法输入中文。}，使用 \lstinline|\date{\zhdate{2019/10/11}}|，如果需要当天的汉化日期，可以使用 \lstinline|\date{\zhtoday}|，这两个命令都来源于 \href{https://ctan.org/pkg/zhnumber}{\lstinline{zhnumber}} 宏包。
+  \item \textit{如何添加多个作者？}\\
+      在 \lstinline{\author} 里面使用 \lstinline{\and}，作者单位可以用 \lstinline{\\} 换行。\begin{lstlisting}
 \author{author 1\\ org. 1 \and author 2 \\ org. 2 }
 \end{lstlisting}
-\item \textit{如何添加中英文摘要？}\\
-请参考 \href{https://github.com/ElegantLaTeX/ElegantPaper/issues/5}{ElegantPaper/issues/5}
+  \item \textit{如何添加中英文摘要？}\\
+      请参考 \href{https://github.com/ElegantLaTeX/ElegantPaper/issues/5}{Github::ElegantPaper/issues/5}
 \end{enumerate}
 
 \section{示例}
+
 为了让大家更加清楚最终的论文效果，如下给出两篇使用 ElegantPaper 模板排版的工作论文示例，也欢迎大家“投稿”！
+
 \begin{enumerate}
-  \item \href{https://github.com/EthanDeng/bank-custody}{银行存管、投资者决策与 P2P 网络借贷规范发展}
-  \item \href{https://github.com/EthanDeng/risk-awareness}{互联网金融风险与投资者风险意识 —— 来自网贷平台交易数据的证据}
+  \item \href{https://github.com/EthanDeng/bank-custody}{银行存管、投资者决策与 P2P 网络借贷规范发展}；
+  \item \href{https://github.com/EthanDeng/risk-awareness}{互联网金融风险与投资者风险意识 —— 来自网贷平台交易数据的证据}。
 \end{enumerate}
 
 这是一个最小示例文档（Minimal Example）：

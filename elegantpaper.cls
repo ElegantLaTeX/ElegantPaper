@@ -145,6 +145,7 @@
   \renewcommand\abstractname{摘\hspace{2em}要}
   \setlength\parindent{2\ccwd}
   \renewcommand{\abstracttextfont}{\small\sffamily\kaishu\noindent\ignorespaces}
+  % 新定义命令
   \newcommand{\keywords}[1]{\vskip2ex\par\noindent\normalfont{\bfseries 关键词: } #1}
   \newcommand\figref[1]{{\bfseries 图~\ref{#1}}}
   \newcommand\tabref[1]{{\bfseries 表~\ref{#1}}}
@@ -170,6 +171,7 @@
   \newcommand\updatetext{\itshape Date: }%
   \setlength\parindent{2em}
   \renewcommand{\abstracttextfont}{\sffamily\small\noindent\ignorespaces}
+  % newcommands defined in this template.
   \newcommand{\keywords}[1]{\vskip2ex\par\noindent\normalfont{\bfseries Keywords: } #1}
   \newcommand\figref[1]{{\bfseries Figure~\ref{#1}}}
   \newcommand\tabref[1]{{\bfseries Table~\ref{#1}}}
