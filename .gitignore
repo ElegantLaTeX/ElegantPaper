@@ -11,6 +11,7 @@
 *.cb
 *.cb2
 .*.lb
+delete-temp-files.bat
 elegantpaper-cn.pdf
 elegantpaper-en.pdf
 

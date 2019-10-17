@@ -1,11 +1,12 @@
 %!TEX program = pdflatex
 % Full chain: pdflatex -> bibtex -> pdflatex -> pdflatex
-\documentclass[11pt,en]{elegantpaper}
+\documentclass[11pt,en,authoryear]{elegantpaper}
 
 \title{ElegantPaper: An Elegant \LaTeX{} Template for Working Papers}
-\author{\href{https://ddswhu.me/}{Dongsheng Deng}}
+\author{Ethan DENG \\ Fudan University \and Dongsheng DENG \\ PA Technology}
 \institute{\href{https://github.com/ElegantLaTeX}{Elegant\LaTeX{} Program}}
-\version{0.07}
+
+\version{0.08}
 \date{\today}
 
 
@@ -14,140 +15,142 @@
 \maketitle
 
 \begin{abstract}
-This paper illustrates the usage of the \href{https://github.com/ElegantLaTeX/ElegantPaper}{ElegantPaper} template, which is designed for writing a working paper. This template is based on the standard \LaTeX{} article class. The goal of this template is to make the writing process easier and more comfortable. You can get rid of all the worries about the format. Just enjoy it! If you have any questions, suggestions or bug reports, you can visit \href{https://github.com/ElegantLaTeX/ElegantPaper/issues}{ElegantPaper/issues}. Looking for other templates designed by Elegant\LaTeX{} Group? Please visit: \href{https://github.com/ElegantLaTeX}{https://github.com/ElegantLaTeX}.\par
+This documentation illustrates the usage of the \href{https://github.com/ElegantLaTeX/ElegantPaper}{ElegantPaper} template. This template is based on the standard \LaTeX{} article class, which is designed for working paper writing. With this template, you can get rid of all the worries about the format and merely focus on writing. For any question, please leave a message on \href{https://github.com/ElegantLaTeX/ElegantPaper/issues}{Github::ElegantPaper/issues}. Want to know more about Elegant\LaTeX{} Templates? Please visit: \href{https://github.com/ElegantLaTeX}{https://github.com/ElegantLaTeX}.\par
 \keywords{Elegant\LaTeX{}, Working Paper, Template}
 \end{abstract}
 
 
 \section{Introduction}
 
-This template is based on the standard \LaTeX{} article class, which means you can pass the arguments of article class to it (\lstinline{a4paper}, \lstinline{10pt} and etc.)( \lstinline{11pt} is recommended). It supports different engines, You can choose either \lstinline{PDFLaTeX} or \lstinline{XeLaTeX}\footnote{with \lstinline{ctex} package for Chinese fonts settings.}.  
+This template is based on the standard \LaTeX{} article class, hence the arguments of article class are acceptable (\lstinline{a4paper}, \lstinline{10pt} and etc.). Alternative engines are \hologo{pdfLaTeX} and \hologo{XeLaTeX}.
 
-The effect of math fonts is as follows:
-\begin{equation}
-(a+3b)^{n} = \sum_{k=0}^{n} C_{n}^{k} a^{n-k} (3b)^k  \label{eq:binom}
-\end{equation}
+\begin{lstlisting}
+\documentclass[a4paper,11pt]{elegantpaper}
+\end{lstlisting}
+\textbf{Note:} ElegantPaper is available on  \href{https://www.overleaf.com/latex/templates/elegantpaper-template/yzghrqjhmmmr}{Overleaf} and \href{https://gitee.com/ElegantLaTeX/ElegantPaper}{gitee}.
 
 \subsection{Global Options}
-I defined one option named \lstinline{lang}, this option has two alternative values, \lstinline{lang=en} (default) or \lstinline{lang=cn}. \lstinline{lang=cn} will make the caption of figure/table, abstract name, refname etc. Chinese, while \lstinline{lang=en} will keep all these stuff English, as the default article class sets. You can use this option as
+Language mode option \lstinline{lang} allows two alternative inputs, \lstinline{lang=en} (default)  for English or \lstinline{lang=cn} for Chinese. \lstinline{lang=cn} will make the caption of figure/table, abstract name, refname etc. Chinese. You can use this option as
 \begin{lstlisting}
-\documentclass[lang=en]{elegantpaper}
-\documentclass{en}{elegantpaper} % both ok
+\documentclass[lang=cn]{elegantpaper} % or
+\documentclass{cn}{elegantpaper} 
+\end{lstlisting}
+\textbf{Note:} Under the English mode \lstinline{lang=en}, Chinese characters are not allowed. To type in Chinese, please load  \lstinline{ctex} or \lstinline{xeCJK} package at the preamble as:
+\begin{lstlisting}
+\usepackage[UTF8,scheme=plain]{ctex}
 \end{lstlisting}
 
-\subsection{Custom Commands}
+\subsection{Fonts}
+This template sets \lstinline{newtxtext} and \lstinline{newtxmath} for English and math fonts respectively.
+\begin{equation}
+(a+3b)^{n} = \sum_{k=0}^{n} C_{n}^{k} a^{n-k} (3b)^k\label{eq:binom}
+\end{equation}
 
-I didn't change any default command or environment, which means you can use all the basic \LaTeX{} commands and environments as before.  Besides, I defined 4 commands
+\subsection{Custom Commands}
+Default \LaTeX{} commands and environments are all the same in this template\footnote{To ensure the codes are replicatable. We recommend users pay more attention to the contents other than formats. This is the meaning of the existence of the template.}. We created four new commands:
 \begin{enumerate}
 	\item \lstinline{\email}: create the hyperlink to email address.
 	\item \lstinline{\figref}: same usage as \lstinline{\ref}, but start with label text <\textbf{Figure n}>.
 	\item \lstinline{\tabref}: same usage as \lstinline{\ref}, but start with label text <\textbf{Table n}>.
 	\item \lstinline{\keywords}: create the keywords in the abstract section.
-\end{enumerate}{}
+\end{enumerate}
 
-\subsection{List Environments}
-You can use \lstinline{itemize}, \lstinline{enumerate}, or \lstinline{description} environment as below\\
-\begin{minipage}[c]{0.51\linewidth}
-\begin{lstlisting}
-\begin{itemize}
-    \item Routing and resource discovery;
-    \item Resilient and scalable networks;
-    \item Distributed storage and search.
-\end{itemize}
-\end{lstlisting}
-\end{minipage}
-\begin{minipage}[c]{0.48\linewidth}
-\begin{itemize}
-    \item Routing and resource discovery;
-    \item Resilient and scalable networks;
-    \item Distributed storage and search.
-\end{itemize}
-\end{minipage}
-
-\subsection{Table}
-I strongly recommend you to use the \lstinline{booktabs} package in your paper. It adds three commands to make the table prettier,  \lstinline{\toprule}, \lstinline{\midrule} and \lstinline{\bottomrule}. \tabref{tab:reg} is an example.
-\begin{lstlisting}
-\begin{table}[htbp]
-  \small
-  \centering
-  \caption{Auto MPG and Price \label{tab:reg}}
-    \begin{tabular}{lcc}
-    \toprule
-                    &       (1)         &        (2)      \\
-    \midrule
-    mpg             &    -238.90***     &      -49.51     \\
-                    &     (53.08)       &      (86.16)    \\
-    weight          &                   &      1.75***    \\
-                    &                   &      (0.641)    \\
-    constant        &     11,253***     &       1,946     \\
-                    &     (1,171)       &      (3,597)    \\
-    obs             &        74         &         74      \\
-    $R^2$           &      0.220        &       0.293     \\
-    \bottomrule
-    \multicolumn{3}{l}{\scriptsize Standard errors in parentheses} \\
-    \multicolumn{3}{l}{\scriptsize *** p<0.01, ** p<0.05, * p<0.1} \\
-    \end{tabular}%
-\end{table}%
-\end{lstlisting}
-\begin{table}[htbp]
-  \small
-  \centering
-  \caption{Auto MPG and Price \label{tab:reg}}
-    \begin{tabular}{lcc}
-    \toprule
-                    &       (1)         &        (2)      \\
-    \midrule
-    mpg             &    -238.90***     &      -49.51     \\
-                    &     (53.08)       &      (86.16)    \\
-    weight          &                   &      1.75***    \\
-                    &                   &      (0.641)    \\
-    constant        &     11,253***     &       1,946     \\
-                    &     (1,171)       &      (3,597)   \\
-    obs             &        74         &         74     \\
-    $R^2$           &      0.220        &       0.293    \\
-    \bottomrule
-    \multicolumn{3}{l}{\scriptsize Standard errors in parentheses} \\
-    \multicolumn{3}{l}{\scriptsize *** p<0.01, ** p<0.05, * p<0.1} \\
-    \end{tabular}%
-\end{table}%
-
-
-
-\subsection{Graphics}
-To include a graphic, you can use figure environment as usual. \figref{fig:scatter} shows the effect. You can put all your images in the sub directories (\lstinline{./image/}, \lstinline{./img/}, \lstinline{./figure/}, \lstinline{./fig/}) of your current working directory.
-\begin{lstlisting}
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.6\textwidth]{scatter.pdf}
-	\caption{Scatter Plot Example \label{fig:scatter}}
-\end{figure}
-\end{lstlisting}
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.6\textwidth]{scatter.pdf}
-	\caption{Scatter Plot Example \label{fig:scatter}}
-\end{figure}
 
 \subsection{Bibliography}
-This template used Bib\TeX{} to generate the bibliography, the default bibliography style is \lstinline{aer}. Let's take a glance at the citation effect, ~\cite{en3} used data from a major peer-to-peer lending marketplace in China to study whether female and male investors evaluate loan performance differently. 
+This template used \hologo{BibTeX} to generate the bibliography, the default bibliography style is  \lstinline{aer} under the option \lstinline{lang=en}. Citation example: ~\cite{en3} used data from a major peer-to-peer lending marketplace in China to study whether female and male investors evaluate loan performance differently. 
 
-If you want to use Bib\TeX{}, you must create a file named \lstinline{wpref.bib}, and add bib items (from Google Scholar, Mendeley, EndNote, and etc.) to \lstinline{wpref.bib} file, and cite the bibkey in the \lstinline{tex} file. The Bib\TeX{} will automatically generate the bibliography for you for the reference you cited. If you want to add some noncited references or all of them to the bibliography,  you can use 
+If you want to use \hologo{BibTeX}, you must create a file named \lstinline{wpref.bib}, and add bib items (from Google Scholar, Mendeley, EndNote, and etc.) to \lstinline{wpref.bib} file, and cite the bibkey in the \lstinline{tex} file. Note that \hologo{BibTeX} has to be added.
+
+Three options for the references, \lstinline{cite=numbers} (default), \lstinline{cite=super} and \lstinline{cite=authoryear}. Those who major in science and engineering use \lstinline{numbers} and \lstinline{super} more often, while those who major in arts use \lstinline{authoryear} more frequently. To switch different options, use
 \begin{lstlisting}
-\nocite{EINAV2010, Havrylchyk2018} % add two noncited references 
-\nocite{*} % list all the references of the bib file.
+\documentclass[cite=super]{elegantpaper} % super style ref style
+\documentclass[super]{elegantpaper}
+
+\documentclass[cite=authoryear]{elegantpaper} % author-year ref style
+\documentclass[authoryear]{elegantpaper}
 \end{lstlisting}
 
+\section{Recruit Support Members}
 
+Recruit support members for Elegant\LaTeX{} to translate template official guide, maintain wiki entries(Markdown), update Wechat articles. No deadline for this recruitment.
 
-\section{A Minimal Example}
-In this section, we give a simple example using this template.
+So far, Elegant\LaTeX{} has four support members:
+\begin{itemize}
+	\item OG Translator: \href{https://github.com/peggy2006xzyz}{YPY};
+	\item Wiki Maintainer: \href{https://github.com/izinngo}{Ingo Zinngo}, \href{https://github.com/xiaohao890809}{Xiaohao890809};
+	\item QQ Group Manager: \href{https://github.com/sikouhjw}{Sikouhjw}.
+\end{itemize}
+
+Thank them all!!!
+
+\section{Acknowledgement}
+The number of stars on Github for ElegantPaper reached 164 on Oct 17, 2019 at the release of ElegantPaper v0.08.
+Thank China\TeX{} and \href{http://www.latexstudio.net/}{\LaTeX{} studio} for their promotion. 
+
+If you like our templates, star on Github.
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=\textwidth]{star.png}
+	\caption{Twinkle, Twinkle, Little Star}
+\end{figure}
+
+\section{Donation}
+To express your love for our templates and/or our developers, please do not hesitate to tip us.
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.4\textwidth]{donate.jpg}
+\end{figure}
+
+\textbf{The explanation right of the tip usage belongs to Elegant\LaTeX{} with no supervision. Feel free to tip us.} Those who donate more than 10 RMB will be recorded in the donation list. Thank all the tippers!
+
+\begin{table}[!h]
+	\centering
+	\caption{Donation List}
+	\begin{tabular}{cccc}
+		\toprule
+		Tipper   & Amount & Date & Channel \\
+		\midrule
+		Lerh  & 10 RMB  & 2019/05/15 & Wechat \\
+		Yueguodipingxian & 10 RMB   & 2019/05/15 & Wechat \\
+		Dapeng & 20 RMB & 2019/05/27 & Wechat\\
+		Anonymous & 10 RMB & 2019/05/30 & Wechat \\
+		\href{http://www.latexstudio.net/}{latexstudio.net} & 666 RMB & 2019/06/05 & Alipay \\
+		Cassis & 11 RMB & 2019/06/30 & Wechat \\
+		Some Jun & 10 RMB & 2019/07/23 & Wechat \\
+		Some Meng & 19 RMB & 2019/08/28 & Wechat \\
+		Qu DouDou & 10 RMB & 2019/08/28 & Wechat \\
+		Li Bo & 100 RMB & 2019/10/06 & Wechat\\
+		Njustsll & 10 RMB & 2019/10/11 & Wechat \\
+		\bottomrule
+	\end{tabular}%
+\end{table}%
+
+\section{FAQ}
+
+\begin{enumerate}[label=\arabic*).]
+	\item \textit{How to remove the information of version?}\\
+    Please comment \lstinline|\version{x.xx}|.
+	\item \textit{How to remove the information of date?}\\
+	Please type in \lstinline|\date{}|.
+	\item \textit{How to add several authors?}\\
+	Use \lstinline{\and} in \lstinline{\author} and use \lstinline{\\} to start a new line.
+	\begin{lstlisting}
+	\author{author 1\\ org. 1 \and author 2 \\ org. 2 }
+	\end{lstlisting}
+	\item \textit{How to display bilingual abstracts?}\\
+	Please refer to \href{https://github.com/ElegantLaTeX/ElegantPaper/issues/5}{Github::ElegantPaper/issues/5}
+\end{enumerate}
+
+\section{Minimal Example}
+A minimal example is as follows:
 \begin{lstlisting}
-\documentclass[lang=en]{elegantpaper}
+\documentclass[a4paper,11pt]{elegantpaper}
 
 % title information
-\title{A Working Paper Example}
-\author{ddswhu} 
+\title{Working Paper Example}
+\author{Author Name} 
 \institute{Elegant\LaTeX{} Group}
+
 \version{1.00}
 \date{\today}
 
@@ -166,14 +169,12 @@ The content of introduction section.
 \section{Conclusion}
 The content of conclusion section.
 
-% include the noncited reference
-\nocite{ref1, ref2}
 \bibliography{wpref}
+
 \end{document}
 \end{lstlisting}
 
 \nocite{en1,en2}
-
 \bibliography{wpref}
 
 \end{document}
