@@ -25,11 +25,32 @@
 \DeclareVoidOption{authoryear}{\ekv{cite=authoryear}}
 \DeclareVoidOption{super}{\ekv{cite=super}}
 
+\DeclareStringOption[apalike]{bibstyle}
+
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessKeyvalOptions*\relax
 \LoadClass{article}
 
+% settings for the hyperref and geometry
+\RequirePackage[
+  left=1in,
+  right=1in,
+  top=1in,
+  bottom=1in,
+  headheight=0pt,
+  headsep=0pt]{geometry}
+\setlength{\headsep}{5pt}
 
+\RequirePackage{hyperref}
+\hypersetup{
+  pdfborder={0 0 0},
+  colorlinks=true,
+  linkcolor={winered},
+  urlcolor={winered},
+  filecolor={winered},
+  citecolor={winered},
+  linktoc=all,
+}
 
 \RequirePackage{amsthm}
 \RequirePackage{amsmath}
@@ -70,19 +91,6 @@
 \definecolor{commentcolor}{RGB}{0,100,0}
 \definecolor{frenchplum}{RGB}{190,20,83}
 
-% settings for the hyperref and geometry
-\RequirePackage{hyperref}
-\hypersetup{
-  pdfborder={0 0 0},
-  colorlinks=true,
-  linkcolor={winered},
-  urlcolor={winered},
-  filecolor={winered},
-  citecolor={winered},
-  linktoc=all,
-}
-\RequirePackage[left=1in, right=1in, top=1in, bottom=1in,headheight=0pt,headsep=0pt]{geometry}
-\setlength{\headsep}{5pt}
 
 % add the \email cmd 
 \newcommand\email[1]{\href{mailto:#1}{\nolinkurl{#1}}}
@@ -175,7 +183,7 @@
   \newcommand{\keywords}[1]{\vskip2ex\par\noindent\normalfont{\bfseries Keywords: } #1}
   \newcommand\figref[1]{{\bfseries Figure~\ref{#1}}}
   \newcommand\tabref[1]{{\bfseries Table~\ref{#1}}}
-  \bibliographystyle{aer}
+  \bibliographystyle{\ELEGANT@bibstyle}
 }{\relax}
 
 \AtBeginEnvironment{verbatim}{\microtypesetup{activate=false}}

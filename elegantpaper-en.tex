@@ -1,6 +1,6 @@
 %!TEX program = pdflatex
 % Full chain: pdflatex -> bibtex -> pdflatex -> pdflatex
-\documentclass[11pt,en,authoryear]{elegantpaper}
+\documentclass[11pt,en,bibstyle=unsrt]{elegantpaper}
 
 \title{ElegantPaper: An Elegant \LaTeX{} Template for Working Papers}
 \author{Ethan DENG \\ Fudan University \and Dongsheng DENG \\ PA Technology}
@@ -57,7 +57,7 @@ Default \LaTeX{} commands and environments are all the same in this template\foo
 
 
 \subsection{Bibliography}
-This template used \hologo{BibTeX} to generate the bibliography, the default bibliography style is  \lstinline{aer} under the option \lstinline{lang=en}. Citation example: ~\cite{en3} used data from a major peer-to-peer lending marketplace in China to study whether female and male investors evaluate loan performance differently. 
+This template used \hologo{BibTeX} to generate the bibliography, the default bibliography style is  \lstinline{aer} under the option \lstinline{lang=en}. Citation example: ~\citep{en1,en2,en3} used data from a major peer-to-peer lending marketplace in China to study whether female and male investors evaluate loan performance differently. 
 
 If you want to use \hologo{BibTeX}, you must create a file named \lstinline{wpref.bib}, and add bib items (from Google Scholar, Mendeley, EndNote, and etc.) to \lstinline{wpref.bib} file, and cite the bibkey in the \lstinline{tex} file. Note that \hologo{BibTeX} has to be added.
 
