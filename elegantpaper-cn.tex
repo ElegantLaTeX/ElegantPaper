@@ -9,6 +9,9 @@
 \version{0.08}
 \date{\zhtoday}
 
+\usepackage{appendix}
+\renewcommand{\appendixtocname}{附录}
+\renewcommand{\appendixpagename}{附录}
 \begin{document}
 
 \maketitle
@@ -191,5 +194,10 @@ The content of conclusion section.
 
 \nocite{*}
 \bibliography{wpref}
+
+\appendix
+\appendixpage
+\addappheadtotoc
+\section{How I became inspired}
 
 \end{document}

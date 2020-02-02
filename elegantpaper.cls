@@ -70,7 +70,7 @@
 \graphicspath{{image/}{figure/}{fig/}{img/}}
 
 % caption settings 
-\RequirePackage[font=small,labelfont={bf}]{caption} 
+\RequirePackage[font=small,labelfont={bf}]{caption}
 \captionsetup[table]{skip=3pt}
 \captionsetup[figure]{skip=3pt}
 
@@ -79,7 +79,6 @@
 \setlist{nolistsep}
 
 \RequirePackage[\ELEGANT@cite,sort&compress]{natbib}
-% \PassOptionsToPackage{\ELEGANT@cite}{natbib}
 \setlength{\bibsep}{0.0pt}
 \def\bibfont{\footnotesize}
 
@@ -92,7 +91,7 @@
 \definecolor{frenchplum}{RGB}{190,20,83}
 
 
-% add the \email cmd 
+% add the email cmd 
 \newcommand\email[1]{\href{mailto:#1}{\nolinkurl{#1}}}
 
 % font settings
@@ -100,7 +99,8 @@
 
 \ifdefstring{\ELEGANT@lang}{cn}{%
   \RequirePackage[UTF8, scheme=plain]{ctex}
-}
+  \AfterEndPreamble{\renewcommand{\itshape}{\kaishu}}
+}{\relax}
 
 \ifxetex
   \RequirePackage{fontenc}
@@ -133,7 +133,7 @@
   \theoremstyle{plain}% default
   \newtheorem{theorem}{定理}[section] %
   \newtheorem{lemma}[theorem]{引理} %
-  \newtheorem{proposition}[theorem]{性质} %
+  \newtheorem{proposition}[theorem]{命题} %
   \newtheorem*{corollary}{推论} %
   \theoremstyle{definition} %
   \newtheorem{definition}{定义}[section] %
@@ -152,7 +152,7 @@
   \newcommand\updatetext{日期：}%
   \renewcommand\abstractname{摘\hspace{2em}要}
   \setlength\parindent{2\ccwd}
-  \renewcommand{\abstracttextfont}{\small\sffamily\kaishu\noindent\ignorespaces}
+  \renewcommand{\abstracttextfont}{\small\upshape\itshape\noindent\ignorespaces}
   % 新定义命令
   \newcommand{\keywords}[1]{\vskip2ex\par\noindent\normalfont{\bfseries 关键词: } #1}
   \newcommand\figref[1]{{\bfseries 图~\ref{#1}}}
@@ -256,12 +256,12 @@
 \vskip 0.5ex%
 \IfEmpty\version
 \else 
-{\small\normalfont\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\kaishu}\versiontext\the\version}
+{\small\normalfont\itshape\versiontext\the\version}
 \fi
 \ifx\@date\empty
 \else
 \vskip 0.1em%
- {\small\normalfont\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\kaishu}\updatetext\@date}%
+ {\small\normalfont\itshape\updatetext\@date}%
 \fi
   \end{center}%
   \par
