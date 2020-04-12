@@ -1,23 +1,25 @@
 %!TEX program = xelatex
 % 完整编译: xelatex -> bibtex -> xelatex -> xelatex
-\documentclass[lang=cn,11pt,a4paper]{elegantpaper}
+\documentclass[lang=cn,11pt,a4paper,cite=authoryear]{elegantpaper}
 
 \title{ElegantPaper: 一个优美的 \LaTeX{} 工作论文模板}
 \author{Ethan DENG \\ Fudan University \and Dongsheng DENG \\ PA Technology}
 \institute{\href{https://elegantlatex.org/}{Elegant\LaTeX{} 项目组}}
 
-\version{0.08}
+\version{0.09}
 \date{\zhtoday}
 
-\usepackage{appendix}
-\renewcommand{\appendixtocname}{附录}
-\renewcommand{\appendixpagename}{附录}
+
+% 本文档命令
+\usepackage{array}
+\newcommand{\ccr}[1]{\makecell{{\color{#1}\rule{1cm}{1cm}}}}
+
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-本文为 \href{https://github.com/ElegantLaTeX/ElegantPaper/}{ElegantPaper} 的说明文档。此模板基于 \LaTeX{} 的 article 类，专为工作论文写作而设计。设计这个模板的初衷是让作者不用关心工作论文的格式，专心写作，从而有更加舒心的写作体验。如果你有其他问题、建议或者报告 bug，可以在 \href{https://github.com/ElegantLaTeX/ElegantPaper/issues}{Github::ElegantPaper/issues} 留言。如果你想了解更多 Elegant\LaTeX{} 项目组设计的模板，请访问 \href{https://github.com/ElegantLaTeX/}{Github::ElegantLaTeX}。
+本文为 \href{https://github.com/ElegantLaTeX/ElegantPaper/}{ElegantPaper} 的说明文档。此模板基于 \LaTeX{} 的 article 类，专为工作论文写作而设计。设计这个模板的初衷是让作者不用关心工作论文的格式，专心写作，从而有更加舒心的写作体验。如果你有其他问题、建议或者报告 bug，可以在 \href{https://github.com/ElegantLaTeX/ElegantPaper/issues}{GitHub::ElegantPaper/issues} 留言。如果你想了解更多 Elegant\LaTeX{} 项目组设计的模板，请访问 \href{https://github.com/ElegantLaTeX/}{GitHub::ElegantLaTeX}。
 \keywords{Elegant\LaTeX{}，工作论文，模板}
 \end{abstract}
 
@@ -48,12 +50,49 @@
 \usepackage[UTF8,scheme=plain]{ctex}
 \end{lstlisting}
 
-\subsection{英文与数学字体}
+\subsection{数学字体选项}
 
-本模板使用 \lstinline{newtxtext} 和 \lstinline{newtxmath} 分别设置全文的英文文本字体和数学字体。数学字体的效果如下：
-\begin{equation}
-(a+3b)^{n} = \sum_{k=0}^{n} C_{n}^{k} a^{n-k} (3b)^k\label{eq:binom}
-\end{equation}
+本模板定义了一个数学字体选项（\lstinline{math}），可选项有三个：
+\begin{enumerate}
+  \item \lstinline{math=cm}（默认），使用 \LaTeX{} 默认数学字体（推荐，无需声明）；
+  \item \lstinline{math=newtx}，使用 \lstinline{newtxmath} 设置数学字体（潜在问题比较多）。
+  \item \lstinline{math=mtpro2}，使用 \lstinline{mtpro2} 宏包设置数学字体，要求用户已经成功安装此宏包。
+\end{enumerate}
+
+\subsection{中文字体选项}
+模板提供中文字体选项 \lstinline{chinesefont}，可选项有
+\begin{enumerate}
+\item \lstinline{ctexfont}：默认选项，使用 \lstinline{ctex} 宏包根据系统自行选择字体，可能存在字体缺失的问题，更多内容参考 \lstinline{ctex} 宏包\href{https://ctan.org/pkg/ctex}{官方文档}\footnote{可以使用命令提示符，输入 \lstinline{texdoc ctex} 调出本地 \lstinline{ctex} 宏包文档}。
+\item \lstinline{founder}：方正字体选项，调用 \lstinline{ctex} 宏包并且使用 \lstinline{fontset=none} 选项，然后设置字体为方正四款免费字体，方正字体下载注意事项见后文。
+\item \lstinline{nofont}：调用 \lstinline{ctex} 宏包并且使用 \lstinline{fontset=none} 选项，不设定中文字体，用户可以自行设置中文字体，具体见后文。
+\end{enumerate}
+
+\noindent \textbf{注意：} 使用 \lstinline{founder} 选项或者 \lstinline{nofont} 时，必须使用 \hologo{XeLaTeX} 进行编译。
+
+\subsubsection{方正字体选项}
+由于使用 \lstinline{ctex} 宏包默认调用系统已有的字体，部分系统字体缺失严重，因此，用户希望能够使用其它字体，我们推荐使用方正字体。方正的{\songti 方正书宋}、{\heiti 方正黑体}、{\kaishu 方正楷体}、{\fangsong 方正仿宋}四款字体均可免费试用，且可用于商业用途。用户可以自行从\href{http://www.foundertype.com/}{方正字体官网}下载此四款字体，在下载的时候请\textbf{务必}注意选择 GBK 字符集，也可以使用 \href{https://www.latexstudio.net/}{\LaTeX{} 工作室}提供的\href{https://pan.baidu.com/s/1BgbQM7LoinY7m8yeP25Y7Q}{方正字体，提取码为：njy9} 进行安装。安装时，{\kaishu Win 10 用户请右键选择为全部用户安装，否则会找不到字体。}
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=0.9\textwidth]{founder.png}
+\end{figure}
+
+\subsubsection{其他中文字体}
+如果你想完全自定义字体\footnote{这里仍然以方正字体为例。}，你可以选择 \lstinline{chinesefont=nofont}，然后在导言区设置
+\begin{lstlisting}
+\setCJKmainfont[BoldFont={FZHei-B01},ItalicFont={FZKai-Z03}]{FZShuSong-Z01}
+\setCJKsansfont[BoldFont={FZHei-B01},ItalicFont={FZHei-B01}]{FZHei-B01}
+\setCJKmonofont[BoldFont={FZHei-B01},ItalicFont={FZHei-B01}]{FZFangSong-Z02}
+\setCJKfamilyfont{zhsong}{FZShuSong-Z01}
+\setCJKfamilyfont{zhhei}{FZHei-B01}
+\setCJKfamilyfont{zhkai}{FZKai-Z03}
+\setCJKfamilyfont{zhfs}{FZFangSong-Z02}
+\newcommand*{\songti}{\CJKfamily{zhsong}}
+\newcommand*{\heiti}{\CJKfamily{zhhei}}
+\newcommand*{\kaishu}{\CJKfamily{zhkai}}
+\newcommand*{\fangsong}{\CJKfamily{zhfs}}
+\end{lstlisting}
+
 
 \subsection{自定义命令}
 此模板并没有修改任何默认的 \LaTeX{} 命令或者环境\footnote{目的是保证代码的可复用性，请用户关注内容，不要太在意格式，这才是本工作论文模板的意义。}。另外，我自定义了 4 个命令：
@@ -85,7 +124,7 @@
 目前 ElegantLaTeX 共有 4 名协作人员，分别是
 \begin{itemize}
   \item 官方文档翻译: \href{https://github.com/peggy2006xzyz}{YPY};
-  \item Github 维基维护: \href{https://github.com/izinngo}{Ingo Zinngo}、\href{https://github.com/xiaohao890809}{追寻原风景};
+  \item GitHub 维基维护: \href{https://github.com/izinngo}{Ingo Zinngo}、\href{https://github.com/xiaohao890809}{追寻原风景};
   \item QQ 群管理员: \href{https://github.com/sikouhjw}{Sikouhjw}.
 \end{itemize}
 
@@ -93,9 +132,7 @@
 
 
 \section{致谢}
-截止到 2019 年 10 月 17 日，ElegantPaper v0.08 版本发布，ElegantPaper 模板在 Github 上的收藏数（star）达到了 164。在此特别感谢 China\TeX{} 以及 \href{http://www.latexstudio.net/}{\LaTeX{} 工作室}对于本系列模板的大力宣传与推广。
-
-如果你喜欢我们的模板，你可以在 Github 上收藏（Star）我们的模板。
+截止到 2020 年 04 月 12 日，ElegantPaper v0.09 版本发布，ElegantPaper 模板在 GitHub 上的收藏数（star）达到了 277。在此特别感谢 China\TeX{} 以及 \href{http://www.latexstudio.net/}{\LaTeX{} 工作室}对于本系列模板的大力宣传与推广。如果你喜欢我们的模板，你可以在 GitHub 上收藏（Star）我们的模板。
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=\textwidth]{star.png}
@@ -112,26 +149,45 @@
 
 \textbf{赞赏费用的使用解释权归 Elegant\LaTeX{} 所有，并且不接受监督，请自愿理性打赏}。10 元以上的赞赏，我们将列入捐赠榜，谢谢各位金主！
 
-\begin{table}[!htbp]
+
+\begin{table}[!htb]
   \centering
   \caption{Elegant\LaTeX{} 系列模板捐赠榜}
-  \begin{tabular}{crcc}
-    \toprule
-    捐赠者   & 金额 & 时间 & 渠道 \\
-    \midrule
-    Lerh  & 10 元  & 2019/05/15 & 微信 \\
-    越过地平线 & 10 元    & 2019/05/15 & 微信 \\
-    大熊 &  20 元 & 2019/05/27 & 微信 \\
-    * 空 & 10 元 & 2019/05/30 & 微信\\
-    \href{http://www.latexstudio.net/}{latexstudio.net} & 666 元 & 2019/06/05 & 支付宝\\
-    Cassis & 11 元 & 2019/06/30 & 微信\\
-    * 君 & 10 元 & 2019/07/23 & 微信\\
-    * 萌 & 19 元 & 2019/08/28 & 微信 \\
-    曲豆豆 & 10 元 & 2019/08/28 & 微信 \\
-    李博 & 100 元 & 2019/10/06 & 微信\\
-    Njustsll & 10 元 & 2019/10/11 & 微信 \\
-  \bottomrule
-  \end{tabular}%
+    \begin{tabular}{*{4}{>{\scriptsize}c}|*{4}{>{\scriptsize}c}}
+    \hline
+    \textbf{捐赠者} & \textbf{金额} & \textbf{时间} & \textbf{渠道} & \textbf{捐赠者} & \textbf{金额} & \textbf{时间} & \textbf{渠道} \\
+    \hline
+    Lerh  & 10 RMB & 2019/05/15 & 微信    & 越过地平线 & 10 RMB & 2019/05/15 & 微信 \\
+    银桑    & 20 RMB & 2019/05/27 & 微信    & *空    & 10 RMB & 2019/05/30 & 微信 \\
+    latexstudio.net & 666 RMB & 2019/06/05 & 支付宝   & A*n   & 40 RMB & 2019/06/15 & 微信 \\
+    * 夏   & 22 RMB & 2019/06/15 & 微信    & * 倩   & 21 RMB  & 2019/06/15 & 微信 \\
+    Cassis & 11 RMB & 2019/06/30 & 微信    & *君    & 10 RMB & 2019/07/23 & 微信 \\
+    P*u   & 50 RMB & 2019/07/30 & 微信    & *萌    & 19 RMB & 2019/08/28 & 微信 \\
+    曲豆豆   & 10 RMB & 2019/08/28 & 微信    & 李博    & 100 RMB & 2019/10/06 & 微信 \\
+    Njustsll & 10 RMB & 2019/10/11 & 微信    & 刘志阔   & 99.99 RMB & 2019/10/15 & 支付宝 \\
+    * 韬   & 16 RMB & 2019/10/17 & 微信    & 赤霓    & 12 RMB & 2019/10/17 & 支付宝 \\
+    追寻原风景 & 10 RMB & 2019/10/28 & 微信    & 郭德良   & 88 RMB & 2019/11/03 & 微信 \\
+    自强不息  & 20 RMB & 2019/11/04 & 支付宝   & 读书之虫  & 20 RMB & 2019/11/18 & 微信 \\
+    *等    & 10 RMB & 2019/11/18 & 微信    & *哲    & 20 RMB & 2019/11/18 & 微信 \\
+    佚名    & 10 RMB & 2019/11/24 & 微信    & Jiye Qian & 66 RMB & 2019/12/04 & 微信 \\
+    * 阳   & 20 RMB & 2019/12/05 & 微信    & Catcher & 11 RMB & 2019/12/08 & 支付宝 \\
+    希尔波特门徒 & 10 RMB & 2019/12/09 & 支付宝   & * 伟   & 10 RMB & 2019/12/09 & 微信 \\
+    Simon & 20 RMB & 2019/12/11 & 支付宝   & 流殇丶浅忆 & 66.60 RMB & 2019/12/18 & 支付宝 \\
+    羽     & 10 RMB & 2019/12/20 & 支付宝   & * 琛   & 15 RMB & 2019/12/20 & 微信 \\
+    随风    & 20 RMB & 2019/12/27 & 支付宝   & Ws    & 23.30 RMB & 2019/12/28 & 微信 \\
+    初八    & 100 RMB  & 2020/01/02 & 支付宝   & p*e   & 20 RMB & 2020/01/03 & 微信 \\
+    Shunmx & 100 RMB & 2020/01/03 & 微信    & hj    & 10 RMB & 2020/01/03 & 微信 \\
+    F*5   & 10 RMB & 2020/01/03 & 微信    & S*m   & 20.20 RMB & 2020/01/03 & 微信 \\
+    二代青雉  & 13 RMB & 2020/01/14 & 支付宝   & *?    & 66 RMB & 2020/01/15 & 微信 \\
+    Mr. Xiong & 20 RMB & 2020/01/17 & 微信    & *博    & 15 RMB & 2020/01/18 & 微信 \\
+    * 者  & 10 RMB & 2020/02/02 & 微信    & Jackie  &  88.80 RMB  &  2020/02/09 & 微信 \\
+    Henry\_Sun、 & 50 RMB & 2020/02/14 & 支付宝 & * 桥  & 50 RMB & 2020/02/21 & 微信 \\
+    昀琏 & 10 RMB & 2020/03/02 & 支付宝 & S*y  &  10 RMB  &  2020/03/15 & 微信 \\
+    * 哥  & 66.66 RMB & 2020/03/17 & 微信    &   K*e & 30 RMB & 2020/03/30 & 微信\\
+    * 阳  &  20 RMB  &  2020/04/02 & 微信 & 士*n  & 30 RMB & 2020/04/11 & 微信 \\
+    \hline
+    \end{tabular}%
+  \label{tab:donation}%
 \end{table}%
 
 \section{常见问题 FAQ}
@@ -148,7 +204,7 @@
 \author{author 1\\ org. 1 \and author 2 \\ org. 2 }
 \end{lstlisting}
   \item \textit{如何添加中英文摘要？}\\
-      请参考 \href{https://github.com/ElegantLaTeX/ElegantPaper/issues/5}{Github::ElegantPaper/issues/5}
+      请参考 \href{https://github.com/ElegantLaTeX/ElegantPaper/issues/5}{GitHub::ElegantPaper/issues/5}
 \end{enumerate}
 
 \section{示例}
@@ -160,44 +216,55 @@
   \item \href{https://github.com/EthanDeng/risk-awareness}{互联网金融风险与投资者风险意识 —— 来自网贷平台交易数据的证据}。
 \end{enumerate}
 
-这是一个最小示例文档（Minimal Example）：
-\begin{lstlisting}
-\documentclass[lang=cn,a4paper,11pt]{elegantpaper}
-
-% title information
-\title{Working Paper Example}
-\author{Author Name} 
-\institute{Elegant\LaTeX{} Group}
-
-\version{1.00}
-\date{\today}
-
-\begin{document}
-
-\maketitle
-
-\begin{abstract}
-Your abstract goes here.
-\keywords{keyword1, keyword2}
-\end{abstract}
-
-\section{Introduction}
-The content of introduction section.
-
-\section{Conclusion}
-The content of conclusion section.
-
-\bibliography{wpref}
-
-\end{document}
-\end{lstlisting}
 
 \nocite{*}
 \bibliography{wpref}
 
 \appendix
-\appendixpage
+%\appendixpage
 \addappheadtotoc
-\section{How I became inspired}
+\section{使用 newtx 系列字体}
+
+如果需要使用原先版本的 \lstinline{newtx} 系列字体，可以通过显示声明数学字体：
+
+\begin{lstlisting}
+\documentclass[math=newtx]{elegantbook}
+\end{lstlisting}
+
+\subsection{连字符}
+
+如果使用 \lstinline{newtx} 系列字体宏包，需要注意下连字符的问题。
+\begin{equation}
+  \int_{R^q} f(x,y) dy.\emph{of\kern0pt f}
+\end{equation}
+的代码为
+\begin{lstlisting}
+\begin{equation}
+  \int_{R^q} f(x,y) dy.\emph{of \kern0pt f}
+\end{equation}
+\end{lstlisting}
+
+\subsection{宏包冲突}
+
+另外在 ElegantBook 模板中，有用户反馈模板在使用 \lstinline{yhmath} 以及 \lstinline{esvect} 等宏包时会报错：
+\begin{lstlisting}
+LaTeX Error:
+   Too many symbol fonts declared.
+\end{lstlisting}
+
+原因是在使用 \lstinline{newtxmath} 宏包时，重新定义了数学字体用于大型操作符，达到了 {\heiti 最多 16 个数学字体} 的上限，在调用其他宏包的时候，无法新增数学字体。为了减少调用非常用宏包，在此给出如何调用 \lstinline{yhmath} 以及 \lstinline{esvect} 宏包的方法。
+
+请在 \lstinline{elegantpaper.cls} 内搜索 \lstinline{yhmath} 或者 \lstinline{esvect}，将你所需要的宏包加载语句\textit{取消注释}即可。
+\begin{lstlisting}
+%%% use yhmath pkg, uncomment following code
+% \let\oldwidering\widering
+% \let\widering\undefined
+% \RequirePackage{yhmath}
+% \let\widering\oldwidering
+
+%%% use esvect pkg, uncomment following code
+% \RequirePackage{esvect}
+\end{lstlisting}
+
 
 \end{document}

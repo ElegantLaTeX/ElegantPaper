@@ -4,12 +4,10 @@
 % Lastest Version: https://github.com/ElegantLaTeX/ElegantPaper
 
 % --- Class structure: identification part
-\ProvidesClass{elegantpaper}[2019/10/17 v0.08 ElegantLaTeX Paper class]
+\ProvidesClass{elegantpaper}[2020/04/12 v0.09 ElegantLaTeX Paper class]
 \NeedsTeXFormat{LaTeX2e} 
 
 \RequirePackage{kvoptions}
-\RequirePackage{ifthen}
-\RequirePackage{ifxetex}
 \RequirePackage{etoolbox}
 \RequirePackage{calc}
 
@@ -17,8 +15,10 @@
 \newcommand{\ekv}[1]{\kvsetkeys{ELEGANT}{#1}}
 
 \DeclareStringOption[en]{lang}
-\DeclareVoidOption{cn}{\ekv{lang = cn}}
-\DeclareVoidOption{en}{\ekv{lang = en}}
+\DeclareVoidOption{cn}{\ekv{lang=cn}}
+\DeclareVoidOption{en}{\ekv{lang=en}}
+
+\DeclareStringOption[cm]{math}
 
 \DeclareStringOption[numbers]{cite}
 \DeclareVoidOption{numbers}{\ekv{cite=numbers}}
@@ -27,19 +27,18 @@
 
 \DeclareStringOption[apalike]{bibstyle}
 
+\DeclareStringOption[ctexfont]{chinesefont}
+\DeclareVoidOption{ctexfont}{\ekv{chinesefont=ctexfont}}
+\DeclareVoidOption{founder}{\ekv{chinesefont=founder}}
+\DeclareVoidOption{nofont}{\ekv{chinesefont=nofont}}
+
+\DeclareVoidOption{newtx}{\ekv{math=newtx}}
+\DeclareVoidOption{mtpro2}{\ekv{math=mtpro2}}
+\DeclareVoidOption{cm}{\ekv{math=cm}}
+
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessKeyvalOptions*\relax
 \LoadClass{article}
-
-% settings for the hyperref and geometry
-\RequirePackage[
-  left=1in,
-  right=1in,
-  top=1in,
-  bottom=1in,
-  headheight=0pt,
-  headsep=0pt]{geometry}
-\setlength{\headsep}{5pt}
 
 \RequirePackage{hyperref}
 \hypersetup{
@@ -51,6 +50,15 @@
   citecolor={winered},
   linktoc=all,
 }
+% settings for the hyperref and geometry
+\RequirePackage[
+  left=1in,
+  right=1in,
+  top=1in,
+  bottom=1in,
+  headheight=0pt,
+  headsep=0pt]{geometry}
+\setlength{\headsep}{5pt}
 
 \RequirePackage{amsthm}
 \RequirePackage{amsmath}
@@ -59,7 +67,7 @@
 \RequirePackage{booktabs}
 \RequirePackage{multicol}
 \RequirePackage{multirow}
-\RequirePackage{linegoal}
+% \RequirePackage{linegoal}
 \RequirePackage{xcolor}
 \RequirePackage{graphicx}
 \RequirePackage{fancyvrb}
@@ -78,9 +86,6 @@
 \RequirePackage[shortlabels,inline]{enumitem}
 \setlist{nolistsep}
 
-\RequirePackage[\ELEGANT@cite,sort&compress]{natbib}
-\setlength{\bibsep}{0.0pt}
-\def\bibfont{\footnotesize}
 
 % define the hyperref color 
 \RequirePackage{xcolor}
@@ -95,39 +100,75 @@
 \newcommand\email[1]{\href{mailto:#1}{\nolinkurl{#1}}}
 
 % font settings
+
 \PassOptionsToPackage{no-math}{fontspec}
+\ifdefstring{\ELEGANT@lang}{cn}{
+  \ifXeTeX
+    \ifdefstring{\ELEGANT@chinesefont}{founder}{
+      \RequirePackage[UTF8,scheme=plain,fontset=none]{ctex}
+      \setCJKmainfont[BoldFont={FZHei-B01},ItalicFont={FZKai-Z03}]{FZShuSong-Z01}
+      \setCJKsansfont[BoldFont={FZHei-B01},ItalicFont={FZHei-B01}]{FZHei-B01}
+      \setCJKmonofont[BoldFont={FZHei-B01},ItalicFont={FZHei-B01}]{FZFangSong-Z02}
+      \setCJKfamilyfont{zhsong}{FZShuSong-Z01}
+      \setCJKfamilyfont{zhhei}{FZHei-B01}
+      \setCJKfamilyfont{zhkai}{FZKai-Z03}
+      \setCJKfamilyfont{zhfs}{FZFangSong-Z02}
+      \newcommand*{\songti}{\CJKfamily{zhsong}}
+      \newcommand*{\heiti}{\CJKfamily{zhhei}}
+      \newcommand*{\kaishu}{\CJKfamily{zhkai}}
+      \newcommand*{\fangsong}{\CJKfamily{zhfs}}}{\relax}
+    
+    \ifdefstring{\ELEGANT@chinesefont}{nofont}{
+      \RequirePackage[UTF8,scheme=plain,fontset=none]{ctex}}{\relax}
 
-\ifdefstring{\ELEGANT@lang}{cn}{%
-  \RequirePackage[UTF8, scheme=plain]{ctex}
-  \AfterEndPreamble{\renewcommand{\itshape}{\kaishu}}
-}{\relax}
+    \ifdefstring{\ELEGANT@chinesefont}{ctexfont}{
+      \RequirePackage[UTF8,scheme=plain]{ctex}}{\relax}
+  \else
+    \ifdefstring{\ELEGANT@chinesefont}{ctexfont}{
+      \RequirePackage[UTF8,scheme=plain]{ctex}}{\relax}
+  \fi
+  \AfterEndPreamble{
+    % \renewcommand{\itshape}{\kaishu}
+    \setlength\parindent{2\ccwd}}}{\relax}
 
-\ifxetex
-  \RequirePackage{fontenc}
+\ifcsname kaishu\endcsname
+  \newcommand{\citshape}{\kaishu}
 \else
-  \RequirePackage[T1]{fontenc}
-  \AtEndOfClass{%
-    \RequirePackage{microtype}}
+  \newcommand{\citshape}{\itshape}
+\fi
+\ifcsname kaishu\endcsname
+  \newcommand{\cnormal}{\kaishu}
+\else
+  \newcommand{\cnormal}{\normalfont}
 \fi
 
-% newtxtext and newtxmath pkg
+\ifcsname fangsong\endcsname
+  \newcommand{\cfs}{\fangsong}
+\else
+  \newcommand{\cfs}{\normalfont}
+\fi
+
 \RequirePackage{newtxtext}
-\RequirePackage{newtxmath}
-\RequirePackage{esint}
+\ifdefstring{\ELEGANT@math}{newtx}{
+  \RequirePackage{newtxmath}
+  \let\Bbbk\relax
+  \RequirePackage{esint}
+  %%% use yhmath pkg, uncomment following code
+  % \let\oldwidering\widering
+  % \let\widering\undefined
+  % \RequirePackage{yhmath}
+  % \let\widering\oldwidering
 
-%%% use yhmath pkg, uncomment following code
-% \let\oldwidering\widering
-% \let\widering\undefined
-% \RequirePackage{yhmath}
-% \let\widering\oldwidering
+  %%% use esvect pkg, uncomment following code
+  % \RequirePackage{esvect}
 
-%%% use esvect pkg, uncomment following code
-% \RequirePackage{esvect}
+  \DeclareSymbolFont{CMlargesymbols}{OMX}{cmex}{m}{n}
+  \let\sumop\relax\let\prodop\relax
+  \DeclareMathSymbol{\sumop}{\mathop}{CMlargesymbols}{"50}
+  \DeclareMathSymbol{\prodop}{\mathop}{CMlargesymbols}{"51}
+}{\relax}
 
-\DeclareSymbolFont{CMlargesymbols}{OMX}{cmex}{m}{n}
-\let\sumop\relax\let\prodop\relax
-\DeclareMathSymbol{\sumop}{\mathop}{CMlargesymbols}{"50}
-\DeclareMathSymbol{\prodop}{\mathop}{CMlargesymbols}{"51}
+\RequirePackage{appendix}
 
 \ifdefstring{\ELEGANT@lang}{cn}{
   \theoremstyle{plain}% default
@@ -152,13 +193,19 @@
   \newcommand\updatetext{日期：}%
   \renewcommand\abstractname{摘\hspace{2em}要}
   \setlength\parindent{2\ccwd}
-  \renewcommand{\abstracttextfont}{\small\upshape\itshape\noindent\ignorespaces}
+  \renewcommand{\abstracttextfont}{\small\citshape\noindent\ignorespaces}
   % 新定义命令
   \newcommand{\keywords}[1]{\vskip2ex\par\noindent\normalfont{\bfseries 关键词: } #1}
   \newcommand\figref[1]{{\bfseries 图~\ref{#1}}}
   \newcommand\tabref[1]{{\bfseries 表~\ref{#1}}}
-  \RequirePackage[\ELEGANT@cite]{gbt7714}
-}{\relax}
+  \RequirePackage{gbt7714}
+  \ifdefstring{\ELEGANT@cite}{authoryear}{
+    \bibliographystyle{gbt7714-author-year}}{
+    \bibliographystyle{gbt7714-numerical}}
+  \ifdefstring{\ELEGANT@cite}{numbers}{
+    \citestyle{numbers}}{\relax}
+  \renewcommand{\appendixtocname}{附录}
+  \renewcommand{\appendixpagename}{附录}}{\relax}
 
 \ifdefstring{\ELEGANT@lang}{en}{
   \theoremstyle{plain}% default
@@ -180,11 +227,14 @@
   \setlength\parindent{2em}
   \renewcommand{\abstracttextfont}{\sffamily\small\noindent\ignorespaces}
   % newcommands defined in this template.
-  \newcommand{\keywords}[1]{\vskip2ex\par\noindent\normalfont{\bfseries Keywords: } #1}
+  \newcommand{\keywords}[1]{\vskip 2ex\par\noindent\normalfont{\bfseries Keywords: } #1}
   \newcommand\figref[1]{{\bfseries Figure~\ref{#1}}}
   \newcommand\tabref[1]{{\bfseries Table~\ref{#1}}}
-  \bibliographystyle{\ELEGANT@bibstyle}
-}{\relax}
+  \RequirePackage[\ELEGANT@cite,sort&compress]{natbib}
+  \bibliographystyle{\ELEGANT@bibstyle}}{\relax}
+
+\setlength{\bibsep}{0.0pt}
+\def\bibfont{\footnotesize}
 
 \AtBeginEnvironment{verbatim}{\microtypesetup{activate=false}}
 \BeforeBeginEnvironment{tabular}{\small}
@@ -194,8 +244,7 @@
   \setlength{\abovedisplayskip}{3pt}
   \setlength{\belowdisplayskip}{3pt}
   \RequirePackage[flushmargin]{footmisc}
-  \setlength{\footnotesep}{12pt}
-}
+  \setlength{\footnotesep}{12pt}}
 
 \def\IfEmpty#1{%
   \edef\1{\the#1}
@@ -256,12 +305,12 @@
 \vskip 0.5ex%
 \IfEmpty\version
 \else 
-{\small\normalfont\itshape\versiontext\the\version}
+{\small\normalfont\citshape\versiontext\the\version}
 \fi
 \ifx\@date\empty
 \else
 \vskip 0.1em%
- {\small\normalfont\itshape\updatetext\@date}%
+ {\small\normalfont\citshape\updatetext\@date}%
 \fi
   \end{center}%
   \par
@@ -291,6 +340,7 @@
 	tabsize=2,
 	backgroundcolor=\color{lightgrey}
 }
+
 
 
 
