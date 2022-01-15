@@ -7,6 +7,9 @@
 \ProvidesClass{elegantpaper}[2020/04/12 v0.09 ElegantLaTeX Paper class]
 \NeedsTeXFormat{LaTeX2e} 
 
+%%% patch for newtx v1.7 or later
+\IfFileExists{newtx.sty}{\PassOptionsToPackage{nofontspec}{newtxtext}}{}
+%%%
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 \RequirePackage{calc}
