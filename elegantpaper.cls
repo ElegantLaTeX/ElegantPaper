@@ -52,7 +52,9 @@
   filecolor={winered},
   citecolor={winered},
   linktoc=all,
+  bookmarksnumbered,
 }
+\RequirePackage{bookmark}
 % settings for the hyperref and geometry
 \RequirePackage[
   left=1in,
