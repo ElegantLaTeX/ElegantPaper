@@ -11,10 +11,11 @@
 *.cb
 *.cb2
 .*.lb
-delete-temp-files.bat
-elegantpaper-cn.pdf
-elegantpaper-en.pdf
-*clean.bat
+.DS_Store
+clean.bat
+elegant*-cn.pdf
+elegant*-en.pdf
+*.dates
 
 ## Intermediate documents:
 *.dvi

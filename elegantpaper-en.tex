@@ -1,12 +1,12 @@
 %!TEX program = pdflatex
-% Full chain: pdflatex -> bibtex -> pdflatex -> pdflatex
-\documentclass[11pt,en,cite=authoryear]{elegantpaper}
+% Full chain: pdflatex -> biber/bibtex -> pdflatex -> pdflatex
+\documentclass[11pt,en]{elegantpaper}
 
 \title{ElegantPaper: An Elegant \LaTeX{} Template for Working Papers}
 \author{Ethan DENG \\ Fudan University \and Dongsheng DENG \\ PA Technology}
 \institute{\href{https://github.com/ElegantLaTeX}{Elegant\LaTeX{} Program}}
 
-\version{0.09}
+\version{0.10}
 \date{\today}
 
 % cmd for this doc
@@ -22,6 +22,14 @@ This documentation illustrates the usage of the \href{https://github.com/Elegant
 \keywords{Elegant\LaTeX{}, Working Paper, Template}
 \end{abstract}
 
+
+\section*{Update Notes}
+
+This version changes two important parts: fonts and bibliography.
+
+\textbf{Fonts}: Due to the newtx package updates, we change the font settings for all the templates of ElegantLaTeX. Under \hologo{XeLaTeX}, we use \lstinline{fontspec} package  to set the font to TeX Gyre Terms/Heros. 
+
+\textbf{Bibliography}: The bib file is no longer \lstinline{wpref.bib}, it's same with ElegantBook bibfile, \lstinline{reference.bib}. Besides, we use biblatex/biber rather than bibtex to handler bibliography, you can use bibstyle and citestyle to set the styles. For convenience, we offer a \lstinline{bibend} option, which can take values of \lstinline{biber} (default) and \lstinline{bibtex}, please refer to Bibliography section and biblatex package document for more information.
 
 \section{Introduction}
 
@@ -58,132 +66,42 @@ This template defines a new option (\lstinline{math}), with three options:
 Default \LaTeX{} commands and environments are all the same in this template\footnote{To ensure the codes are replicatable. We recommend users pay more attention to the contents other than formats. This is the meaning of the existence of the template.}. We created four new commands:
 \begin{enumerate}
   \item \lstinline{\email}: create the hyperlink to email address.
-  \item \lstinline{\figref}: same usage as \lstinline{\ref}, but start with label text <\textbf{Figure n}>.
-  \item \lstinline{\tabref}: same usage as \lstinline{\ref}, but start with label text <\textbf{Table n}>.
+  \item \lstinline{\figref}: same usage as \lstinline{\ref}, but start with label text \textbf{Figure n}.
+  \item \lstinline{\tabref}: same usage as \lstinline{\ref}, but start with label text \textbf{Table n}.
   \item \lstinline{\keywords}: create the keywords in the abstract section.
 \end{enumerate}
 
 
 \subsection{Bibliography}
-This template used \hologo{BibTeX} to generate the bibliography, the default bibliography style is  \lstinline{aer} under the option \lstinline{lang=en}. Citation example: ~\citep{en1,en2,en3} used data from a major peer-to-peer lending marketplace in China to study whether female and male investors evaluate loan performance differently. 
 
-If you want to use \hologo{BibTeX}, you must create a file named \lstinline{wpref.bib}, and add bib items (from Google Scholar, Mendeley, EndNote, and etc.) to \lstinline{wpref.bib} file, and cite the bibkey in the \lstinline{tex} file. Note that \hologo{BibTeX} has to be added.
+This template uses biblatex to generate the bibliography, the default citestyle and bibliography style are both \lstinline{numeric}. Let's take a glance at the citation effect. ~\cite{en1} use data from a major peer-to-peer lending \cite{en3} marketplace in China to study whether female and male investors evaluate loan performance differently \parencite{en2}. 
 
-Three options for the references, \lstinline{cite=numbers} (default), \lstinline{cite=super} and \lstinline{cite=authoryear}. Those who major in science and engineering use \lstinline{numbers} and \lstinline{super} more often, while those who major in arts use \lstinline{authoryear} more frequently. To switch different options, use
+If you want to use biblatex, you must create a file named \lstinline{reference.bib}, add bib items (from Google Scholar, Mendeley, EndNote, and etc.) to \lstinline{reference.bib} file, then cite the bibkey in the \lstinline{tex} file. The biber will automatically generate the bibliography for the reference you cited.
+
+
+To change the bibliography style, this version introduces two options: \lstinline{citestyle} and \lstinline{bibstyle}, please refer to \href{https://ctan.org/pkg/biblatex}{CTAN:biblatex} for more detail about these options. You can change your bibliography style as
+
 \begin{lstlisting}
-\documentclass[cite=super]{elegantpaper} % super style ref style
-\documentclass[super]{elegantpaper}
-
-\documentclass[cite=authoryear]{elegantpaper} % author-year ref style
-\documentclass[authoryear]{elegantpaper}
+\documentclass[citestyle=numeric-comp, bibstyle=authoryear]{elegantpaper} 
 \end{lstlisting}
 
-\section{Recruit Support Members}
-
-Recruit support members for Elegant\LaTeX{} to translate template official guide, maintain wiki entries(Markdown), update Wechat articles. No deadline for this recruitment.
-
-So far, Elegant\LaTeX{} has four support members:
-\begin{itemize}
-	\item OG Translator: \href{https://github.com/peggy2006xzyz}{YPY};
-	\item Wiki Maintainer: \href{https://github.com/izinngo}{Ingo Zinngo}, \href{https://github.com/xiaohao890809}{Xiaohao890809};
-	\item QQ Group Manager: \href{https://github.com/sikouhjw}{Sikouhjw}.
-\end{itemize}
-
-Thank them all!!!
-
-\section{Acknowledgement}
-The number of stars on GitHub for ElegantPaper reached 277 on April 12, 2020 at the release of ElegantPaper v0.09. Thank China\TeX{} and \href{http://www.latexstudio.net/}{\LaTeX{} studio} for their promotion. If you like our templates, you can star it on GitHub.
-\begin{figure}[!ht]
-	\centering
-	\includegraphics[width=\textwidth]{star.png}
-	\caption{Twinkle, Twinkle, Little Star}
-\end{figure}
-
-\section{Donation}
-To express your love for our templates and/or our developers, please do not hesitate to tip us.
-\begin{figure}[!htbp]
-	\centering
-	\includegraphics[width=0.4\textwidth]{donate.jpg}
-\end{figure}
-
-\textbf{The explanation right of the tip usage belongs to Elegant\LaTeX{} with no supervision. Feel free to tip us.} Those who donate more than 10 RMB will be recorded in the donation list. Thank all the tippers!
-
-
-\begin{table}[!htb]
-	\centering
-	\caption{Donation List}
-	\begin{tabular}{*{4}{>{\scriptsize}c}|*{4}{>{\scriptsize}c}}
-	  \toprule
-	  \textbf{Tipper} & \textbf{Amount} & \textbf{Date} & \textbf{Channel} & \textbf{Tipper} & \textbf{Amount} & \textbf{Date} & \textbf{Channel} \\
-	  \midrule
-	  Lerh  & 10 RMB & 2019/05/15 & Wechat    & yueguodipingxian & 10 RMB & 2019/05/15 & Wechat \\
-	  yinsang    & 20 RMB & 2019/05/27 & Wechat    & *kong    & 10 RMB & 2019/05/30 & Wechat \\
-	  latexstudio.net & 666 RMB & 2019/06/05 & Alipay   & A*n   & 40 RMB & 2019/06/15 & Wechat \\
-	  * xia   & 22 RMB & 2019/06/15 & Wechat    & * qian  & 21 RMB  & 2019/06/15 & Wechat \\
-	  Cassis & 11 RMB & 2019/06/30 & Wechat    & * jun    & 10 RMB & 2019/07/23 & Wechat \\
-	  P*u   & 50 RMB & 2019/07/30 & Wechat    & * meng    & 19 RMB & 2019/08/28 & Wechat \\
-	  Qu Doudou   & 10 RMB & 2019/08/28 & Wechat    & Li Bo    & 100 RMB & 2019/10/06 & Wechat \\
-	  Njustsll & 10 RMB & 2019/10/11 & Wechat    & Liu Zhikuo   & 99.99 RMB & 2019/10/15 & Alipay \\
-	  * tao   & 16 RMB & 2019/10/17 & Wechat    & Chini    & 12 RMB & 2019/10/17 & Alipay \\
-	  yuanfengjing & 10 RMB & 2019/10/28 & Wechat    & Guo Deliang   & 88 RMB & 2019/11/03 & Wechat \\
-	  ziqiangbuxi  & 20 RMB & 2019/11/04 & Alipay   & dushuzhichong  & 20 RMB & 2019/11/18 & Wechat \\
-	  * deng    & 10 RMB & 2019/11/18 & Wechat    & * zhe   & 20 RMB & 2019/11/18 & Wechat \\
-	  anonymous    & 10 RMB & 2019/11/24 & Wechat    & Jiye Qian & 66 RMB & 2019/12/04 & Wechat \\
-	  * yang   & 20 RMB & 2019/12/05 & Wechat    & Catcher & 11 RMB & 2019/12/08 & Alipay \\
-	  xierbotementu & 10 RMB & 2019/12/09 & Alipay   & * wei   & 10 RMB & 2019/12/09 & Wechat \\
-	  Simon & 20 RMB & 2019/12/11 & Alipay   & liushangqianyi & 66.60 RMB & 2019/12/18 & Alipay \\
-	  yu     & 10 RMB & 2019/12/20 & Alipay   & *chen   & 15 RMB & 2019/12/20 & Wechat \\
-	  suifeng   & 20 RMB & 2019/12/27 & Alipay   & Ws    & 23.30 RMB & 2019/12/28 & Wechat \\
-	  chuba    & 100 RMB  & 2020/01/02 & Alipay   & p*e   & 20 RMB & 2020/01/03 & Wechat \\
-	  Shunmx & 100 RMB & 2020/01/03 & Wechat    & hj    & 10 RMB & 2020/01/03 & Wechat \\
-	  F*5   & 10 RMB & 2020/01/03 & Wechat    & S*m   & 20.20 RMB & 2020/01/03 & Wechat \\
-	  erdaiqingzhi  & 13 RMB & 2020/01/14 & Alipay   & *?    & 66 RMB & 2020/01/15 & Wechat \\
-	  Mr. Xiong & 20 RMB & 2020/01/17 & Wechat    & *bo    & 15 RMB & 2020/01/18 & Wechat \\
-	  *Zhe    & 10 RMB & 2020/02/02 & Wechat    &  Jackie &  88.80 RMB  &  2020/02/09 & Wechat \\
-	  Henry\_Sun & 50 RMB & 2020/02/14 & Alipay & * Qiao  & 50 RMB & 2020/02/21 & Wechat \\
-	  YunLian & 10 RMB & 2020/03/02 & Alipay & S*y  &  10 RMB  &  2020/03/15 & Wechat \\
-	  * Ge  & 66.66 RMB & 2020/03/17 & Wechat    &   K*e & 30 RMB & 2020/03/30 & Wechat\\
-	  * Yang  &  20 RMB  &  2020/04/02 & Wechat & Shi*n  & 30 RMB & 2020/04/11 & Wechat \\
-	  \bottomrule
-	\end{tabular}%
-	\label{tab:donation}%
-  \end{table}%
-
-\section{FAQ}
-
-\begin{enumerate}[label=\arabic*).]
-	\item \textit{How to remove the information of version?}\\
-    Please comment \lstinline|\version{x.xx}|.
-	\item \textit{How to remove the information of date?}\\
-	Please type in \lstinline|\date{}|.
-	\item \textit{How to add several authors?}\\
-	Use \lstinline{\and} in \lstinline{\author} and use \lstinline{\\} to start a new line.
-	\begin{lstlisting}
-	\author{author 1\\ org. 1 \and author 2 \\ org. 2 }
-	\end{lstlisting}
-	\item \textit{How to display bilingual abstracts?}\\
-	Please refer to \href{https://github.com/ElegantLaTeX/ElegantPaper/issues/5}{GitHub::ElegantPaper/issues/5}
-\end{enumerate}
-
-
-\nocite{en1,en2}
-
-\bibliography{wpref}
-
-\appendix
-%\appendixpage
-\addappheadtotoc
-
-
-\section{Use newtx fonts}
-If you use \lstinline{newtx} fonts, type in:
+We also add the \lstinline{bibend} option to this template, you can choose \lstinline{biber} (default) or \lstinline{bibtex} as you like, \lstinline{biber} is recommended.
 
 \begin{lstlisting}
-\documentclass[math=newtx]{elegantbook}
+\documentclass[bibtex]{elegantpaper} % or
+\documentclass[bibend=bibtex]{elegantpaper}
 \end{lstlisting}
 
 
-\subsection{Hyphens}
+
+\subsection{Use newtx fonts}
+If you use \lstinline{newtx} fonts, you can use the \lstinline{math} option as 
+\begin{lstlisting}
+\documentclass[math=newtx]{elegantpaper}
+\end{lstlisting}
+
+
+\subsubsection{Hyphens}
 Since the template uses \lstinline{newtx}, please pay attention to the hyphens. For instance,
 \begin{equation}
 \int_{R^q} f(x,y) dy.\emph{of\kern0pt f}
@@ -196,7 +114,7 @@ The corresponding code is:
 \end{equation}
 \end{lstlisting}
 
-\subsection{Symbol Fonts}
+\subsubsection{Symbol Fonts}
 Feedback from ElegantBook users claims that error occurs when using our templates with  \lstinline{yhmath}, \lstinline{esvect} and other packages.
 \begin{lstlisting}
 LaTeX Error:
@@ -205,15 +123,34 @@ Too many symbol fonts declared.
 
 The reason is that the template redefines font for math so that no new math font is allowed to be added. To use \lstinline{yhmath} and/or \lstinline{esvect}, please locate \lstinline{yhmath} or \lstinline{esvect} in \lstinline{elegantpaper.cls}, uncomment corresponding related code.
 
-\begin{lstlisting}
-%%% use yhmath pkg, uncomment following code
-% \let\oldwidering\widering
-% \let\widering\undefined
-% \RequirePackage{yhmath}
-% \let\widering\oldwidering
 
-%%% use esvect pkg, uncomment following code
-% \RequirePackage{esvect}
-\end{lstlisting}
+\section{FAQ}
+
+\begin{enumerate}[label=\arabic*).]
+  \item \textit{How to remove the information of version?}\\
+  Please comment \lstinline|\version{x.xx}|.
+  \item \textit{How to remove the information of date?}\\
+  Please type in \lstinline|\date{}|.
+  \item \textit{How to add several authors?}\\
+  Use \lstinline{\and} in \lstinline{\author} and use \lstinline{\\} to start a new line.
+  \begin{lstlisting}
+  \author{author 1\\ org. 1 \and author 2 \\ org. 2 }
+  \end{lstlisting}
+  \item \textit{How to display bilingual abstracts?}\\
+  Please refer to \href{https://github.com/ElegantLaTeX/ElegantPaper/issues/5}{GitHub::ElegantPaper/issues/5}
+\end{enumerate}
+
+\section{Acknowledgement}
+
+Thank \href{https://github.com/sikouhjw}{sikouhjw} and \href{https://github.com/syvshc}{syvshc} for their quick response to Github issues and continuously support work for ElegantLaTeX. Thank ChinaTeX and \href{http://www.latexstudio.net/}{LaTeX Studio} for their promotion. 
+
+
+
+\printbibliography[heading=bibintoc, title=\ebibname]
+
+\appendix
+%\appendixpage
+\addappheadtotoc
+
 
 \end{document}

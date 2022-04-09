@@ -4,11 +4,9 @@
 % Lastest Version: https://github.com/ElegantLaTeX/ElegantPaper
 
 % --- Class structure: identification part
-\ProvidesClass{elegantpaper}[2020/04/12 v0.09 ElegantLaTeX Paper class]
+\ProvidesClass{elegantpaper}[2022/04/09 v0.10 ElegantLaTeX Paper class]
 \NeedsTeXFormat{LaTeX2e} 
 
-%%% patch for newtx v1.7 or later
-\IfFileExists{newtx.sty}{\PassOptionsToPackage{nofontspec}{newtxtext}}{}
 %%%
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
@@ -23,12 +21,13 @@
 
 \DeclareStringOption[cm]{math}
 
-\DeclareStringOption[numbers]{cite}
-\DeclareVoidOption{numbers}{\ekv{cite=numbers}}
-\DeclareVoidOption{authoryear}{\ekv{cite=authoryear}}
-\DeclareVoidOption{super}{\ekv{cite=super}}
+\DeclareStringOption[numeric-comp]{citestyle}
+\DeclareStringOption[numeric]{bibstyle}
 
-\DeclareStringOption[apalike]{bibstyle}
+\DeclareStringOption[biber]{bibend}
+\DeclareVoidOption{biber}{\ekv{bibend=biber}}
+\DeclareVoidOption{bibtex}{\ekv{bibend=bibtex}}
+
 
 \DeclareStringOption[ctexfont]{chinesefont}
 \DeclareVoidOption{ctexfont}{\ekv{chinesefont=ctexfont}}
@@ -81,7 +80,7 @@
 \graphicspath{{image/}{figure/}{fig/}{img/}}
 
 % caption settings 
-\RequirePackage[font=small,labelfont={bf}]{caption}
+\RequirePackage[labelfont={bf}]{caption}
 \captionsetup[table]{skip=3pt}
 \captionsetup[figure]{skip=3pt}
 
@@ -104,35 +103,58 @@
 
 % font settings
 
-\PassOptionsToPackage{no-math}{fontspec}
-\ifdefstring{\ELEGANT@lang}{cn}{
-  \ifXeTeX
-    \ifdefstring{\ELEGANT@chinesefont}{founder}{
-      \RequirePackage[UTF8,scheme=plain,fontset=none]{ctex}
-      \setCJKmainfont[BoldFont={FZHei-B01},ItalicFont={FZKai-Z03}]{FZShuSong-Z01}
-      \setCJKsansfont[BoldFont={FZHei-B01},ItalicFont={FZHei-B01}]{FZHei-B01}
-      \setCJKmonofont[BoldFont={FZHei-B01},ItalicFont={FZHei-B01}]{FZFangSong-Z02}
-      \setCJKfamilyfont{zhsong}{FZShuSong-Z01}
-      \setCJKfamilyfont{zhhei}{FZHei-B01}
-      \setCJKfamilyfont{zhkai}{FZKai-Z03}
-      \setCJKfamilyfont{zhfs}{FZFangSong-Z02}
-      \newcommand*{\songti}{\CJKfamily{zhsong}}
-      \newcommand*{\heiti}{\CJKfamily{zhhei}}
-      \newcommand*{\kaishu}{\CJKfamily{zhkai}}
-      \newcommand*{\fangsong}{\CJKfamily{zhfs}}}{\relax}
-    
-    \ifdefstring{\ELEGANT@chinesefont}{nofont}{
-      \RequirePackage[UTF8,scheme=plain,fontset=none]{ctex}}{\relax}
 
-    \ifdefstring{\ELEGANT@chinesefont}{ctexfont}{
-      \RequirePackage[UTF8,scheme=plain]{ctex}}{\relax}
-  \else
-    \ifdefstring{\ELEGANT@chinesefont}{ctexfont}{
-      \RequirePackage[UTF8,scheme=plain]{ctex}}{\relax}
-  \fi
+\PassOptionsToPackage{no-math}{fontspec}
+\PassOptionsToPackage{quiet}{fontspec}
+\RequirePackage{iftex}
+
+\ifXeTeX
+  \RequirePackage[no-math]{fontspec}
+  \setmainfont{texgyretermes}[
+    UprightFont = *-regular ,
+    BoldFont = *-bold ,
+    ItalicFont = *-italic ,
+    BoldItalicFont = *-bolditalic ,
+    Extension = .otf ,
+    Scale = 1.0]
+    
+  \setsansfont{texgyreheros}[
+    UprightFont = *-regular ,
+    BoldFont = *-bold ,
+    ItalicFont = *-italic ,
+    BoldItalicFont = *-bolditalic ,
+    Extension = .otf ,
+    Scale = 0.9]
+\else
+  \RequirePackage{newtxtext}
+  \RequirePackage[scaled=.90]{helvet}
+\fi
+
+\ifdefstring{\ELEGANT@lang}{cn}{
+  \ifdefstring{\ELEGANT@chinesefont}{founder}{
+    \RequirePackage[UTF8,scheme=plain,fontset=none]{ctex}
+    \setCJKmainfont[BoldFont={FZHei-B01},ItalicFont={FZKai-Z03}]{FZShuSong-Z01}
+    \setCJKsansfont[BoldFont={FZHei-B01}]{FZKai-Z03}
+    \setCJKmonofont[BoldFont={FZHei-B01}]{FZFangSong-Z02}
+    \setCJKfamilyfont{zhsong}{FZShuSong-Z01}
+    \setCJKfamilyfont{zhhei}{FZHei-B01}
+    \setCJKfamilyfont{zhkai}[BoldFont={FZHei-B01}]{FZKai-Z03}
+    \setCJKfamilyfont{zhfs}[BoldFont={FZHei-B01}]{FZFangSong-Z02}
+    \newcommand*{\songti}{\CJKfamily{zhsong}}
+    \newcommand*{\heiti}{\CJKfamily{zhhei}}
+    \newcommand*{\kaishu}{\CJKfamily{zhkai}}
+    \newcommand*{\fangsong}{\CJKfamily{zhfs}}}{\relax}
+  
+  \ifdefstring{\ELEGANT@chinesefont}{nofont}{
+    \RequirePackage[UTF8,scheme=plain,fontset=none]{ctex}}{\relax}
+
+  \ifdefstring{\ELEGANT@chinesefont}{ctexfont}{
+    \RequirePackage[UTF8,scheme=plain]{ctex}}{\relax}
+  
   \AfterEndPreamble{
-    % \renewcommand{\itshape}{\kaishu}
-    \setlength\parindent{2\ccwd}}}{\relax}
+    \setlength\parindent{2\ccwd}}
+}{\relax}
+
 
 \ifcsname kaishu\endcsname
   \newcommand{\citshape}{\kaishu}
@@ -151,7 +173,6 @@
   \newcommand{\cfs}{\normalfont}
 \fi
 
-\RequirePackage{newtxtext}
 \ifdefstring{\ELEGANT@math}{newtx}{
   \RequirePackage{newtxmath}
   \let\Bbbk\relax
@@ -170,6 +191,13 @@
   \DeclareMathSymbol{\sumop}{\mathop}{CMlargesymbols}{"50}
   \DeclareMathSymbol{\prodop}{\mathop}{CMlargesymbols}{"51}
 }{\relax}
+
+
+\RequirePackage[
+  backend=\ELEGANT@bibend,
+  citestyle=\ELEGANT@citestyle,
+  bibstyle=\ELEGANT@bibstyle]{biblatex}
+\defbibheading{elegantbook}[\ebibname]{#1}
 
 \RequirePackage{appendix}
 
@@ -194,6 +222,7 @@
   \renewcommand\tablename{表}%
   \newcommand\versiontext{版本：}%
   \newcommand\updatetext{日期：}%
+  \newcommand{\ebibname}{参考文献}
   \renewcommand\abstractname{摘\hspace{2em}要}
   \setlength\parindent{2\ccwd}
   \renewcommand{\abstracttextfont}{\small\citshape\noindent\ignorespaces}
@@ -201,12 +230,6 @@
   \newcommand{\keywords}[1]{\vskip2ex\par\noindent\normalfont{\bfseries 关键词: } #1}
   \newcommand\figref[1]{{\bfseries 图~\ref{#1}}}
   \newcommand\tabref[1]{{\bfseries 表~\ref{#1}}}
-  \RequirePackage{gbt7714}
-  \ifdefstring{\ELEGANT@cite}{authoryear}{
-    \bibliographystyle{gbt7714-author-year}}{
-    \bibliographystyle{gbt7714-numerical}}
-  \ifdefstring{\ELEGANT@cite}{numbers}{
-    \citestyle{numbers}}{\relax}
   \renewcommand{\appendixtocname}{附录}
   \renewcommand{\appendixpagename}{附录}}{\relax}
 
@@ -233,10 +256,9 @@
   \newcommand{\keywords}[1]{\vskip 2ex\par\noindent\normalfont{\bfseries Keywords: } #1}
   \newcommand\figref[1]{{\bfseries Figure~\ref{#1}}}
   \newcommand\tabref[1]{{\bfseries Table~\ref{#1}}}
-  \RequirePackage[\ELEGANT@cite,sort&compress]{natbib}
-  \bibliographystyle{\ELEGANT@bibstyle}}{\relax}
+  \newcommand{\ebibname}{Bibliography}}{\relax}
 
-\setlength{\bibsep}{0.0pt}
+
 \def\bibfont{\footnotesize}
 
 \AtBeginEnvironment{verbatim}{\microtypesetup{activate=false}}
@@ -344,7 +366,7 @@
 	backgroundcolor=\color{lightgrey}
 }
 
+\addbibresource[location=local]{reference.bib}
 
-
-
-
+% restore the tt default family to lmodern tt family
+\renewcommand\ttdefault{lmtt}
