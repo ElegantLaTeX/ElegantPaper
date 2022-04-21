@@ -197,7 +197,6 @@
   backend=\ELEGANT@bibend,
   citestyle=\ELEGANT@citestyle,
   bibstyle=\ELEGANT@bibstyle]{biblatex}
-\defbibheading{elegantbook}[\ebibname]{#1}
 
 \RequirePackage{appendix}
 
