@@ -51,7 +51,7 @@
 此模板定义了一个语言选项 \lstinline{lang}，可以选择英文模式 \lstinline{lang=en}（默认）或者中文模式 \lstinline{lang=cn}。当选择中文模式时，图表的标题引导词以及参考文献，定理引导词等信息会变成中文。你可以通过下面两种方式来选择语言模式：
 \begin{lstlisting}
 \documentclass[lang=cn]{elegantpaper} % or
-\documentclass{cn}{elegantpaper} 
+\documentclass[cn]{elegantpaper} 
 \end{lstlisting}
 
 \textbf{注意：} 英文模式下，由于没有添加中文宏包，无法输入中文。如果需要输入中文，可以通过在导言区引入中文宏包 \lstinline{ctex} 或者加入 \lstinline{xeCJK} 宏包后自行设置字体。 
