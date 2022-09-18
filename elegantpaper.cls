@@ -365,7 +365,7 @@
 	backgroundcolor=\color{lightgrey}
 }
 
-\addbibresource[location=local]{reference.bib}
+
 
 % restore the tt default family to lmodern tt family
 \renewcommand\ttdefault{lmtt}
