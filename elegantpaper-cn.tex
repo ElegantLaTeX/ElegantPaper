@@ -1,14 +1,13 @@
 %!TEX program = xelatex
 % 完整编译: xelatex -> biber/bibtex -> xelatex -> xelatex
-\documentclass[lang=cn,a4paper]{elegantpaper}
+\documentclass[lang=cn,a4paper,newtx]{elegantpaper}
 
 \title{ElegantPaper: 一个优美的 \LaTeX{} 工作论文模板}
-\author{Ethan DENG \\ Fudan University \and Dongsheng DENG \\ PA Technology}
+\author{作者1 \\ 某某大学/机构 \and 作者2 \\ 某某大学/机构}
 \institute{\href{https://elegantlatex.org/}{Elegant\LaTeX{} 项目组}}
 
-\version{0.10}
-\date{\zhtoday}
-
+\version{0.11}
+\date{\zhdate{2022/12/31}}
 
 % 本文档命令
 \usepackage{array}
@@ -26,11 +25,10 @@
 
 \section{模板使用须知}
 
+\textcolor{red}{\bfseries 本模板自 2023 年 1 月 1 日开始，不再维护，不建议使用本系列模板！为了保证之前版本的用户仍然能查到说明文档，本说明文档仍然保留过去的信息。}
+
 \subsection{注意事项}
-
-时隔两年，本模板迎来更新，中间发生了很多变化，两个主要变化是参考文献与字体设定，\textbf{使用前请务必仔细阅读本文档}。
-
-\textbf{文献部分}：我们将 bibtex 的默认文献编译方式改为 biblatex，不过我们也提供了两个后端，\lstinline{bibend=biber} 和 \lstinline{bibend=bibtex}。特别需要注意的是，从 0.10 开始，文献文件改为 \lstinline{reference.bib}，与 ElegantBook 保持一致，而参考文献的引文样式等更多格式，请参考后文参考文献部分，更多样式可以参考 biblatex 文档。 
+\textbf{文献部分}：我们将 bibtex 的默认文献编译方式改为 biblatex，不过我们也提供了两个后端，\lstinline{bibend=biber} 和 \lstinline{bibend=bibtex}。特别需要注意的是从 0.10 开始，文献文件改为 \lstinline{reference.bib}，与 ElegantBook 保持一致，而参考文献的引文样式等更多格式，请参考后文参考文献部分，更多样式可以参考 biblatex 文档。 
 
 \textbf{字体部分}，我们将 newtxtext 宏包的支持方式改为了字体名称设定方式，设定英文字体为 TeX Gyre Terms/Heros，英文字体部分，根据编译方式选择不同字体。对于一般用户而言，不太需要关心这部分内容。
 
@@ -104,9 +102,9 @@
 
 
 \subsection{自定义命令}
-此模板并没有修改任何默认的 \LaTeX{} 命令或者环境\footnote{目的是保证代码的可复用性，请用户关注内容，不要太在意格式，这才是本工作论文模板的意义。}。另外，我自定义了 4 个命令：
+此模板并没有修改任何默认的 \LaTeX{} 命令或者环境\footnote{目的是保证代码的可复用性，请用户关注内容，不要太在意格式，这才是本工作论文模板的意义。}。另外，本模板可以使用的 4 个额外命令：
 \begin{enumerate}
-  \item \lstinline{\email}：创建邮箱地址的链接，比如 \email{ddswhu@outlook.com}；
+  \item \lstinline{\email}：创建邮箱地址的链接，比如 \email{xxx@outlook.com}；
   \item \lstinline{\figref}：用法和 \lstinline{\ref} 类似，但是会在插图的标题前添加 <\textbf{图 n}> ；
   \item \lstinline{\tabref}：用法和 \lstinline{\ref} 类似，但是会在表格的标题前添加 <\textbf{表 n}>；
   \item \lstinline{\keywords}：为摘要环境添加关键词。

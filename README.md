@@ -10,7 +10,9 @@
 ![Github Version](https://img.shields.io/github/release/ElegantLaTeX/ElegantPaper.svg)
 ![Repo Size](https://img.shields.io/github/repo-size/ElegantLaTeX/ElegantPaper.svg)
 
+**Caution: This template will no longer be maintained since January 1st, 2023.**
 
+**注意：本模板自 2023 年 1 月 1 日开始，不再维护，不建议使用本系列模板！**
 
 ElegantPaper is designed for writing a working paper, especially for economics students. This template is based on the standard LaTeX article class. The goal of this template is to make the writing process easier and more comfortable. You can get rid of all the worries about the format. Just enjoy it! If you have any questions, suggestions or bug reports, you can create issues or email us at elegantlatex2e@gmail.com.
 

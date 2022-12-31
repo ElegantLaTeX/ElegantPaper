@@ -4,7 +4,7 @@
 % Lastest Version: https://github.com/ElegantLaTeX/ElegantPaper
 
 % --- Class structure: identification part
-\ProvidesClass{elegantpaper}[2022/04/09 v0.10 ElegantLaTeX Paper class]
+\ProvidesClass{elegantpaper}[2022/12/31 v0.11 ElegantLaTeX Paper class]
 \NeedsTeXFormat{LaTeX2e} 
 
 %%%
