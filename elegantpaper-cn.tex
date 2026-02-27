@@ -1,13 +1,11 @@
-%!TEX program = xelatex
-% 完整编译: xelatex -> biber/bibtex -> xelatex -> xelatex
 \documentclass[lang=cn,a4paper,newtx]{elegantpaper}
 
 \title{ElegantPaper: 一个优美的 \LaTeX{} 工作论文模板}
 \author{作者1 \\ 某某大学/机构 \and 作者2 \\ 某某大学/机构}
-\institute{\href{https://elegantlatex.org/}{Elegant\LaTeX{} 项目组}}
+\institute{\href{https://github.com/ElegantLaTeX}{Elegant\LaTeX{} 项目组}}
 
-\version{0.11}
-\date{\zhdate{2022/12/31}}
+\version{0.12}
+\date{\zhdate{2026/2/27}}
 
 % 本文档命令
 \usepackage{array}
@@ -25,7 +23,7 @@
 
 \section{模板使用须知}
 
-\textcolor{red}{\bfseries 本模板自 2023 年 1 月 1 日开始，不再维护，不建议使用本系列模板！为了保证之前版本的用户仍然能查到说明文档，本说明文档仍然保留过去的信息。}
+\textcolor{red}{\bfseries 本模板自 2023 年 1 月 1 日起停止维护，并不建议使用，但鉴于用户群体庞大，自 2026 年起重新发布。为保证之前版本的用户仍能查阅说明文档，本说明文档保留了过往信息。}
 
 \subsection{注意事项}
 \textbf{文献部分}：我们将 bibtex 的默认文献编译方式改为 biblatex，不过我们也提供了两个后端，\lstinline{bibend=biber} 和 \lstinline{bibend=bibtex}。特别需要注意的是从 0.10 开始，文献文件改为 \lstinline{reference.bib}，与 ElegantBook 保持一致，而参考文献的引文样式等更多格式，请参考后文参考文献部分，更多样式可以参考 biblatex 文档。 

@@ -1,10 +1,9 @@
-% Author: Dongsheng Deng
-% Homepage: https://ddswhu.me/
-% Email: elegantlatex2e@gmail.com
+% Author: Dongsheng Deng & Ran Wang
+% Email: ranwang.osbert@outlook.com
 % Lastest Version: https://github.com/ElegantLaTeX/ElegantPaper
 
 % --- Class structure: identification part
-\ProvidesClass{elegantpaper}[2022/12/31 v0.11 ElegantLaTeX Paper class]
+\ProvidesClass{elegantpaper}[2026/2/27 v0.12 ElegantLaTeX Paper class]
 \NeedsTeXFormat{LaTeX2e} 
 
 %%%
