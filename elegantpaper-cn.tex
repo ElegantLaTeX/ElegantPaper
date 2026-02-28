@@ -1,8 +1,8 @@
 \documentclass[lang=cn,a4paper,newtx]{elegantpaper}
 
-\title{ElegantPaper: 一个优美的 \LaTeX{} 工作论文模板}
+\title{ElegantPaper: 一个优美的 \LaTeX\ 工作论文模板}
 \author{作者1 \\ 某某大学/机构 \and 作者2 \\ 某某大学/机构}
-\institute{\href{https://github.com/ElegantLaTeX}{Elegant\LaTeX{} 项目组}}
+\institute{\href{https://github.com/ElegantLaTeX}{Elegant\LaTeX\ 项目组}}
 
 \version{0.12}
 \date{\zhdate{2026/2/27}}
@@ -17,7 +17,7 @@
 \maketitle
 
 \begin{abstract}
-本文为 \href{https://github.com/ElegantLaTeX/ElegantPaper/}{ElegantPaper} 的说明文档。此模板基于 \LaTeX{} 的 article 类，专为工作论文写作而设计。设计这个模板的初衷是让作者不用关心工作论文的格式，专心写作，从而有更加舒心的写作体验。如果你有其他问题、建议或者报告 bug，可以在 \href{https://github.com/ElegantLaTeX/ElegantPaper/issues}{GitHub::ElegantPaper/issues} 留言。如果你想了解更多 Elegant\LaTeX{} 项目组设计的模板，请访问 \href{https://github.com/ElegantLaTeX/}{GitHub::ElegantLaTeX}。
+本文为 \href{https://github.com/ElegantLaTeX/ElegantPaper/}{ElegantPaper} 的说明文档。此模板基于 \LaTeX\ 的 article 类，专为工作论文写作而设计。设计这个模板的初衷是让作者不用关心工作论文的格式，专心写作，从而有更加舒心的写作体验。如果你有其他问题、建议或者报告 bug，可以在 \href{https://github.com/ElegantLaTeX/ElegantPaper/issues}{GitHub::ElegantPaper/issues} 留言。如果你想了解更多 Elegant\LaTeX\ 项目组设计的模板，请访问 \href{https://github.com/ElegantLaTeX/}{GitHub::ElegantLaTeX}。
 \keywords{Elegant\LaTeX{}，工作论文，模板}
 \end{abstract}
 
@@ -34,13 +34,13 @@
 
 \subsection{模板介绍}
 
-此模板基于 \LaTeX{} 的标准文类 article 设计，所以 article 文类的选项也能传递给本模板，比如 \lstinline{a4paper, 11pt} 等等。
+此模板基于 \LaTeX\ 的标准文类 article 设计，所以 article 文类的选项也能传递给本模板，比如 \lstinline{a4paper, 11pt} 等等。
 
 \begin{lstlisting}
 \documentclass[a4paper,11pt]{elegantpaper}
 \end{lstlisting}
 
-\textbf{注意}：Elegant\LaTeX{} 系列模板已经全部上传至 \href{https://www.overleaf.com/latex/templates/elegantpaper-template/yzghrqjhmmmr}{Overleaf} 上，用户可以在线使用。另外，为了方便国内用户，模板也已经传至\href{https://gitee.com/ElegantLaTeX/ElegantPaper}{码云}。
+\textbf{注意}：Elegant\LaTeX\ 系列模板已经全部上传至 \href{https://www.overleaf.com/latex/templates/elegantpaper-template/yzghrqjhmmmr}{Overleaf} 上，用户可以在线使用。另外，为了方便国内用户，模板也已经传至\href{https://gitee.com/ElegantLaTeX/ElegantPaper}{码云}。
 
 
 \subsection{全局选项}
@@ -59,7 +59,7 @@
 
 本模板定义了一个数学字体选项（\lstinline{math}），可选项有三个：
 \begin{enumerate}
-  \item \lstinline{math=cm}（默认），使用 \LaTeX{} 默认数学字体（推荐，无需声明）；
+  \item \lstinline{math=cm}（默认），使用 \LaTeX\ 默认数学字体（推荐，无需声明）；
   \item \lstinline{math=newtx}，使用 \lstinline{newtxmath} 设置数学字体（潜在问题比较多）。
   \item \lstinline{math=mtpro2}，使用 \lstinline{mtpro2} 宏包设置数学字体，要求用户已经成功安装此宏包。
 \end{enumerate}
@@ -74,7 +74,7 @@
 \end{enumerate}
 
 \subsubsection{方正字体选项}
-由于使用 \lstinline{ctex} 宏包默认调用系统已有的字体，部分系统字体缺失严重，因此，用户希望能够使用其它字体，我们推荐使用方正字体。方正的{\songti 方正书宋}、{\heiti 方正黑体}、{\kaishu 方正楷体}、{\fangsong 方正仿宋}四款字体均可免费试用，且可用于商业用途。用户可以自行从\href{http://www.foundertype.com/}{方正字体官网}下载此四款字体，在下载的时候请\textbf{务必}注意选择 GBK 字符集，也可以使用 \href{https://www.latexstudio.net/}{\LaTeX{} 工作室}提供的\href{https://pan.baidu.com/s/1BgbQM7LoinY7m8yeP25Y7Q}{方正字体，提取码为：njy9} 进行安装。安装时，{\kaishu Win 10 用户请右键选择为全部用户安装，否则会找不到字体。}
+由于使用 \lstinline{ctex} 宏包默认调用系统已有的字体，部分系统字体缺失严重，因此，用户希望能够使用其它字体，我们推荐使用方正字体。方正的{\songti 方正书宋}、{\heiti 方正黑体}、{\kaishu 方正楷体}、{\fangsong 方正仿宋}四款字体均可免费试用，且可用于商业用途。用户可以自行从\href{http://www.foundertype.com/}{方正字体官网}下载此四款字体，在下载的时候请\textbf{务必}注意选择 GBK 字符集，也可以使用 \href{https://www.latexstudio.net/}{\LaTeX\ 工作室}提供的\href{https://pan.baidu.com/s/1BgbQM7LoinY7m8yeP25Y7Q}{方正字体，提取码为：njy9} 进行安装。安装时，{\kaishu Win 10 用户请右键选择为全部用户安装，否则会找不到字体。}
 
 \begin{figure}[!htb]
 \centering
@@ -100,7 +100,7 @@
 
 
 \subsection{自定义命令}
-此模板并没有修改任何默认的 \LaTeX{} 命令或者环境\footnote{目的是保证代码的可复用性，请用户关注内容，不要太在意格式，这才是本工作论文模板的意义。}。另外，本模板可以使用的 4 个额外命令：
+此模板并没有修改任何默认的 \LaTeX\ 命令或者环境\footnote{目的是保证代码的可复用性，请用户关注内容，不要太在意格式，这才是本工作论文模板的意义。}。另外，本模板可以使用的 4 个额外命令：
 \begin{enumerate}
   \item \lstinline{\email}：创建邮箱地址的链接，比如 \email{xxx@outlook.com}；
   \item \lstinline{\figref}：用法和 \lstinline{\ref} 类似，但是会在插图的标题前添加 <\textbf{图 n}> ；

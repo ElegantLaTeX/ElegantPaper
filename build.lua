@@ -1,5 +1,5 @@
 --[==========================================[--
-   L3BUILD FILE FOR ELEGANTPAPER
+          L3BUILD FILE FOR ELEGANTPAPER
      Check PDF File & Directory After Build
 --]==========================================]--
 
@@ -17,11 +17,7 @@ repository       = "https://github.com/" .. maintainid .. "/" .. module
 announcement     = ""
 note             = ""
 summary          = "An Elegant LaTeX Template for Working Papers"
-description      = [[
-ElegantPaper is designed for writing working papers, especially for economics
-students. This template is based on the standard LaTeX article class. The goal
-of this template is to make the writing process easier and more comfortable.
-]]
+description      = [[ElegantPaper is designed for writing working papers, especially for economics students. This template is based on the standard LaTeX article class. The goal of this template is to make the writing process easier and more comfortable.]]
 
 --[==========================================[--
          Build, Pack and Upload To CTAN
@@ -30,9 +26,14 @@ of this template is to make the writing process easier and more comfortable.
 ctanzip          = module
 excludefiles     = {"*~"}
 textfiles        = {"*.md", "LICENSE", "*.lua", "*.cls", "*.bib"}
+typesetexe       = "latexmk -pdf"
 typesetfiles     = {module .. "-cn.tex", module .. "-en.tex"}
+typesetopts      = "-interaction=nonstopmode"
+typesetruns      = 1
 typesetsuppfiles = {"*.cls", "*.bib"}
 imagesuppdir     = "image"
+specialtypesetting = specialtypesetting or {}
+specialtypesetting[module .. "-cn.tex"] = {cmd = "latexmk -xelatex"}
 
 uploadconfig = {
   pkg          = module,
@@ -54,16 +55,10 @@ uploadconfig = {
   update       = true
 }
 
--- cn uses XeLaTeX, en uses pdfLaTeX
-function typeset(file, dir, exe)
-  dir = dir or typesetdir
-  local cmd
-  if string.match(file, "%-cn%.tex$") then
-    cmd = "latexmk -pdfxe -interaction=nonstopmode "
-  else
-    cmd = "latexmk -pdf -interaction=nonstopmode "
-  end
-  return run(dir, cmd .. file)
+function tex(file, dir, cmd)
+  dir = dir or "."
+  cmd = cmd or typesetexe .. " " .. typesetopts
+  return run(dir, cmd .. " " .. file)
 end
 
 -- Copy required files into the typeset build dir
