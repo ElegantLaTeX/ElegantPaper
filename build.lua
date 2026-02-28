@@ -33,7 +33,7 @@ typesetruns      = 1
 typesetsuppfiles = {"*.cls", "*.bib"}
 imagesuppdir     = "image"
 specialtypesetting = specialtypesetting or {}
-specialtypesetting[module .. "-cn.tex"] = {cmd = "latexmk -xelatex"}
+specialtypesetting[module .. "-cn.tex"] = {cmd = "latexmk -pdfxe"}
 
 uploadconfig = {
   pkg          = module,
